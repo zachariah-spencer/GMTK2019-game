@@ -7,11 +7,14 @@ export var move_speed: float = CELL * 4.5
 export var jump_height: float = CELL * 10
 
 var aim_position := Vector2.ZERO
+var targeted_position := Vector2.ZERO
 var velocity := Vector2.ZERO
 var gravity := CELL / 2
 var state = null setget _set_state
 var previous_state = null
 var states: Dictionary = {}
+
+onready var gun := $Gun
 
 func _ready():
 	_add_state('idle')
@@ -53,7 +56,10 @@ func _handle_jumping():
 
 
 func _handle_aiming():
-	aim_position = get_global_mouse_position()
+	aim_position = get_local_mouse_position()
+	targeted_position = get_global_mouse_position()
+	gun.rotation = aim_position.angle()
+	gun.position = aim_position.normalized() * 10
 
 
 func _input(event: InputEvent):
