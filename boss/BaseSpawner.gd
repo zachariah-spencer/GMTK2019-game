@@ -4,8 +4,9 @@ var number_projectiles := 3
 var projectiles_to_fire := 0
 var projectile_space := .05
 
-func fire():
+func fire(offset):
 	projectiles_to_fire = number_projectiles
+	self.offset = offset
 	_fire()
 
 func _fire() :
