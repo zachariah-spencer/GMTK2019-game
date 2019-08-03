@@ -22,6 +22,6 @@ func _add_projectile(direction, proj := projectile, off := offset):
 func clear_projectiles():
 	pass
 
-func fire():
+func fire(offset):
 	pass
 
