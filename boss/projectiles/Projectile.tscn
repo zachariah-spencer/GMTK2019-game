@@ -3,6 +3,7 @@
 [ext_resource path="res://boss/projectiles/Projectile.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
 radius = 4.0
 
 [node name="Projectile" type="Area2D"]
@@ -14,5 +15,10 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="FizzleTimer" type="Timer" parent="."]
+
+[node name="LifeTimer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
 [connection signal="body_entered" from="." to="." method="_on_hit"]
 [connection signal="timeout" from="FizzleTimer" to="." method="queue_free"]
+[connection signal="timeout" from="LifeTimer" to="." method="fizzle"]
