@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://boss/ProjectileSpawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://boss/WaveSpawner.gd" type="Script" id=2]
+
+[node name="WaveSpawner" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+projectile = null
+
+[node name="FireDelay" type="Timer" parent="." index="1"]
+process_mode = 0
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="FireDelay" to="." method="_on_FireDelay_timeout"]

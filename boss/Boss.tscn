@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://boss/Hurtbox.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/sphere_soft.png" type="Texture" id=4]
 [ext_resource path="res://boss/BaseSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://_projectiles/PlayerFollowProjectile.tscn" type="PackedScene" id=6]
+[ext_resource path="res://boss/WaveSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://_projectiles/BossProjectile.tscn" type="PackedScene" id=8]
 
 [sub_resource type="GradientTexture" id=1]
 gradient = ExtResource( 3 )
@@ -17,6 +19,7 @@ flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 40.0
+angular_velocity = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 1.0
 scale = 0.01
@@ -72,6 +75,9 @@ shape = SubResource( 4 )
 projectile = ExtResource( 6 )
 speed = 100
 
+[node name="WaveSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 7 )]
+projectile = ExtResource( 8 )
+
 [node name="SpecialAttacks" type="Node2D" parent="Body"]
 
 [node name="Movement" type="Node2D" parent="Body"]
@@ -108,7 +114,9 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/BaseSpawner" method="fire"]
+[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/WaveSpawner" method="fire"]
 [connection signal="hit" from="Body" to="." method="hit"]
 [connection signal="hit" from="Body/Hurtbox" to="." method="hit"]
 [connection signal="timeout" from="MoveTimer" to="." method="_move"]
