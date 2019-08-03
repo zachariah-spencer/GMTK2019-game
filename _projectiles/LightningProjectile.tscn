@@ -9,6 +9,8 @@ radius = 4.0
 [node name="LightningProjectile" instance=ExtResource( 1 )]
 collision_mask = 5
 color = Color( 0.94902, 0.988235, 0.482353, 1 )
+damage = 2
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
+

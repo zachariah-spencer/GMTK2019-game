@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 const CELL := 64
 
@@ -16,6 +17,7 @@ var previous_state = null
 var states: Dictionary = {}
 
 onready var gun := $Gun
+onready var stunned_timer := $StunnedTimer
 
 func _ready():
 	Global.player = self
@@ -41,6 +43,21 @@ func _handle_gravity():
 		velocity.y = 0
 	else:
 		velocity.y += gravity
+
+
+func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
+	modulate.a = .5
+	set_collision_layer_bit(4, false)
+	stunned_timer.start()
+	
+	if stunned_timer.is_stopped():
+		hp -= damage
+		if hp <= 0 :
+			_die()
+
+
+func _die():
+	print('player died')
 
 
 func _handle_movement():
@@ -133,3 +150,8 @@ func _set_state(new_state):
 		_exit_state(previous_state, new_state)
 	if new_state != null:
 		_enter_state(new_state, previous_state)
+
+
+func _on_StunnedTimer_timeout():
+	modulate.a = 1
+	set_collision_layer_bit(4, true)
