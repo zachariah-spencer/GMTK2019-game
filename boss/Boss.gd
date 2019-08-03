@@ -130,3 +130,6 @@ func _handle_movement(delta : float ):
 func _hop():
 	velocity.y = -400
 	velocity.x = sign(player.global_position.x - $Body.global_position.x) * 200
+
+func _teleport():
+	pass

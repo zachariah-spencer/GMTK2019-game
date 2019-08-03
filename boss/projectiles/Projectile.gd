@@ -16,11 +16,14 @@ func _physics_process(delta):
 	else :
 		_move(delta)
 	time += delta
+	update()
 
+func _draw():
+	draw_circle(Vector2.ZERO, $CollisionShape2D.shape.radius, Color.black)
 
 
 func _move(delta : float):
-	position += Vector2.UP.rotated(direction.angle()) * sin(time*10)
+#	position += Vector2.UP.rotated(direction.angle()) * sin(time*10)
 	position += speed*direction*delta
 
 func _on_hit(body):
