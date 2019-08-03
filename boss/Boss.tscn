@@ -3,8 +3,8 @@
 [ext_resource path="res://boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://boss/full_gradient.tres" type="Gradient" id=2]
 [ext_resource path="res://assets/sphere_soft.png" type="Texture" id=3]
-[ext_resource path="res://boss/projectiles/BaseSpawner.tscn" type="PackedScene" id=4]
-[ext_resource path="res://boss/projectiles/Projectile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://boss/BaseSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://_projectiles/BossProjectile.tscn" type="PackedScene" id=5]
 
 [sub_resource type="GradientTexture" id=1]
 gradient = ExtResource( 2 )
@@ -16,7 +16,7 @@ flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 5.0
-angular_velocity = 4.62273e+30
+angular_velocity = 4.62273e+030
 orbit_velocity = 0.0
 orbit_velocity_random = 1.0
 scale = 0.01
@@ -71,6 +71,7 @@ autostart = true
 [node name="SpecialTimer" type="Timer" parent="."]
 process_mode = 0
 autostart = true
+
 [connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/BaseSpawner" method="fire"]
 [connection signal="timeout" from="MoveTimer" to="." method="_move"]
 [connection signal="timeout" from="ProjectileTimer" to="." method="_fire"]

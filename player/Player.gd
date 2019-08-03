@@ -10,6 +10,7 @@ var aim_position := Vector2.ZERO
 var targeted_position := Vector2.ZERO
 var velocity := Vector2.ZERO
 var gravity := CELL / 2
+
 var state = null setget _set_state
 var previous_state = null
 var states: Dictionary = {}
@@ -64,8 +65,10 @@ func _handle_aiming():
 
 func _input(event: InputEvent):
 	if event.is_action_released('jump') && velocity.y < 0:
-		print('here')
 		velocity.y *= .4
+	
+	if event.is_action_pressed('shoot'):
+		gun.shoot()
 
 
 func _add_state(state_name):

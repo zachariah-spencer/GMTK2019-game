@@ -2,11 +2,12 @@ extends Node2D
 
 class_name Projectile
 
-var damage := 1
-var knockback = Vector2.ZERO
-var type = 0
-var direction = Vector2.LEFT
-var speed = 70
+export(Color, RGBA) var color := Color.white
+export var damage := 1
+export var knockback := Vector2.ZERO
+var type := 0
+var direction := Vector2.LEFT
+var speed := 70
 var lifetime := 3
 
 var time = PI
@@ -26,7 +27,7 @@ func _physics_process(delta):
 	update()
 
 func _draw():
-	draw_circle(Vector2.ZERO, $CollisionShape2D.shape.radius, Color.black)
+	draw_circle(Vector2.ZERO, $CollisionShape2D.shape.radius, color)
 
 
 func _move(delta : float):
