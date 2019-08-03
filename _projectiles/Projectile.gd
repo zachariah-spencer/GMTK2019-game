@@ -1,11 +1,11 @@
-extends Node2D
+extends Area2D
 
 class_name Projectile
 
 export(Color, RGBA) var color := Color.white
 export var damage := 1
 export var knockback := Vector2.ZERO
-var type := 0
+export(int, "void", "fire", "lightning", "water", "earth", "air") var type := 0
 var direction := Vector2.LEFT
 export var speed := 70
 var lifetime := 3
@@ -15,6 +15,7 @@ var time = PI
 onready var fizzle_timer = $FizzleTimer
 
 func _ready():
+	color = Damage.damage_color[type]
 	$LifeTimer.start(lifetime)
 
 func _physics_process(delta):
@@ -40,4 +41,5 @@ func _on_hit(body):
 
 func fizzle():
 	if $FizzleTimer.is_stopped() :
+		set_deferred("monitoring", false)
 		$FizzleTimer.start()

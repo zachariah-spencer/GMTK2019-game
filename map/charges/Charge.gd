@@ -43,6 +43,7 @@ func _draw():
 
 func fizzle():
 	if $FizzleTimer.is_stopped() :
+		monitoring = false
 		$FizzleTimer.start()
 
 
