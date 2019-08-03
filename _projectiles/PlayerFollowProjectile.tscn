@@ -5,13 +5,13 @@
 
 [sub_resource type="CircleShape2D" id=1]
 resource_local_to_scene = true
-radius = 4.0
+radius = 8.0
 
 [node name="FollowProjectile" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-color = Color( 0.172549, 0.584314, 0.235294, 1 )
 type = 4
 speed = 100
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
+

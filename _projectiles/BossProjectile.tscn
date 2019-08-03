@@ -4,10 +4,10 @@
 
 [sub_resource type="CircleShape2D" id=1]
 resource_local_to_scene = true
-radius = 4.0
+radius = 8.0
 
 [node name="BossProjectile" instance=ExtResource( 1 )]
-color = Color( 0, 0, 0, 1 )
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
+

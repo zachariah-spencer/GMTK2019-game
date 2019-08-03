@@ -48,12 +48,12 @@ func _handle_gravity():
 func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	modulate.a = .5
 	set_collision_layer_bit(4, false)
+	Engine.time_scale = .4
 	stunned_timer.start()
 	
-	if stunned_timer.is_stopped():
-		hp -= damage
-		if hp <= 0 :
-			_die()
+	hp -= damage
+	if hp <= 0 :
+		_die()
 
 
 func _die():
@@ -99,12 +99,20 @@ func _add_state(state_name):
 func _state_logic(delta : float):
 	$StateLabel.text = states.keys()[state]
 	if state != states.disabled:
+		_handle_time(delta)
 		_handle_gravity()
 		_handle_movement()
 		_handle_jumping()
 		_handle_aiming()
 		_apply_velocity()
 
+func _handle_time(delta):
+	if !stunned_timer.is_stopped():
+		Engine.time_scale += delta * 2.5
+		Engine.time_scale = min(Engine.time_scale, 1)
+	elif hp == 1:
+		pass
+		#if projectiles are nearby then scale time to be slower
 
 func _get_transition(delta : float):
 	match state:
@@ -158,3 +166,4 @@ func _set_state(new_state):
 func _on_StunnedTimer_timeout():
 	modulate.a = 1
 	set_collision_layer_bit(4, true)
+	Engine.time_scale = 1
