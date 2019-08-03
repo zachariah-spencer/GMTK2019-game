@@ -14,3 +14,4 @@ speed = 100
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
+

@@ -4,12 +4,12 @@ const CELL := 64
 
 export var hp := 100
 export var move_speed: float = CELL * 4.5
-export var jump_height: float = CELL * 10
+export var jump_height: float = CELL * 17
 
 var aim_position := Vector2.ZERO
 var targeted_position := Vector2.ZERO
 var velocity := Vector2.ZERO
-var gravity := CELL / 2
+var gravity := CELL / 1.5
 
 var state = null setget _set_state
 var previous_state = null
