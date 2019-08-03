@@ -57,7 +57,7 @@ func activate_phase(type : int):
 			move.connect("move", self, "move")
 	#I guess this doesn't work, needs to randomly select a move
 	for attack in special_attacks :
-		if attack.is_in_group(type) :
+		if attack.is_in_group(str(type)) :
 			attack.connect("attack", self, "special")
 
 func _fire():
