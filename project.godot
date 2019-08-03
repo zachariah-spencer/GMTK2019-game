@@ -38,7 +38,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-damage="*res://singleton/damage.gd"
+Damage="*res://singleton/Damage.gd"
+Global="*res://singleton/Global.gd"
 
 [input]
 
