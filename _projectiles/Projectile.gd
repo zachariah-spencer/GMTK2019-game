@@ -7,7 +7,7 @@ export var damage := 1
 export var knockback := Vector2.ZERO
 var type := 0
 var direction := Vector2.LEFT
-var speed := 70
+export var speed := 70
 var lifetime := 3
 
 var time = PI
