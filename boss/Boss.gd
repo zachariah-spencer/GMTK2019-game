@@ -4,7 +4,8 @@ const CELL_SIZE = 64
 
 var phase := 0
 var immunities := []
-var health := 3.0
+var health := 3
+var total_health := 3
 var size := 40
 
 onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
@@ -12,6 +13,8 @@ onready var special_attacks = $Body/SpecialAttacks.get_children()
 onready var movement_abilities = $Body/Movement.get_children()
 onready var rand = RandomNumberGenerator.new()
 onready var line_of_sight = $Body/PlayerLineOfSight
+onready var health_bar = $CanvasLayer/HealthBar
+
 
 var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)
 var low_jump_v = sqrt(gravity * 60 * CELL_SIZE * 3)
@@ -28,13 +31,14 @@ var player : Node2D
 func _ready():
 	_set_states()
 	player = get_tree().get_nodes_in_group("player")[0]
-
+	health_bar.value = 100
 
 func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	if not type in immunities :
 		health -= damage
 		if health <= 0 :
 			activate_phase(type)
+		health_bar.value = 100 * health/ (phase + 3)
 	else :
 		pass #something that shows it's immune
 
@@ -42,6 +46,7 @@ func activate_phase(type : int):
 	phase += 1
 	immunities.append(type)
 	health = phase + 3
+	health_bar.value = 100
 
 	#could do this by using class_name later
 	for attack in projectile_attacks :
