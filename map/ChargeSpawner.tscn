@@ -18,3 +18,6 @@ process_mode = 0
 wait_time = 3.0
 one_shot = true
 
+[node name="SpawnedCharges" type="Node" parent="."]
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]
