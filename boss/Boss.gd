@@ -50,14 +50,14 @@ func activate_phase(type : int):
 
 	#could do this by using class_name later
 	for attack in projectile_attacks :
-		if attack.is_in_group(type) :
+		if attack.is_in_group(str(type)) :
 			attack.connect("fire", self, "fire_projectile")
 	for move in movement_abilities :
-		if move.is_in_group(type) :
+		if move.is_in_group(str(type)) :
 			move.connect("move", self, "move")
 	#I guess this doesn't work, needs to randomly select a move
 	for attack in special_attacks :
-		if attack.is_in_group(type) :
+		if attack.is_in_group(str(type)) :
 			attack.connect("attack", self, "special")
 
 func _fire():
