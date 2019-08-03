@@ -19,7 +19,6 @@ tile_data = PoolIntArray( -262154, 0, 3, -262153, 0, 65541, -262152, 0, 65541, -
 "player",
 ] instance=ExtResource( 2 )]
 position = Vector2( 353.681, 212.574 )
-collision_layer = 16
 
 [node name="Boss" parent="." instance=ExtResource( 3 )]
 position = Vector2( 232.067, 163.502 )

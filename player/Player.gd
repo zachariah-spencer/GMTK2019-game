@@ -72,6 +72,9 @@ func _handle_movement():
 func _handle_jumping():
 	if Input.is_action_pressed('jump') && is_on_floor():
 		velocity.y = -jump_height
+	
+	if is_on_ceiling():
+		velocity.y = 5
 
 
 func _handle_aiming():
