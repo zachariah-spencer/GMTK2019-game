@@ -17,6 +17,7 @@ const damage_color = {
 	"water" : Color.blue,
 	water : Color.blue,
 	"earth" : Color.green,
+	earth : Color.green,
 	air : Color.whitesmoke,
 	"air" : Color.whitesmoke
 }

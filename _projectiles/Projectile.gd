@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Projectile
 
-export(Color, RGBA) var color := Color.white
+var color := Color.white
 export var damage := 1
 export var knockback := Vector2.ZERO
 export(int, "void", "fire", "lightning", "water", "earth", "air") var type := 0

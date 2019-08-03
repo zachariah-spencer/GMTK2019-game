@@ -1,8 +1,8 @@
 extends Area2D
 class_name Charge
 
-var type := 'fire'
-export(Color, RGBA) var color := Color.white
+var color
+var type := 1
 onready var fizzle_timer = $FizzleTimer
 onready var spawn_timer = $SpawnTimer
 var spawn_anim := 0.0
@@ -11,13 +11,14 @@ var pulsing_time := 0.0
 signal picked_up
 
 func _ready():
+	color = Damage.damage_color[type]
 	spawn_timer.start()
 	connect('picked_up', get_parent().get_parent(), 'on_charge_picked_up')
 
 func _on_Charge_body_entered(body):
 	var player = body as Player
 	
-	if player && player.gun.charge_type == '':
+	if player && player.gun.charge_type == 0:
 		player.gun.charge(type)
 		fizzle()
 		emit_signal('picked_up')

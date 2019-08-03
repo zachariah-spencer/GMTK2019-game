@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/AutoTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://boss/Boss.tscn" type="PackedScene" id=3]
 [ext_resource path="res://map/ChargeSpawner.tscn" type="PackedScene" id=4]
-[ext_resource path="res://map/charges/Charge.tscn" type="PackedScene" id=5]
 
 [node name="Level" type="Node2D"]
 
@@ -24,7 +23,27 @@ position = Vector2( 353.681, 212.574 )
 position = Vector2( 232.067, 163.502 )
 
 [node name="ChargeSpawner" parent="." instance=ExtResource( 4 )]
-position = Vector2( 235, 306 )
+position = Vector2( 272, 306 )
 scale = Vector2( 0.5, 0.5 )
-charge = ExtResource( 5 )
+type = 1
+
+[node name="ChargeSpawner2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 462.765, 306 )
+scale = Vector2( 0.5, 0.5 )
+type = 2
+
+[node name="ChargeSpawner3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1296, 306 )
+scale = Vector2( 0.5, 0.5 )
+type = 3
+
+[node name="ChargeSpawner4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1456, 306 )
+scale = Vector2( 0.5, 0.5 )
+type = 4
+
+[node name="ChargeSpawner5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1712, 306 )
+scale = Vector2( 0.5, 0.5 )
+type = 5
 
