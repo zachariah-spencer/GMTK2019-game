@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Projectile
+
 var damage := 1
 var knockback = Vector2.ZERO
 var type = 0

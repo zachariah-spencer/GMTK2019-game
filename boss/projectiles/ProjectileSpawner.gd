@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name ProjectileSpawner
+
 export(PackedScene) var projectile
 export var type := 1
 var offset := 15
