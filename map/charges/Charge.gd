@@ -6,6 +6,7 @@ export(Color, RGBA) var color := Color.white
 onready var fizzle_timer = $FizzleTimer
 onready var spawn_timer = $SpawnTimer
 var spawn_anim := 0.0
+var pulsing_time := 0.0
 
 signal picked_up
 
@@ -26,6 +27,11 @@ func _physics_process(delta):
 	if !fizzle_timer.is_stopped() :
 		modulate.a = fizzle_timer.time_left
 		$CollisionShape2D.shape.radius *= .8
+	elif spawn_timer.is_stopped() && fizzle_timer.is_stopped():
+		$CollisionShape2D.shape.radius = sin(1.5 * pulsing_time) + 8
+		pulsing_time += .02
+	
+	
 	update()
 
 func _draw():
