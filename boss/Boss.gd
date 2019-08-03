@@ -7,13 +7,16 @@ var health := 3.0
 onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
 onready var special_attacks = $Body/SpecialAttacks.get_children()
 onready var movement_abilities = $Body/Movement.get_children()
+onready var rand = RandomNumberGenerator.new()
+onready var line_of_sight = $Body/PlayerLineOfSight
 
 signal fire_projectile
 signal move
 signal special_attack
 
-var gravity = 10
+var gravity = 20
 var player
+
 
 func _ready():
 	_set_states()
@@ -99,7 +102,7 @@ func _set_state(new_state):
 
 func _state_logic(delta : float):
 	_handle_movement(delta)
-
+	line_of_sight.cast_to = player.global_position  - $Body.global_position
 	_apply_movement()
 
 func _get_transition(delta : float):
@@ -127,8 +130,15 @@ func _handle_movement(delta : float ):
 		'idle':
 			pass
 
+############################################################
+####Move Actions ####
+############################################################
+
 func _hop():
-	velocity.y = -400
+	if player.global_position.y < $Body.global_position.y or line_of_sight.is_colliding() :
+		velocity.y = -700
+	else :
+		velocity.y = -300
 	velocity.x = sign(player.global_position.x - $Body.global_position.x) * 200
 
 func _teleport():

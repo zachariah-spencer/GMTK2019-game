@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Projectile",
 "language": "GDScript",
-"path": "res://boss/projectiles/Projectile.gd"
+"path": "res://_projectiles/Projectile.gd"
 }, {
 "base": "Node2D",
 "class": "ProjectileSpawner",
 "language": "GDScript",
-"path": "res://boss/projectiles/ProjectileSpawner.gd"
+"path": "res://boss/ProjectileSpawner.gd"
 } ]
 _global_script_class_icons={
 "Projectile": "",
