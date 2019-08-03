@@ -4,9 +4,9 @@ var phase := 0
 var immunities := []
 var health := 3.0
 
-onready var projectile_attacks = $ProjectileSpawners.get_children()
-onready var special_attacks = $SpecialAttacks.get_children()
-onready var movement_abilities = $Movement.get_children()
+onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
+onready var special_attacks = $Body/SpecialAttacks.get_children()
+onready var movement_abilities = $Body/Movement.get_children()
 
 
 signal fire_projectile
