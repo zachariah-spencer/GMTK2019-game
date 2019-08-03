@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://boss/Hurtbox.gd" type="Script" id=2]
@@ -27,6 +27,20 @@ radius = 40.0
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 40.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=6]
 
 [node name="Boss" type="Node2D"]
 script = ExtResource( 1 )
@@ -78,6 +92,22 @@ autostart = true
 [node name="SpecialTimer" type="Timer" parent="."]
 process_mode = 0
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -295.5
+margin_right = 295.5
+margin_bottom = 24.0
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
+value = 15.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/BaseSpawner" method="fire"]
 [connection signal="hit" from="Body" to="." method="hit"]
 [connection signal="hit" from="Body/Hurtbox" to="." method="hit"]
