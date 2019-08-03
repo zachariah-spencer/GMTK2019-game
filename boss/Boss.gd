@@ -1,5 +1,7 @@
 extends Node2D
 
+const CELL_SIZE = 64
+
 var phase := 0
 var immunities := []
 var health := 3.0
@@ -10,12 +12,16 @@ onready var movement_abilities = $Body/Movement.get_children()
 onready var rand = RandomNumberGenerator.new()
 onready var line_of_sight = $Body/PlayerLineOfSight
 
+var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)
+var low_jump_v = sqrt(gravity * 60 * CELL_SIZE * 3)
+
+
 signal fire_projectile
 signal move
 signal special_attack
 
-var gravity = 20
-var player
+const gravity = 20
+var player : Node2D
 
 
 func _ready():
@@ -135,11 +141,17 @@ func _handle_movement(delta : float ):
 ############################################################
 
 func _hop():
-	if player.global_position.y < $Body.global_position.y or line_of_sight.is_colliding() :
-		velocity.y = -700
+	
+	var player_dir = player.global_position - $Body.global_position 
+	
+	if player_dir.y > 0 or line_of_sight.is_colliding() :
+		velocity.y = -high_jump_v
 	else :
-		velocity.y = -300
-	velocity.x = sign(player.global_position.x - $Body.global_position.x) * 200
+		velocity.y = -low_jump_v
+	if player.global_position.distance_to($Body.global_position) > 500 :
+		velocity.x = sign(player_dir.x) * 500
+	else :
+		velocity.x = sign(player_dir.x) * 200
 
 func _teleport():
 	pass
