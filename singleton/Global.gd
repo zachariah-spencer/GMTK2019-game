@@ -1,4 +1,4 @@
 extends Node
 
-var Player
+var player
 const CELL_SIZE = 64
