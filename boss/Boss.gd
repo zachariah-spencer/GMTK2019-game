@@ -5,6 +5,7 @@ const CELL_SIZE = 64
 var phase := 0
 var immunities := []
 var health := 3.0
+var size := 40
 
 onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
 onready var special_attacks = $Body/SpecialAttacks.get_children()
@@ -55,7 +56,7 @@ func activate_phase(type : int):
 			attack.connect("attack", self, "special")
 
 func _fire():
-	emit_signal("fire_projectile")
+	emit_signal("fire_projectile", size)
 	pass
 
 func _move():
@@ -141,7 +142,6 @@ func _handle_movement(delta : float ):
 ############################################################
 
 func _hop():
-	
 	var player_dir = player.global_position - $Body.global_position 
 	
 	if player_dir.y > 0 or line_of_sight.is_colliding() :
