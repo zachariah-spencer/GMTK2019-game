@@ -31,7 +31,6 @@ func _physics_process(delta):
 		$CollisionShape2D.shape.radius = sin(1.5 * pulsing_time) + 8
 		pulsing_time += .02
 	
-	
 	update()
 
 func _draw():
