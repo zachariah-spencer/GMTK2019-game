@@ -21,3 +21,4 @@ collision_layer = 16
 
 [node name="Boss" parent="." instance=ExtResource( 3 )]
 position = Vector2( 232.067, 163.502 )
+
