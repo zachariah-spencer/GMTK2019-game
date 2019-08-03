@@ -18,6 +18,7 @@ var states: Dictionary = {}
 onready var gun := $Gun
 
 func _ready():
+	Global.player = self
 	_add_state('idle')
 	_add_state('run')
 	_add_state('jump')
