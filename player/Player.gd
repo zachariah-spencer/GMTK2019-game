@@ -3,7 +3,7 @@ class_name Player
 
 const CELL := 64
 
-export var hp := 100
+export var hp := 5
 export var move_speed: float = CELL * 4.5
 export var jump_height: float = CELL * 17
 
@@ -94,6 +94,9 @@ func _input(event: InputEvent):
 		velocity.y *= .4
 
 	if event.is_action_pressed('shoot'):
+		if gun.charge_type == 5:
+			velocity += Vector2.RIGHT.rotated(gun.rotation) * 10 * CELL
+			#do air knockback here
 		gun.shoot()
 
 

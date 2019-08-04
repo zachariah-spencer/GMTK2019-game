@@ -43,4 +43,5 @@ one_shot = true
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]
