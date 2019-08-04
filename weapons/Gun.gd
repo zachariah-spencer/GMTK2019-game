@@ -42,6 +42,7 @@ func shoot():
 func _add_projectile(projectile):
 	var to_add = projectile.instance()
 	to_add.speed = projectile_speed
+	to_add.type = charge_type
 	to_add.direction = Vector2.RIGHT.rotated(rotation)
 	to_add.position = global_position + 10 * to_add.direction
 	$Node.add_child(to_add)
