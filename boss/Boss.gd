@@ -76,6 +76,12 @@ func _move():
 			_teleport()
 		else :
 			_hop()
+	else :
+		##placeholder for float code##
+		if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
+			_teleport()
+		else :
+			_hop()
 
 func _special():
 	emit_signal("special_attack")
