@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://boss/Hurtbox.gd" type="Script" id=2]
@@ -16,6 +16,10 @@
 [ext_resource path="res://_projectiles/BossFireProjectile.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/audio/boss_immune.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/audio/boss_hit.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/audio/boss_teleport.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/audio/boss_die.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/audio/boss_transition.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/audio/music/ambience.ogg" type="AudioStream" id=20]
 
 [sub_resource type="GradientTexture" id=5]
 gradient = ExtResource( 3 )
@@ -125,6 +129,15 @@ stream = SubResource( 9 )
 stream = SubResource( 10 )
 attenuation = 0.0883883
 
+[node name="Teleport" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource( 17 )
+
+[node name="Transition" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource( 19 )
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource( 18 )
+
 [node name="MoveTimer" type="Timer" parent="."]
 process_mode = 0
 wait_time = 4.0
@@ -162,8 +175,27 @@ collision_mask = 524289
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapArea"]
 shape = SubResource( 7 )
 
+[node name="TransformTimer" type="Timer" parent="."]
+
+[node name="Phase0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+volume_db = -80.0
+autoplay = true
+
+[node name="Phase1" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+
+[node name="Phase2" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+
+[node name="Phase3" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+
+[node name="Phase4" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
 [connection signal="hit" from="Body" to="." method="hit"]
 [connection signal="hit" from="Body/Hurtbox" to="." method="hit"]
+[connection signal="finished" from="Body/Transition" to="." method="end_transform"]
 [connection signal="timeout" from="MoveTimer" to="." method="_move"]
 [connection signal="timeout" from="ProjectileTimer" to="." method="_fire"]
 [connection signal="timeout" from="SpecialTimer" to="." method="_special"]

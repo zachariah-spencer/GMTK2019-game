@@ -33,6 +33,7 @@ func charge(new_charge):
 func shoot():
 	if charge_type != 0:
 		_add_projectile(charge_types[charge_type], charge_type)
+		$Shoot.play()
 		charge_type = 0
 		_update_accent()
 

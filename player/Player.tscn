@@ -174,4 +174,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+stream = ExtResource( 4 )
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]

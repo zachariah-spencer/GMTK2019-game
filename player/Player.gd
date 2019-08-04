@@ -57,17 +57,16 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	modulate.a = .5
 	set_collision_layer_bit(4, false)
 	Engine.time_scale = .4
-	stunned_timer.start()
 	$PlayerHit.play()
-
-	hp -= damage
-	hp_bar.value = hp
-	if hp <= 0 :
-		_die()
-
+	if stunned_timer.is_stopped() :
+		stunned_timer.start()
+		hp -= damage
+		if hp <= 0 :
+			_die()
 
 func _die():
-	print('player died')
+	Engine.time_scale = 1
+	Global.end_game(false)
 
 
 func _handle_movement():
@@ -94,7 +93,7 @@ func _handle_aiming():
 	targeted_position = get_global_mouse_position()
 	gun.rotation = aim_position.angle()
 	gun.position = aim_position.normalized() * 10
-	
+
 	if targeted_position.x < global_position.x:
 		facing_direction = -1
 	else:
@@ -107,7 +106,8 @@ func _input(event: InputEvent):
 
 	if event.is_action_pressed('shoot'):
 		if gun.charge_type == Damage.air:
-			velocity = Vector2.LEFT.rotated(gun.rotation) * 20 * CELL
+			velocity.y = -1750
+#			velocity = Vector2.LEFT.rotated(gun.rotation) * 20 * CELL
 			#do air knockback here
 		gun.shoot()
 
