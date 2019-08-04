@@ -2,6 +2,8 @@ extends Node2D
 
 const CELL_SIZE = 64
 
+var final_phase = 5
+
 var phase := 0
 var immunities := []
 var health := 3
@@ -44,8 +46,16 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 		$Body/ImmuneHit.play()
 		pass #something that shows it's immune
 
+func die() :
+	pass
+
 func activate_phase(type : int):
 	phase += 1
+
+	if phase == final_phase :
+		die()
+		Global.end_game(true)
+
 	immunities.append(type)
 	health = phase + 3
 	health_bar.value = 100

@@ -53,16 +53,18 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	modulate.a = .5
 	set_collision_layer_bit(4, false)
 	Engine.time_scale = .4
-	stunned_timer.start()
 	$PlayerHit.play()
+	if stunned_timer.is_stopped() :
+		stunned_timer.start()
+		hp -= damage
+		if hp <= 0 :
+			_die()
 
-	hp -= damage
-	if hp <= 0 :
-		_die()
 
 
 func _die():
-	print('player died')
+	Engine.time_scale = 1
+	Global.end_game(false)
 
 
 func _handle_movement():
