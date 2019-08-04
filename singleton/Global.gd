@@ -15,6 +15,6 @@ var won := true
 
 var GAMEOVER = preload('res://map/GameOver.tscn')
 
-func end_game(win : bool):
+func game_end(win : bool):
 	won = win
 	get_tree().change_scene_to(GAMEOVER)
