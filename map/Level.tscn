@@ -82,16 +82,15 @@ script = ExtResource( 10 )
 [node name="Player" parent="." groups=[
 "player",
 ] instance=ExtResource( 11 )]
-position = Vector2( -128, 256 )
+position = Vector2( -256, 240 )
 
 [node name="Boss" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1248, 256 )
 
 [node name="Chargers" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="ChargeSpawner" parent="Chargers" instance=ExtResource( 13 )]
-position = Vector2( -256, 243.2 )
+position = Vector2( -128, 307.2 )
 type = 1
 
 [node name="ChargeSpawner2" parent="Chargers" instance=ExtResource( 13 )]
@@ -112,10 +111,6 @@ type = 3
 
 [node name="Booster" parent="." instance=ExtResource( 14 )]
 position = Vector2( 784.332, -192 )
-
-[node name="ChargeSpawner6" parent="." instance=ExtResource( 13 )]
-position = Vector2( -200, 243.2 )
-type = 5
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
