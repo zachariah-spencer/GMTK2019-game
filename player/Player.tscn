@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://weapons/Gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/audio/player_hit.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.0
@@ -41,4 +42,5 @@ process_mode = 0
 one_shot = true
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]
