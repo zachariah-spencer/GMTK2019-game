@@ -208,7 +208,7 @@ func _air_impulse():
 func _teleport():
 	randomize()
 	var player_dir = player.global_position - $Body.global_position
-	var dist = rand_range(200, 400)
+	var dist = 150
 	var test_point
 	if player_dir.x < 0 :
 		test_point = Vector2.LEFT * dist + player.global_position
@@ -221,6 +221,7 @@ func _teleport():
 	$Body/Teleport.play()
 	velocity = Vector2.ZERO
 	$Body.global_position = test_point
+	$ProjectileTimer.stop()
 	$ProjectileTimer.start()
 
 onready var curr_track : AudioStreamPlayer = $Phase0
