@@ -61,6 +61,7 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	if stunned_timer.is_stopped() :
 		stunned_timer.start()
 		hp -= damage
+		hp_bar.value = hp
 		if hp <= 0 :
 			_die()
 

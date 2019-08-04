@@ -23,3 +23,4 @@ func _on_PickupArea_body_entered(body):
 		emit_signal('picked_up')
 		picked_up = true
 		player.hp = 5
+		player.hp_bar.value = player.hp
