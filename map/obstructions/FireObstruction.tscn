@@ -4,7 +4,7 @@
 [ext_resource path="res://map/obstructions/FireObstruction.gd" type="Script" id=2]
 [ext_resource path="res://map/obstructions/Obstruction.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 50, 100 )
 
 [sub_resource type="Shader" id=2]
@@ -55,7 +55,7 @@ collision_layer = 21
 collision_mask = 21
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 material = SubResource( 5 )
