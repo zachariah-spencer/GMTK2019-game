@@ -19,6 +19,7 @@ texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.5, 0.5 )
 limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 7.0
@@ -43,5 +44,4 @@ one_shot = true
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]
