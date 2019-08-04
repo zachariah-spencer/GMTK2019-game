@@ -1,14 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/AutoTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://map/ChargeSpawner.tscn" type="PackedScene" id=2]
-[ext_resource path="res://boss/Boss.tscn" type="PackedScene" id=3]
-[ext_resource path="res://map/MapArea.gd" type="Script" id=4]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://boss/Boss.tscn" type="PackedScene" id=4]
 [ext_resource path="res://map/TileMap.gd" type="Script" id=6]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1024, 720 )
 
 [node name="Level" type="Node2D"]
 
@@ -22,10 +18,10 @@ script = ExtResource( 6 )
 
 [node name="Player" parent="." groups=[
 "player",
-] instance=ExtResource( 5 )]
+] instance=ExtResource( 3 )]
 position = Vector2( 353.681, 212.574 )
 
-[node name="Boss" parent="." instance=ExtResource( 3 )]
+[node name="Boss" parent="." instance=ExtResource( 4 )]
 position = Vector2( 232.067, 163.502 )
 
 [node name="ChargeSpawner" parent="." instance=ExtResource( 2 )]
@@ -52,12 +48,3 @@ type = 4
 position = Vector2( 1712, 306 )
 scale = Vector2( 0.5, 0.5 )
 type = 5
-
-[node name="MapArea" type="Area2D" parent="."]
-collision_layer = 524288
-collision_mask = 0
-script = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MapArea"]
-position = Vector2( 720, -380 )
-shape = SubResource( 1 )

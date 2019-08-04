@@ -38,5 +38,4 @@ position = Vector2( 12, 8 )
 [node name="StunnedTimer" type="Timer" parent="."]
 process_mode = 0
 one_shot = true
-
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]

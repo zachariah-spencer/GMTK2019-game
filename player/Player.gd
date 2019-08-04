@@ -20,6 +20,10 @@ onready var gun := $Gun
 onready var stunned_timer := $StunnedTimer
 
 func _ready():
+	$Camera2D.limit_left = Global.LIMIT_LEFT
+	$Camera2D.limit_bottom = Global.LIMIT_BOT
+	$Camera2D.limit_top = Global.LIMIT_TOP
+	$Camera2D.limit_right = Global.LIMIT_RIGHT
 	Global.player = self
 	_add_state('idle')
 	_add_state('run')
