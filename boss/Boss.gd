@@ -6,8 +6,8 @@ var final_phase = 5
 
 var phase := 0
 var immunities := []
-var health := 3
-var total_health := 3
+var health := 3.0
+var total_health := 3.0
 var size := 40
 var transforming = false
 
@@ -18,6 +18,7 @@ onready var movement_abilities = $Body/Movement.get_children()
 onready var rand = RandomNumberGenerator.new()
 onready var line_of_sight = $Body/PlayerLineOfSight
 onready var health_bar = $CanvasLayer/HealthBar
+onready var body := $Body
 
 
 var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)
@@ -33,11 +34,12 @@ var player : Node2D
 
 
 func _ready():
+	Global.boss = self
 	_set_states()
 	player = get_tree().get_nodes_in_group("player")[0]
 	health_bar.value = 100
 
-func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
+func hit(by : Node2D, damage : float, type : int, knockback : Vector2):
 	if not type in immunities :
 		$Body/VulnerableHit.play()
 		health -= damage
