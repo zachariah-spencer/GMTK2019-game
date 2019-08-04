@@ -1,45 +1,32 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://boss/Hurtbox.gd" type="Script" id=2]
-[ext_resource path="res://boss/full_gradient.tres" type="Gradient" id=3]
-[ext_resource path="res://assets/sphere_soft.png" type="Texture" id=4]
-[ext_resource path="res://boss/ThreeShotSpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://_projectiles/PlayerFollowProjectile.tscn" type="PackedScene" id=6]
-[ext_resource path="res://boss/WaveSpawner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://_projectiles/BossAirProjectile.tscn" type="PackedScene" id=8]
-[ext_resource path="res://boss/ErraticShotSpawner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://_projectiles/BossLightningProjectile.tscn" type="PackedScene" id=10]
-[ext_resource path="res://boss/EightWaySpawner.tscn" type="PackedScene" id=11]
-[ext_resource path="res://_projectiles/BossEarthProjectile.tscn" type="PackedScene" id=12]
-[ext_resource path="res://boss/CentralSpawner.tscn" type="PackedScene" id=13]
-[ext_resource path="res://_projectiles/BossFireProjectile.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/audio/boss_immune.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/audio/boss_hit.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/audio/boss_teleport.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/audio/boss_transition.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/audio/boss_die.wav" type="AudioStream" id=19]
-[ext_resource path="res://assets/audio/music/ambience.ogg" type="AudioStream" id=20]
-[ext_resource path="res://assets/audio/music/music_phase1.ogg" type="AudioStream" id=21]
-[ext_resource path="res://assets/audio/music/music_phase2.ogg" type="AudioStream" id=22]
-[ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=23]
-[ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=24]
+[ext_resource path="res://assets/sphere_soft.png" type="Texture" id=3]
+[ext_resource path="res://boss/ThreeShotSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://_projectiles/PlayerFollowProjectile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://boss/WaveSpawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://_projectiles/BossAirProjectile.tscn" type="PackedScene" id=7]
+[ext_resource path="res://boss/ErraticShotSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://_projectiles/BossLightningProjectile.tscn" type="PackedScene" id=9]
+[ext_resource path="res://boss/EightWaySpawner.tscn" type="PackedScene" id=10]
+[ext_resource path="res://_projectiles/BossEarthProjectile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://boss/CentralSpawner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://_projectiles/BossFireProjectile.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/audio/boss_immune.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/audio/boss_hit.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/audio/boss_teleport.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/audio/boss_transition.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/audio/boss_die.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/audio/music/ambience.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/audio/music/music_phase1.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/audio/music/music_phase2.ogg" type="AudioStream" id=21]
+[ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=22]
+[ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=23]
 
-[sub_resource type="GradientTexture" id=1]
-gradient = ExtResource( 3 )
-
-[sub_resource type="ParticlesMaterial" id=2]
-emission_shape = 1
-emission_sphere_radius = 5.0
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 40.0
-angular_velocity = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 1.0
-scale = 0.01
-color_ramp = SubResource( 1 )
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0, 0.476821, 1 )
+colors = PoolColorArray( 1, 0.937255, 0, 1, 1, 0, 0, 1, 0, 0.156863, 1, 1 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 40.0
@@ -48,10 +35,10 @@ radius = 40.0
 radius = 40.0
 
 [sub_resource type="AudioStreamRandomPitch" id=5]
-audio_stream = ExtResource( 15 )
+audio_stream = ExtResource( 14 )
 
 [sub_resource type="AudioStreamRandomPitch" id=6]
-audio_stream = ExtResource( 16 )
+audio_stream = ExtResource( 15 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 1, 0, 0, 1 )
@@ -76,13 +63,18 @@ script = ExtResource( 1 )
 collision_layer = 4
 script = ExtResource( 2 )
 
-[node name="Particles2D" type="Particles2D" parent="Body"]
-amount = 2000
-draw_order = 1
-process_material = SubResource( 2 )
-texture = ExtResource( 4 )
+[node name="Particles2D" type="CPUParticles2D" parent="Body"]
+amount = 450
+texture = ExtResource( 3 )
+spread = 180.0
+flatness = 1.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 40.0
+scale_amount = 0.01
+color_ramp = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+visible = false
 shape = SubResource( 3 )
 
 [node name="Hurtbox" type="Area2D" parent="Body"]
@@ -91,31 +83,32 @@ collision_layer = 5
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hurtbox"]
+visible = false
 shape = SubResource( 4 )
 
 [node name="ProjectileSpawners" type="Node2D" parent="Body"]
 
-[node name="ThreeShotSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 5 )]
-projectile = ExtResource( 6 )
+[node name="ThreeShotSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
+projectile = ExtResource( 5 )
 type = 3
 
-[node name="WaveSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 7 )]
-projectile = ExtResource( 8 )
+[node name="WaveSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 6 )]
+projectile = ExtResource( 7 )
 type = 5
 speed = 50.0
 
-[node name="ErraticShotSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 9 )]
-projectile = ExtResource( 10 )
+[node name="ErraticShotSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 8 )]
+projectile = ExtResource( 9 )
 type = 2
 speed = 300.0
 
-[node name="EightWaySpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 11 )]
-projectile = ExtResource( 12 )
+[node name="EightWaySpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 10 )]
+projectile = ExtResource( 11 )
 type = 4
 speed = 100.0
 
-[node name="CentralSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 13 )]
-projectile = ExtResource( 14 )
+[node name="CentralSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 12 )]
+projectile = ExtResource( 13 )
 type = 1
 speed = 3.0
 
@@ -134,13 +127,13 @@ stream = SubResource( 6 )
 attenuation = 0.0883883
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="Body"]
-stream = ExtResource( 17 )
+stream = ExtResource( 16 )
 
 [node name="Transition" type="AudioStreamPlayer2D" parent="Body"]
-stream = ExtResource( 18 )
+stream = ExtResource( 17 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Body"]
-stream = ExtResource( 19 )
+stream = ExtResource( 18 )
 volume_db = 10.0
 
 [node name="MoveTimer" type="Timer" parent="."]
@@ -178,32 +171,33 @@ collision_layer = 0
 collision_mask = 524289
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapArea"]
+visible = false
 shape = SubResource( 3 )
 
 [node name="TransformTimer" type="Timer" parent="."]
 
 [node name="Phase0" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
+stream = ExtResource( 19 )
 volume_db = -80.0
 autoplay = true
 
 [node name="Phase1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 21 )
+stream = ExtResource( 20 )
 volume_db = -80.0
 autoplay = true
 
 [node name="Phase2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 22 )
+stream = ExtResource( 21 )
 volume_db = -80.0
 autoplay = true
 
 [node name="Phase3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 23 )
+stream = ExtResource( 22 )
 volume_db = -80.0
 autoplay = true
 
 [node name="Phase4" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 24 )
+stream = ExtResource( 23 )
 volume_db = -80.0
 autoplay = true
 [connection signal="hit" from="Body" to="." method="hit"]

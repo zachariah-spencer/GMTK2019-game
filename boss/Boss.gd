@@ -62,7 +62,7 @@ func activate_phase(type : int):
 	if phase == final_phase :
 		die()
 	transforming = true
-	$Body/Particles2D.process_material.initial_velocity = 10
+	$Body/Particles2D.initial_velocity = 10
 	$Body/Transition.play()
 	$MoveTimer.stop()
 	$ProjectileTimer.stop()
@@ -230,7 +230,7 @@ func end_transform() :
 	$MoveTimer.start()
 	$ProjectileTimer.start()
 	transforming = false
-	$Body/Particles2D.process_material.initial_velocity = 40
+	$Body/Particles2D.initial_velocity = 40
 	if curr_track.volume_db < track_vol :
 		curr_track.volume_db = track_vol
 	match phase :

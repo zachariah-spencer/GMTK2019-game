@@ -55,9 +55,8 @@ Global="*res://singleton/Global.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/size/fullscreen=true
+window/size/width=1280
+window/size/height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
@@ -114,5 +113,6 @@ interact={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
