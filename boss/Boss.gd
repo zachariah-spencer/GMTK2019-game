@@ -66,7 +66,14 @@ func _fire():
 
 func _move():
 	emit_signal("move")
-	_hop()
+	var player_dir = player.global_position - $Body.global_position 
+#	if phase <= 1 :
+#		_hop()
+#	elif phase <= 3 :
+	if player_dir.length() > Global.CELL_SIZE * 1 :
+		_teleport()
+	else :
+		_hop()
 
 func _special():
 	emit_signal("special_attack")
@@ -159,4 +166,20 @@ func _hop():
 		velocity.x = sign(player_dir.x) * 200
 
 func _teleport():
-	pass
+	randomize()
+	var player_dir = player.global_position - $Body.global_position
+	var dist = RandomNumberGenerator.new().randfn(500, 100)
+	
+	var test_rot = Vector2.UP.rotated(rand_range(0, 2* PI)) 
+	
+	$MapArea.global_position =  player.global_position + test_rot * dist
+	
+	yield(get_tree(),"idle_frame")
+	
+	while $MapArea.overlaps_body(Global.tilemap) :
+		test_rot = test_rot.rotated(deg2rad(10))
+		$MapArea.global_position = player.global_position + test_rot * dist
+		yield(get_tree(),"idle_frame")
+	velocity = Vector2.ZERO
+	$Body.global_position = $MapArea.global_position
+
