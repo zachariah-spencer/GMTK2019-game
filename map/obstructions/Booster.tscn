@@ -24,7 +24,8 @@ process_mode = 0
 wait_time = 3.0
 one_shot = true
 
-[node name="Particles2D2" type="CPUParticles2D" parent="."]
+[node name="Particles2D" type="CPUParticles2D" parent="."]
+emitting = false
 amount = 500
 emission_shape = 2
 emission_rect_extents = Vector2( 62.02, 226.33 )
