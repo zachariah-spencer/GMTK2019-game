@@ -3,7 +3,7 @@ class_name Player
 
 const CELL := 64
 
-export var hp := 100
+export var hp := 5
 export var move_speed: float = CELL * 4.5
 export var jump_height: float = CELL * 17
 
