@@ -4,8 +4,8 @@ const CELL_SIZE = 64
 
 var phase := 0
 var immunities := []
-var health := 3
-var total_health := 3
+var health := 3.0
+var total_health := 3.0
 var size := 40
 
 onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
@@ -34,7 +34,7 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	health_bar.value = 100
 
-func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
+func hit(by : Node2D, damage : float, type : int, knockback : Vector2):
 	if not type in immunities :
 		$Body/VulnerableHit.play()
 		health -= damage
