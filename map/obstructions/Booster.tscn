@@ -3,11 +3,11 @@
 [ext_resource path="res://map/obstructions/Booster.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 64, 256 )
+extents = Vector2( 64, 224 )
 
 [sub_resource type="ParticlesMaterial" id=2]
 emission_shape = 2
-emission_box_extents = Vector3( 64, 256, 1 )
+emission_box_extents = Vector3( 64, 224, 1 )
 flag_disable_z = true
 gravity = Vector3( 0, -10, 0 )
 angular_velocity = 1.05
