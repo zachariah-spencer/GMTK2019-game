@@ -67,7 +67,7 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 
 func _die():
 	Engine.time_scale = 1
-	Global.end_game(false)
+	Global.game_end(false)
 
 
 func _handle_movement():
