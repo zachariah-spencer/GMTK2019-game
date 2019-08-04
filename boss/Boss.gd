@@ -228,9 +228,9 @@ onready var curr_track : AudioStreamPlayer = $Phase0
 var track_vol = -1
 
 func end_transform() :
-	var cam = player.get_node("Camera2d")
+	var cam = player.get_node("Camera2D")
 	if cam.zoom.length() < Vector2.ONE.length() :
-		cam.zoom *= .1
+		cam.zoom += Vector2.ONE * .1
 
 	$MoveTimer.start()
 	$ProjectileTimer.start()
