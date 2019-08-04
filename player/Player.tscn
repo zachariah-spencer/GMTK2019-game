@@ -18,8 +18,9 @@ texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+limit_smoothed = true
 smoothing_enabled = true
-smoothing_speed = 9.0
+smoothing_speed = 7.0
 
 [node name="StateLabel" type="Label" parent="."]
 margin_left = -20.0
@@ -38,4 +39,5 @@ position = Vector2( 12, 8 )
 [node name="StunnedTimer" type="Timer" parent="."]
 process_mode = 0
 one_shot = true
+
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]
