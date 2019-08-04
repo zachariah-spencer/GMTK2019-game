@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://map/ChargeSpawner.gd" type="Script" id=1]
 [ext_resource path="res://assets/weapons/chargespawner.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio/player_collect.wav" type="AudioStream" id=3]
+
+[sub_resource type="AudioStreamRandomPitch" id=1]
+audio_stream = ExtResource( 3 )
 
 [node name="ChargeSpawner" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,4 +24,6 @@ one_shot = true
 
 [node name="SpawnedCharges" type="Node" parent="."]
 
+[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource( 1 )
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]

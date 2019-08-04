@@ -18,6 +18,7 @@ func _spawn_charge():
 	spawned_charges.add_child(to_add)
 
 func on_charge_picked_up():
+	$Pickup.play()
 	cd_timer.start()
 
 func _on_CooldownTimer_timeout():
