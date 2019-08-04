@@ -4,18 +4,18 @@
 [ext_resource path="res://assets/AutoTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://map/TileMap.gd" type="Script" id=3]
 [ext_resource path="res://map/obstructions/LightningObstruction.tscn" type="PackedScene" id=4]
-[ext_resource path="res://map/obstructions/Booster.tscn" type="PackedScene" id=5]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://boss/Boss.tscn" type="PackedScene" id=7]
-[ext_resource path="res://map/ChargeSpawner.tscn" type="PackedScene" id=8]
-[ext_resource path="res://map/Platform.tscn" type="PackedScene" id=9]
+[ext_resource path="res://map/Platform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://boss/Boss.tscn" type="PackedScene" id=6]
+[ext_resource path="res://map/ChargeSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://map/obstructions/Booster.tscn" type="PackedScene" id=9]
 
 [node name="Level" type="Node2D"]
 
-[node name="Platform" parent="." instance=ExtResource( 9 )]
+[node name="Platform" parent="." instance=ExtResource( 5 )]
 position = Vector2( 832, -432 )
 
-[node name="Platform2" parent="." instance=ExtResource( 9 )]
+[node name="Platform2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 704, -432 )
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -31,7 +31,7 @@ scale = Vector2( 0.5, 0.5 )
 [node name="LightningObstruction" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 909.307, 32.344 )
 
-[node name="Booster" parent="Node2D" instance=ExtResource( 5 )]
+[node name="Booster" parent="Node2D" instance=ExtResource( 9 )]
 position = Vector2( 784.332, -195.078 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -44,31 +44,31 @@ script = ExtResource( 3 )
 
 [node name="Player" parent="." groups=[
 "player",
-] instance=ExtResource( 6 )]
+] instance=ExtResource( 8 )]
 position = Vector2( -128, 256 )
 
-[node name="Boss" parent="." instance=ExtResource( 7 )]
+[node name="Boss" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1248, 256 )
 
 [node name="Chargers" type="Node2D" parent="."]
 
-[node name="ChargeSpawner" parent="Chargers" instance=ExtResource( 8 )]
+[node name="ChargeSpawner" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( -256, 224 )
 type = 1
 
-[node name="ChargeSpawner2" parent="Chargers" instance=ExtResource( 8 )]
+[node name="ChargeSpawner2" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( 896, 256 )
 type = 5
 
-[node name="ChargeSpawner3" parent="Chargers" instance=ExtResource( 8 )]
+[node name="ChargeSpawner3" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( 1696, -320 )
 type = 2
 
-[node name="ChargeSpawner4" parent="Chargers" instance=ExtResource( 8 )]
+[node name="ChargeSpawner4" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( 1056, -576 )
 type = 4
 
-[node name="ChargeSpawner5" parent="Chargers" instance=ExtResource( 8 )]
+[node name="ChargeSpawner5" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( 1664, -896 )
 type = 3
 [connection signal="activate" from="Node2D/LightningObstruction" to="Node2D/Booster" method="activate"]

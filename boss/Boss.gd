@@ -35,11 +35,13 @@ func _ready():
 
 func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	if not type in immunities :
+		$Body/VulnerableHit.play()
 		health -= damage
 		if health <= 0 :
 			activate_phase(type)
 		health_bar.value = 100 * health/ (phase + 3)
 	else :
+		$Body/ImmuneHit.play()
 		pass #something that shows it's immune
 
 func activate_phase(type : int):

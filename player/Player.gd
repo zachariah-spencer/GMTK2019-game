@@ -54,7 +54,8 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	set_collision_layer_bit(4, false)
 	Engine.time_scale = .4
 	stunned_timer.start()
-	
+	$PlayerHit.play()
+
 	hp -= damage
 	if hp <= 0 :
 		_die()
@@ -76,7 +77,7 @@ func _handle_movement():
 func _handle_jumping():
 	if Input.is_action_pressed('jump') && is_on_floor():
 		velocity.y = -jump_height
-	
+
 	if is_on_ceiling():
 		velocity.y = 5
 
@@ -91,7 +92,7 @@ func _handle_aiming():
 func _input(event: InputEvent):
 	if event.is_action_released('jump') && velocity.y < 0:
 		velocity.y *= .4
-	
+
 	if event.is_action_pressed('shoot'):
 		gun.shoot()
 
