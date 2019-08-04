@@ -10,7 +10,7 @@ const LIMIT_RIGHT = 1760
 const LIMIT_TOP = -1120
 const LIMIT_BOT = 352
 
-var won : bool
+var won := true
 
 var GAMEOVER = preload('res://map/GameOver.tscn')
 
