@@ -13,6 +13,7 @@ var charge_type := 0
 var accent_phase_mod := 0.0
 
 onready var accent := $Accent
+onready var base := $Base
 
 func _ready():
 	_update_accent(charge_type)
