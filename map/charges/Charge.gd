@@ -17,7 +17,7 @@ func _ready():
 
 func _on_Charge_body_entered(body):
 	var player = body as Player
-	
+
 	if player && player.gun.charge_type == 0:
 		player.gun.charge(type)
 		fizzle()
@@ -31,7 +31,7 @@ func _physics_process(delta):
 	elif spawn_timer.is_stopped() && fizzle_timer.is_stopped():
 		$CollisionShape2D.shape.radius = sin(1.5 * pulsing_time) + 8
 		pulsing_time += .02
-	
+
 	update()
 
 func _draw():
@@ -44,7 +44,7 @@ func _draw():
 
 func fizzle():
 	if $FizzleTimer.is_stopped() :
-		monitoring = false
+		set_deferred("monitoring", false)
 		$FizzleTimer.start()
 
 

@@ -66,7 +66,7 @@ func _fire():
 
 func _move():
 	emit_signal("move")
-	var player_dir = player.global_position - $Body.global_position 
+	var player_dir = player.global_position - $Body.global_position
 #	if phase <= 1 :
 #		_hop()
 #	elif phase <= 3 :
@@ -154,8 +154,8 @@ func _handle_movement(delta : float ):
 ############################################################
 
 func _hop():
-	var player_dir = player.global_position - $Body.global_position 
-	
+	var player_dir = player.global_position - $Body.global_position
+
 	if player_dir.y > 0 or line_of_sight.is_colliding() :
 		velocity.y = -high_jump_v
 	else :
@@ -169,17 +169,15 @@ func _teleport():
 	randomize()
 	var player_dir = player.global_position - $Body.global_position
 	var dist = rand_range(400, 600)
-	
-	var test_rot = Vector2.UP.rotated(rand_range(0, 2* PI)) 
-	
-	$MapArea.global_position =  player.global_position + test_rot * dist
-	
-	yield(get_tree(),"idle_frame")
-	
-	while $MapArea.overlaps_body(Global.tilemap) :
-		test_rot = test_rot.rotated(deg2rad(10))
-		$MapArea.global_position = player.global_position + test_rot * dist
-		yield(get_tree(),"idle_frame")
+	var test_point
+	if randi() > .5 :
+		test_point = Vector2.LEFT * dist + player.global_position
+	else :
+		test_point = Vector2.RIGHT * dist + player.global_position
+
+	if test_point.x > Global.LIMIT_RIGHT or test_point.x < Global.LIMIT_LEFT :
+		test_point *= -1
+
 	velocity = Vector2.ZERO
-	$Body.global_position = $MapArea.global_position
+	$Body.global_position = test_point
 
