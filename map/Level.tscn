@@ -46,7 +46,6 @@ position = Vector2( 832, -432 )
 position = Vector2( 704, -432 )
 
 [node name="Obstructions" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="FireObstruction" parent="Obstructions" instance=ExtResource( 5 )]
 position = Vector2( 70.0811, 270.366 )
@@ -87,6 +86,7 @@ position = Vector2( -128, 256 )
 position = Vector2( 1248, 256 )
 
 [node name="Chargers" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="ChargeSpawner" parent="Chargers" instance=ExtResource( 13 )]
 position = Vector2( -256, 243.2 )
@@ -130,4 +130,5 @@ motion_scale = Vector2( 0.3, 0.3 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Pipes"]
 texture = ExtResource( 16 )
+
 [connection signal="activate" from="Obstructions/LightningObstruction" to="Booster" method="activate"]
