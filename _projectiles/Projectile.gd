@@ -5,10 +5,10 @@ class_name Projectile
 var color := Color.white
 export var damage := 1
 export var knockback := Vector2.ZERO
-export(int, "void", "fire", "lightning", "water", "earth", "air") var type := 0
+var type := 0
 var direction := Vector2.LEFT
-export var speed := 70
-var lifetime := 3
+var speed := 70.0
+export var lifetime := 3
 
 var time = PI
 
@@ -37,6 +37,7 @@ func _move(delta : float):
 func _on_hit(body):
 	if body.has_method("hit") :
 		body.hit(self, damage, type, knockback)
+	
 	fizzle()
 
 func fizzle():

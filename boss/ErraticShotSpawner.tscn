@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://boss/ProjectileSpawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://boss/ErraticShotSpawner.gd" type="Script" id=2]
+
+[node name="ErraticShotSpawner" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+projectile = null
+
+[node name="DelayTimer" type="Timer" parent="." index="1"]
+process_mode = 0
+wait_time = 0.1
+
+[node name="FireTimer" type="Timer" parent="." index="3"]
+process_mode = 0
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="DelayTimer" to="." method="_fire"]

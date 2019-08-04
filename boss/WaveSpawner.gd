@@ -15,10 +15,10 @@ func _on_FireDelay_timeout():
 func _fire(offset):
 	var direction = player.global_position - global_position
 	
-	_add_wall(5, direction.normalized(), offset)
+	_add_wall(2, direction.normalized(), offset)
 
 func _add_wall(num_projectiles, dir, off):
-	var spacing = 5
+	var spacing = 18
 	var to_add = projectile.instance()
 	to_add.speed = speed
 	to_add.type = type
