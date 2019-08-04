@@ -51,14 +51,14 @@ func activate_phase(type : int):
 	#could do this by using class_name later
 	for attack in projectile_attacks :
 		if attack.is_in_group(str(type)) :
-			attack.connect("fire", self, "fire_projectile")
+			connect("fire_projectile", attack, "fire")
 	for move in movement_abilities :
 		if move.is_in_group(str(type)) :
-			move.connect("move", self, "move")
+			connect("move", move, "move")
 	#I guess this doesn't work, needs to randomly select a move
 	for attack in special_attacks :
 		if attack.is_in_group(str(type)) :
-			attack.connect("attack", self, "special")
+			connect("special", attack, "attack")
 
 func _fire():
 	emit_signal("fire_projectile", size)
@@ -67,13 +67,13 @@ func _fire():
 func _move():
 	emit_signal("move")
 	var player_dir = player.global_position - $Body.global_position
-#	if phase <= 1 :
-#		_hop()
-#	elif phase <= 3 :
-	if player_dir.length() > Global.CELL_SIZE * 1 :
-		_teleport()
-	else :
+	if phase <= 0 :
 		_hop()
+	elif phase <= 1 :
+		if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
+			_teleport()
+		else :
+			_hop()
 
 func _special():
 	emit_signal("special_attack")
@@ -176,7 +176,7 @@ func _teleport():
 		test_point = Vector2.RIGHT * dist + player.global_position
 
 	if test_point.x > Global.LIMIT_RIGHT or test_point.x < Global.LIMIT_LEFT :
-		test_point *= -1
+		test_point.x *= -1
 
 	velocity = Vector2.ZERO
 	$Body.global_position = test_point

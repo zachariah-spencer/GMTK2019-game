@@ -144,11 +144,6 @@ collision_mask = 524289
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapArea"]
 shape = SubResource( 3 )
-[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/CentralSpawner" method="fire"]
-[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/ErraticShotSpawner" method="fire"]
-[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/ThreeShotSpawner" method="fire"]
-[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/WaveSpawner" method="fire"]
-[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/EightWaySpawner" method="fire"]
 [connection signal="hit" from="Body" to="." method="hit"]
 [connection signal="hit" from="Body/Hurtbox" to="." method="hit"]
 [connection signal="timeout" from="MoveTimer" to="." method="_move"]
