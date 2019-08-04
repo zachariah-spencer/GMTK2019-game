@@ -197,4 +197,6 @@ func _teleport():
 
 	velocity = Vector2.ZERO
 	$Body.global_position = test_point
+	$ProjectileTimer.start()
+
 
