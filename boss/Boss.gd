@@ -9,6 +9,8 @@ var immunities := []
 var health := 3
 var total_health := 3
 var size := 40
+var transforming = false
+
 
 onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
 onready var special_attacks = $Body/SpecialAttacks.get_children()
@@ -47,15 +49,21 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 		pass #something that shows it's immune
 
 func die() :
-	pass
+	$Body/Death.play()
+	yield($Body/Death, "finished")
+	Global.game_end(true)
 
 func activate_phase(type : int):
 	phase += 1
 
+
 	if phase == final_phase :
 		die()
-		Global.end_game(true)
-
+	transforming = true
+	$Body/Particles2D.process_material.initial_velocity = 10
+	$Body/Transition.play()
+	$MoveTimer.stop()
+	$ProjectileTimer.stop()
 	immunities.append(type)
 	health = phase + 3
 	health_bar.value = 100
@@ -137,9 +145,10 @@ func _set_state(new_state):
 
 
 func _state_logic(delta : float):
-	_handle_movement(delta)
-	line_of_sight.cast_to = player.global_position  - $Body.global_position
-	_apply_movement()
+	if !transforming :
+		_handle_movement(delta)
+		line_of_sight.cast_to = player.global_position  - $Body.global_position
+		_apply_movement()
 
 func _get_transition(delta : float):
 	match state :
@@ -148,6 +157,8 @@ func _get_transition(delta : float):
 	pass
 
 func _physics_process(delta):
+	if curr_track.volume_db < track_vol :
+		curr_track.volume_db = lerp(curr_track.volume_db, track_vol, delta)
 	if state != null:
 		_state_logic(delta)
 		var transition = _get_transition(delta)
@@ -205,8 +216,31 @@ func _teleport():
 	if test_point.x > Global.LIMIT_RIGHT or test_point.x < Global.LIMIT_LEFT :
 		test_point.x *= -1
 
+	$Body/Teleport.play()
 	velocity = Vector2.ZERO
 	$Body.global_position = test_point
 	$ProjectileTimer.start()
 
+onready var curr_track : AudioStreamPlayer = $Phase0
+var track_vol = -1
 
+func end_transform() :
+	$MoveTimer.start()
+	$ProjectileTimer.start()
+	transforming = false
+	$Body/Particles2D.process_material.initial_velocity = 40
+	if curr_track.volume_db < track_vol :
+		curr_track.volume_db = track_vol
+	match phase :
+		1 :
+			curr_track = $Phase1
+			track_vol = 0
+		2 :
+			curr_track = $Phase2
+			track_vol = 0
+		3 :
+			curr_track = $Phase3
+			track_vol = 0
+		4 :
+			curr_track = $Phase4
+			track_vol = 0
