@@ -9,3 +9,6 @@ const LIMIT_LEFT = -320
 const LIMIT_RIGHT = 1760
 const LIMIT_TOP = -1120
 const LIMIT_BOT = 352
+
+func end_game(win : bool):
+	pass

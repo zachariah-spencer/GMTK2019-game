@@ -59,6 +59,7 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	hp -= damage
 	if hp <= 0 :
 		_die()
+		Global.end_game(false)
 
 
 func _die():
