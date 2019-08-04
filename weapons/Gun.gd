@@ -58,7 +58,7 @@ func _add_projectile(projectile, projectile_type):
 			$Node.add_child(to_add)
 		3:
 			var to_add = projectile.instance()
-			to_add.speed = projectile_speed
+			to_add.speed = projectile_speed * .5
 			to_add.type = charge_type
 			to_add.direction = Vector2.RIGHT.rotated(rotation)
 			to_add.position = global_position + 10 * to_add.direction
@@ -70,6 +70,36 @@ func _add_projectile(projectile, projectile_type):
 			to_add.direction = Vector2.RIGHT.rotated(rotation)
 			to_add.position = global_position + 10 * to_add.direction
 			$Node.add_child(to_add)
+		5:
+			var num_projectiles := 5
+			var spacing = 18
+			var to_add = projectile.instance()
+			to_add.speed = projectile_speed
+			to_add.type = charge_type
+			to_add.direction = Vector2.RIGHT.rotated(rotation)
+			var dir = to_add.direction
+			var base_off = global_position + 10 * to_add.direction
+			to_add.position = base_off
+			$Node.add_child(to_add)
+			
+			var off_d = dir.rotated(PI/2)
+			for i in range(1, num_projectiles+1) :
+				to_add = projectile.instance()
+				to_add.speed = projectile_speed
+				to_add.type = charge_type
+				to_add.direction = global_position + 10 * to_add.direction
+				to_add.position = base_off + ( i * spacing * off_d )
+				$Node.add_child(to_add)
+			
+			off_d = dir.rotated(-PI/2)
+			for i in range(1, num_projectiles+1) :
+				to_add = projectile.instance()
+				to_add.speed = projectile_speed
+				to_add.type = charge_type
+				to_add.direction = global_position + 10 * to_add.direction
+				to_add.position = base_off + ( i * spacing * off_d )
+				$Node.add_child(to_add)
+			
 		_:
 			var to_add = projectile.instance()
 			to_add.speed = projectile_speed

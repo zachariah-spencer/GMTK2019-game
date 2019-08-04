@@ -14,6 +14,7 @@ onready var movement_abilities = $Body/Movement.get_children()
 onready var rand = RandomNumberGenerator.new()
 onready var line_of_sight = $Body/PlayerLineOfSight
 onready var health_bar = $CanvasLayer/HealthBar
+onready var body := $Body
 
 
 var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)
