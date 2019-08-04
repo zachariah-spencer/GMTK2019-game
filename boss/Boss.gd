@@ -71,7 +71,7 @@ func _move():
 	var player_dir = player.global_position - $Body.global_position
 	if phase <= 0 :
 		_hop()
-	elif phase <= 1 :
+	elif phase <= 2 :
 		if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
 			_teleport()
 		else :
@@ -81,7 +81,7 @@ func _move():
 		if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
 			_teleport()
 		else :
-			_hop()
+			_air_impulse()
 
 func _special():
 	emit_signal("special_attack")
@@ -147,15 +147,18 @@ func _physics_process(delta):
 
 func _apply_movement():
 	$Body.move_and_slide(velocity, Vector2.UP)
+	if phase >= 3 :
+		var slide_count = $Body.get_slide_count()
+		if slide_count > 0 :
+			velocity = velocity.bounce($Body.get_slide_collision(slide_count -1).normal) * .5
+
 
 func _handle_movement(delta : float ):
-	if $Body.is_on_floor() :
-		velocity.x = lerp(velocity.x, 0, .1)
-	else :
-		velocity += Vector2.DOWN * gravity
-	match state :
-		'idle':
-			pass
+	if phase <= 2 :
+		if $Body.is_on_floor() :
+			velocity.x = lerp(velocity.x, 0, .1)
+		else :
+			velocity += Vector2.DOWN * gravity
 
 ############################################################
 ####Move Actions ####
@@ -172,6 +175,13 @@ func _hop():
 		velocity.x = sign(player_dir.x) * 500
 	else :
 		velocity.x = sign(player_dir.x) * 200
+
+func _air_impulse():
+	var player_dir = player.global_position - $Body.global_position
+
+	var dir = rand_range(-PI/4, PI/4)
+
+	velocity += player_dir.normalized().rotated(dir) * 400
 
 func _teleport():
 	randomize()
