@@ -16,7 +16,7 @@ onready var accent := $Accent
 
 func _ready():
 	_update_accent(charge_type)
-	charge(2)
+	charge(0)
 
 func _physics_process(delta: float):
 	accent.modulate.a = .5 * sin(accent_phase_mod) + .5
