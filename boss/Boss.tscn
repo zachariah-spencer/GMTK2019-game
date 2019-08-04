@@ -25,10 +25,10 @@
 [ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=23]
 [ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=24]
 
-[sub_resource type="GradientTexture" id=5]
+[sub_resource type="GradientTexture" id=1]
 gradient = ExtResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=2]
 emission_shape = 1
 emission_sphere_radius = 5.0
 flag_disable_z = true
@@ -39,21 +39,21 @@ angular_velocity = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 1.0
 scale = 0.01
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 1 )
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=3]
 radius = 40.0
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=4]
 radius = 40.0
 
-[sub_resource type="AudioStreamRandomPitch" id=9]
+[sub_resource type="AudioStreamRandomPitch" id=5]
 audio_stream = ExtResource( 15 )
 
-[sub_resource type="AudioStreamRandomPitch" id=10]
+[sub_resource type="AudioStreamRandomPitch" id=6]
 audio_stream = ExtResource( 16 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 1, 0, 0, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -65,7 +65,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=8]
 
 [node name="Boss" type="Node2D"]
 script = ExtResource( 1 )
@@ -79,11 +79,11 @@ script = ExtResource( 2 )
 [node name="Particles2D" type="Particles2D" parent="Body"]
 amount = 2000
 draw_order = 1
-process_material = SubResource( 6 )
+process_material = SubResource( 2 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="Hurtbox" type="Area2D" parent="Body"]
 visible = false
@@ -91,7 +91,7 @@ collision_layer = 5
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hurtbox"]
-shape = SubResource( 8 )
+shape = SubResource( 4 )
 
 [node name="ProjectileSpawners" type="Node2D" parent="Body"]
 
@@ -127,10 +127,10 @@ speed = 3.0
 enabled = true
 
 [node name="ImmuneHit" type="AudioStreamPlayer2D" parent="Body"]
-stream = SubResource( 9 )
+stream = SubResource( 5 )
 
 [node name="VulnerableHit" type="AudioStreamPlayer2D" parent="Body"]
-stream = SubResource( 10 )
+stream = SubResource( 6 )
 attenuation = 0.0883883
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="Body"]
@@ -164,8 +164,8 @@ anchor_right = 0.5
 margin_left = -295.5
 margin_right = 295.5
 margin_bottom = 24.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
 value = 15.0
 percent_visible = false
 __meta__ = {
@@ -177,7 +177,7 @@ collision_layer = 0
 collision_mask = 524289
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapArea"]
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="TransformTimer" type="Timer" parent="."]
 
