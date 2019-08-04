@@ -2,7 +2,7 @@ extends ProjectileSpawner
 
 var number_projectiles := 3
 var projectiles_to_fire := 0
-var projectile_space := .05
+var projectile_space := .18
 
 func fire(offset):
 	projectiles_to_fire = number_projectiles

@@ -8,7 +8,7 @@ var charge_types := {
 5 : preload('res://_projectiles/AirProjectile.tscn'),
 }
 
-export var projectile_speed := 180
+export var projectile_speed := 180.0
 var charge_type := 0
 var accent_phase_mod := 0.0
 

@@ -1,13 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://boss/Hurtbox.gd" type="Script" id=2]
 [ext_resource path="res://boss/full_gradient.tres" type="Gradient" id=3]
 [ext_resource path="res://assets/sphere_soft.png" type="Texture" id=4]
-[ext_resource path="res://boss/BaseSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://boss/ThreeShotSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://_projectiles/PlayerFollowProjectile.tscn" type="PackedScene" id=6]
 [ext_resource path="res://boss/WaveSpawner.tscn" type="PackedScene" id=7]
-[ext_resource path="res://_projectiles/BossProjectile.tscn" type="PackedScene" id=8]
+[ext_resource path="res://_projectiles/BossAirProjectile.tscn" type="PackedScene" id=8]
+[ext_resource path="res://boss/ErraticShotSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://_projectiles/BossLightningProjectile.tscn" type="PackedScene" id=10]
+[ext_resource path="res://boss/EightWaySpawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://_projectiles/BossEarthProjectile.tscn" type="PackedScene" id=12]
+[ext_resource path="res://boss/CentralSpawner.tscn" type="PackedScene" id=13]
+[ext_resource path="res://_projectiles/BossFireProjectile.tscn" type="PackedScene" id=14]
 
 [sub_resource type="GradientTexture" id=1]
 gradient = ExtResource( 3 )
@@ -71,12 +77,29 @@ shape = SubResource( 4 )
 
 [node name="ProjectileSpawners" type="Node2D" parent="Body"]
 
-[node name="BaseSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 5 )]
+[node name="ThreeShotSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 5 )]
 projectile = ExtResource( 6 )
-speed = 100
+type = 3
 
 [node name="WaveSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 7 )]
 projectile = ExtResource( 8 )
+type = 5
+speed = 50.0
+
+[node name="ErraticShotSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 9 )]
+projectile = ExtResource( 10 )
+type = 2
+speed = 300.0
+
+[node name="EightWaySpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 11 )]
+projectile = ExtResource( 12 )
+type = 4
+speed = 100.0
+
+[node name="CentralSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 13 )]
+projectile = ExtResource( 14 )
+type = 1
+speed = 3.0
 
 [node name="SpecialAttacks" type="Node2D" parent="Body"]
 
@@ -115,8 +138,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/BaseSpawner" method="fire"]
+[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/CentralSpawner" method="fire"]
+[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/ErraticShotSpawner" method="fire"]
+[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/ThreeShotSpawner" method="fire"]
 [connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/WaveSpawner" method="fire"]
+[connection signal="fire_projectile" from="." to="Body/ProjectileSpawners/EightWaySpawner" method="fire"]
 [connection signal="hit" from="Body" to="." method="hit"]
 [connection signal="hit" from="Body/Hurtbox" to="." method="hit"]
 [connection signal="timeout" from="MoveTimer" to="." method="_move"]
