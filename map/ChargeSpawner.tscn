@@ -7,15 +7,15 @@
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.125, 0.125 )
+scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 2 )
 
 [node name="SpawnPos" type="Position2D" parent="."]
-position = Vector2( 0, -32 )
+position = Vector2( 0, -10 )
 
 [node name="CooldownTimer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="SpawnedCharges" type="Node" parent="."]
