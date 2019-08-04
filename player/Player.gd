@@ -20,8 +20,10 @@ var states: Dictionary = {}
 onready var sprite := $AnimatedSprite
 onready var gun := $Gun
 onready var stunned_timer := $StunnedTimer
+onready var hp_bar := $HealthBar
 
 func _ready():
+	hp_bar.value = hp
 	$Camera2D.limit_left = Global.LIMIT_LEFT
 	$Camera2D.limit_bottom = Global.LIMIT_BOT
 	$Camera2D.limit_top = Global.LIMIT_TOP
@@ -59,6 +61,7 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	$PlayerHit.play()
 
 	hp -= damage
+	hp_bar.value = hp
 	if hp <= 0 :
 		_die()
 
