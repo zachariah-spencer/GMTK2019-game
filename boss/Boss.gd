@@ -92,7 +92,7 @@ func _move():
 	if phase <= 0 :
 		_hop()
 	elif phase <= 2 :
-		if player_dir.length() > Global.CELL_SIZE * 15  or line_of_sight.is_colliding() :
+		if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
 			_teleport()
 		else :
 			_hop()
@@ -227,6 +227,7 @@ onready var curr_track : AudioStreamPlayer = $Phase0
 var track_vol = -1
 
 func end_transform() :
+	player.get_node("Camera2D").zoom += Vector2.ONE * .2
 	$MoveTimer.start()
 	$ProjectileTimer.start()
 	transforming = false
