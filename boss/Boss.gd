@@ -168,7 +168,7 @@ func _hop():
 func _teleport():
 	randomize()
 	var player_dir = player.global_position - $Body.global_position
-	var dist = RandomNumberGenerator.new().randfn(500, 100)
+	var dist = rand_range(400, 600)
 	
 	var test_rot = Vector2.UP.rotated(rand_range(0, 2* PI)) 
 	
