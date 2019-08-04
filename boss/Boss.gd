@@ -72,13 +72,12 @@ func _move():
 	if phase <= 0 :
 		_hop()
 	elif phase <= 2 :
-		if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
+		if player_dir.length() > Global.CELL_SIZE * 15  or line_of_sight.is_colliding() :
 			_teleport()
 		else :
 			_hop()
 	else :
-		##placeholder for float code##
-		if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
+		if player_dir.length() > Global.CELL_SIZE * 20  or line_of_sight.is_colliding() :
 			_teleport()
 		else :
 			_air_impulse()
@@ -186,9 +185,9 @@ func _air_impulse():
 func _teleport():
 	randomize()
 	var player_dir = player.global_position - $Body.global_position
-	var dist = rand_range(400, 600)
+	var dist = rand_range(200, 400)
 	var test_point
-	if randi() > .5 :
+	if player_dir.x < 0 :
 		test_point = Vector2.LEFT * dist + player.global_position
 	else :
 		test_point = Vector2.RIGHT * dist + player.global_position
