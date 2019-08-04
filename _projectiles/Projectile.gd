@@ -3,12 +3,12 @@ extends Area2D
 class_name Projectile
 
 var color := Color.white
-export var damage := 1
+export var damage := 1.0
 export var knockback := Vector2.ZERO
 var type := 0
 var direction := Vector2.LEFT
 var speed := 70.0
-export var lifetime := 3
+export var lifetime := 3.0
 
 var time = PI
 

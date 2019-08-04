@@ -1,6 +1,7 @@
 extends Node
 
 var player
+var boss
 const CELL_SIZE = 64
 
 var tilemap

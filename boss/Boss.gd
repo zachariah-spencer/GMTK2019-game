@@ -29,6 +29,7 @@ var player : Node2D
 
 
 func _ready():
+	Global.boss = self
 	_set_states()
 	player = get_tree().get_nodes_in_group("player")[0]
 	health_bar.value = 100

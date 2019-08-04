@@ -29,20 +29,51 @@ func charge(new_charge):
 	charge_type = new_charge
 	_update_accent()
 
-func _get_charge():
-	if charge_type != 0:
-		return charge_types[charge_type]
-
 func shoot():
 	if charge_type != 0:
-		_add_projectile(_get_charge())
+		_add_projectile(charge_types[charge_type], charge_type)
 		charge_type = 0
 		_update_accent()
 
-func _add_projectile(projectile):
-	var to_add = projectile.instance()
-	to_add.speed = projectile_speed
-	to_add.type = charge_type
-	to_add.direction = Vector2.RIGHT.rotated(rotation)
-	to_add.position = global_position + 10 * to_add.direction
-	$Node.add_child(to_add)
+func _add_projectile(projectile, projectile_type):
+	match projectile_type:
+		1:
+			var numprojectiles := 3
+			var rot := -PI/22
+			for i in range(0,numprojectiles):
+				var to_add = projectile.instance()
+				to_add.speed = projectile_speed * 1.8
+				to_add.type = charge_type
+				to_add.direction = Vector2.RIGHT.rotated(rotation)
+				to_add.direction = to_add.direction.rotated(rot)
+				rot += PI/24
+				to_add.position = global_position + 10 * to_add.direction
+				$Node.add_child(to_add)
+		2:
+			var to_add = projectile.instance()
+			to_add.speed = projectile_speed * 2.5
+			to_add.type = charge_type
+			to_add.direction = Vector2.RIGHT.rotated(rotation)
+			to_add.position = global_position + 10 * to_add.direction
+			$Node.add_child(to_add)
+		3:
+			var to_add = projectile.instance()
+			to_add.speed = projectile_speed
+			to_add.type = charge_type
+			to_add.direction = Vector2.RIGHT.rotated(rotation)
+			to_add.position = global_position + 10 * to_add.direction
+			$Node.add_child(to_add)
+		4:
+			var to_add = projectile.instance()
+			to_add.speed = projectile_speed * .5
+			to_add.type = charge_type
+			to_add.direction = Vector2.RIGHT.rotated(rotation)
+			to_add.position = global_position + 10 * to_add.direction
+			$Node.add_child(to_add)
+		_:
+			var to_add = projectile.instance()
+			to_add.speed = projectile_speed
+			to_add.type = charge_type
+			to_add.direction = Vector2.RIGHT.rotated(rotation)
+			to_add.position = global_position + 10 * to_add.direction
+			$Node.add_child(to_add)
