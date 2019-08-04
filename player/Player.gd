@@ -67,9 +67,9 @@ func _die():
 
 func _handle_movement():
 	if Input.is_action_pressed('move_right'):
-		velocity.x = move_speed
+		velocity.x = lerp(velocity.x, move_speed, .7)
 	elif Input.is_action_pressed('move_left'):
-		velocity.x = -move_speed
+		velocity.x = lerp(velocity.x, -move_speed, .7)
 	else:
 		velocity.x = 0
 
@@ -94,8 +94,8 @@ func _input(event: InputEvent):
 		velocity.y *= .4
 
 	if event.is_action_pressed('shoot'):
-		if gun.charge_type == 5:
-			velocity += Vector2.RIGHT.rotated(gun.rotation) * 10 * CELL
+		if gun.charge_type == Damage.air:
+			velocity = Vector2.LEFT.rotated(gun.rotation) * 20 * CELL
 			#do air knockback here
 		gun.shoot()
 
