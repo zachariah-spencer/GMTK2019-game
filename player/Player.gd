@@ -23,6 +23,7 @@ onready var stunned_timer := $StunnedTimer
 onready var hp_bar := $HealthBar
 
 func _ready():
+	Engine.time_scale = 1
 	hp_bar.value = hp
 	$Camera2D.limit_left = Global.LIMIT_LEFT
 	$Camera2D.limit_bottom = Global.LIMIT_BOT
