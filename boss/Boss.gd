@@ -236,13 +236,17 @@ func end_transform() :
 	match phase :
 		1 :
 			curr_track = $Phase1
+			$Phase0.volume_db = -4
 			track_vol = 0
 		2 :
 			curr_track = $Phase2
+			$Phase0.volume_db = -8
 			track_vol = 0
 		3 :
 			curr_track = $Phase3
+			$Phase0.volume_db = -12
 			track_vol = 0
 		4 :
 			curr_track = $Phase4
+			$Phase0.volume_db = -15
 			track_vol = 0
