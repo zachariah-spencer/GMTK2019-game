@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://map/obstructions/Obstruction.tscn" type="PackedScene" id=1]
 [ext_resource path="res://EarthObstruction.gd" type="Script" id=2]
 [ext_resource path="res://assets/64x64square.png" type="Texture" id=3]
+[ext_resource path="res://assets/audio/obstruction_destroy.wav" type="AudioStream" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 96, 32 )
+
+[sub_resource type="AudioStreamRandomPitch" id=8]
+audio_stream = ExtResource( 4 )
 
 [node name="EarthObstruction" index="0" instance=ExtResource( 1 )]
 modulate = Color( 0, 0.819608, 0.0509804, 0.305882 )
@@ -17,10 +21,11 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 scale = Vector2( 3, 1 )
 texture = ExtResource( 3 )
 
-[connection signal="hit" from="Body" to="." method="hit"]
+[node name="DestroySound" type="AudioStreamPlayer2D" parent="." index="2"]
+stream = SubResource( 8 )

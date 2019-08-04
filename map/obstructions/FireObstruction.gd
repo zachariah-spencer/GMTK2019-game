@@ -2,6 +2,7 @@ extends Obstruction
 
 func activate():
 	$FizzleTimer.start()
+	$DestroySound.play()
 	$Body.collision_layer = 0
 	$Body.collision_mask = 0
 
