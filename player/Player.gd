@@ -11,11 +11,13 @@ var aim_position := Vector2.ZERO
 var targeted_position := Vector2.ZERO
 var velocity := Vector2.ZERO
 var gravity := CELL / 1.5
+var facing_direction := 0
 
 var state = null setget _set_state
 var previous_state = null
 var states: Dictionary = {}
 
+onready var sprite := $AnimatedSprite
 onready var gun := $Gun
 onready var stunned_timer := $StunnedTimer
 
@@ -68,8 +70,10 @@ func _die():
 func _handle_movement():
 	if Input.is_action_pressed('move_right'):
 		velocity.x = lerp(velocity.x, move_speed, .7)
+		facing_direction = 1
 	elif Input.is_action_pressed('move_left'):
 		velocity.x = lerp(velocity.x, -move_speed, .7)
+		facing_direction = -1
 	else:
 		velocity.x = 0
 
@@ -87,6 +91,11 @@ func _handle_aiming():
 	targeted_position = get_global_mouse_position()
 	gun.rotation = aim_position.angle()
 	gun.position = aim_position.normalized() * 10
+	
+	if targeted_position.x < global_position.x:
+		facing_direction = -1
+	else:
+		facing_direction = 1
 
 
 func _input(event: InputEvent):
@@ -112,7 +121,20 @@ func _state_logic(delta : float):
 		_handle_movement()
 		_handle_jumping()
 		_handle_aiming()
+		_handle_player_direction()
 		_apply_velocity()
+
+
+func _handle_player_direction():
+	if facing_direction == -1:
+		sprite.flip_h = true
+		gun.base.flip_v = true
+		gun.accent.flip_v = true
+	elif facing_direction == 1:
+		sprite.flip_h = false
+		gun.base.flip_v = false
+		gun.accent.flip_v = false
+
 
 func _handle_time(delta):
 	if !stunned_timer.is_stopped():
@@ -154,7 +176,13 @@ func _get_transition(delta : float):
 
 
 func _enter_state(new_state, old_state):
-	pass
+	match state:
+		states.idle:
+			sprite.play('idle')
+		states.run:
+			sprite.play('run')
+		states.jump:
+			sprite.play('jump')
 
 
 func _exit_state(old_state, new_state):
