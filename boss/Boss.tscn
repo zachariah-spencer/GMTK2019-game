@@ -141,6 +141,7 @@ stream = ExtResource( 18 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource( 19 )
+volume_db = 10.0
 
 [node name="MoveTimer" type="Timer" parent="."]
 process_mode = 0
