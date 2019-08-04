@@ -97,7 +97,8 @@ func _input(event: InputEvent):
 
 	if event.is_action_pressed('shoot'):
 		if gun.charge_type == Damage.air:
-			velocity = Vector2.LEFT.rotated(gun.rotation) * 20 * CELL
+			velocity.y = -1750
+#			velocity = Vector2.LEFT.rotated(gun.rotation) * 20 * CELL
 			#do air knockback here
 		gun.shoot()
 
