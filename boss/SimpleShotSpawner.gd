@@ -4,6 +4,9 @@ var number_projectiles := 1
 var projectiles_to_fire := 0
 var projectile_space := .1
 
+func _ready():
+	activated = true
+
 func fire(offset):
 	projectiles_to_fire = number_projectiles
 	self.offset = offset

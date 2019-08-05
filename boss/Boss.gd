@@ -11,6 +11,7 @@ var total_health := 3.0
 var size := 40
 var transforming = false
 var active := false
+var performing_special = false
 
 
 
@@ -22,6 +23,10 @@ onready var line_of_sight = $Body/PlayerLineOfSight
 onready var health_bar = $CanvasLayer/HealthBar
 onready var body := $Body
 onready var hp_anims := $HPAnims
+onready var move_timer := $MoveTimer
+onready var projectile_timer := $ProjectileTimer
+onready var special_timer := $SpecialTimer
+onready var shot_delay_timer := $ShotDelayTimer
 
 
 var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)
@@ -81,22 +86,29 @@ func activate_phase(type : int):
 	#could do this by using class_name later
 	for attack in projectile_attacks :
 		if attack.is_in_group(str(type)) :
-			connect("fire_projectile", attack, "fire")
+			connect("fire_projectile", attack, "activate")
+			emit_signal('fire_projectile')
 	for move in movement_abilities :
 		if move.is_in_group(str(type)) :
 			connect("move", move, "move")
 	#I guess this doesn't work, needs to randomly select a move
 	for attack in special_attacks :
 		if attack.is_in_group(str(type)) :
-			connect("special", attack, "attack")
+			connect("special_attack", attack, "attack")
+	
+	special_timer.start()
 
 func _fire():
-	if active:
-		emit_signal("fire_projectile", size)
+	if active && !performing_special:
+		for spawner in projectile_attacks :
+			if spawner.activated:
+				spawner.fire(size)
+				yield(shot_delay_timer, 'timeout')
 
 
 func _move():
-	if active:
+	if active && !performing_special:
+		projectile_timer.start()
 		emit_signal("move")
 		var player_dir = player.global_position - $Body.global_position
 		if phase <= 0 :
@@ -113,8 +125,14 @@ func _move():
 				_air_impulse()
 
 func _special():
-	emit_signal("special_attack")
-	pass
+	if active && !performing_special:
+		performing_special = true
+		emit_signal("special_attack")
+
+func on_special_attack_finished():
+	print('called special attack finished')
+	performing_special = false
+	special_timer.start()
 
 
 #########################################################
@@ -213,12 +231,12 @@ func _air_impulse():
 
 	var dir = rand_range(-PI/4, PI/4)
 
-	velocity += player_dir.normalized().rotated(dir) * 400
+	velocity += player_dir.normalized().rotated(dir) * 300
 
 func _teleport():
 	randomize()
 	var player_dir = player.global_position - $Body.global_position
-	var dist = 150
+	var dist = 250
 	var test_point
 	if player_dir.x < 0 :
 		test_point = Vector2.LEFT * dist + player.global_position

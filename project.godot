@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "ProjectileSpawner",
 "language": "GDScript",
 "path": "res://boss/ProjectileSpawner.gd"
+}, {
+"base": "Node2D",
+"class": "SpecialAttack",
+"language": "GDScript",
+"path": "res://boss/special_attacks/SpecialAttack.gd"
 } ]
 _global_script_class_icons={
 "Charge": "",
 "Obstruction": "",
 "Player": "",
 "Projectile": "",
-"ProjectileSpawner": ""
+"ProjectileSpawner": "",
+"SpecialAttack": ""
 }
 
 [application]

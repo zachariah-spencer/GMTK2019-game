@@ -49,8 +49,5 @@ func fizzle():
 func _on_Projectile_area_entered(area):
 	var other_proj = area as Projectile
 	if other_proj:
-		print('thisproj: ' + shot_by)
-		print('otherproj: ' + other_proj.shot_by)
 		if shot_by == 'player' && other_proj.shot_by == 'boss':
-			print('call fizzle')
 			other_proj.fizzle()

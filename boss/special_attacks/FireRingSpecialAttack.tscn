@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://boss/special_attacks/SpecialAttack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://boss/special_attacks/FireRingSpecialAttack.gd" type="Script" id=2]
+[ext_resource path="res://assets/sphere_soft.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.47619, 1 )
+colors = PoolColorArray( 0.804688, 0, 0, 1, 1, 0.492188, 0, 1, 0.65625, 0, 0, 1 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 65.0
+
+[node name="FireRingSpecialAttack" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+type = 1
+
+[node name="Duration" parent="." index="0"]
+wait_time = 8.0
+
+[node name="FireParticles" type="CPUParticles2D" parent="." index="1"]
+emitting = false
+amount = 450
+speed_scale = 0.8
+texture = ExtResource( 3 )
+emission_shape = 1
+emission_sphere_radius = 55.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 0.0
+angular_velocity_random = 1.0
+radial_accel = 20.0
+scale_amount = 0.01
+color_ramp = SubResource( 1 )
+
+[node name="JumpTimer" type="Timer" parent="." index="3"]
+process_mode = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="DamageArea" type="Area2D" parent="." index="4"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+shape = SubResource( 2 )
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]

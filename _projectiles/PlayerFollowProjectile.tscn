@@ -6,8 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 resource_local_to_scene = true
 
-[node name="FollowProjectile" instance=ExtResource( 1 )]
+[node name="FollowProjectile" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+lifetime = 2.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )

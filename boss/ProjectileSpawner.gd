@@ -7,6 +7,7 @@ export(int, "void", "fire", "lightning", "water", "earth", "air") var type := 0
 export var speed := 130.0
 var offset := 15
 var player : Node2D
+var activated := false
 
 func _ready():
 	add_to_group(str(type))
@@ -31,4 +32,7 @@ func clear_projectiles():
 
 func fire(offset):
 	pass
+
+func activate():
+	activated = true
 
