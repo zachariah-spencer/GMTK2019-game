@@ -20,6 +20,7 @@ func _fire(offset):
 func _add_wall(num_projectiles, dir, off):
 	var spacing = 18
 	var to_add = projectile.instance()
+	to_add.shot_by = 'boss'
 	to_add.speed = speed
 	to_add.type = type
 	to_add.direction = dir
@@ -30,6 +31,7 @@ func _add_wall(num_projectiles, dir, off):
 	var off_d = dir.rotated(PI/2)
 	for i in range(1, num_projectiles+1) :
 		to_add = projectile.instance()
+		to_add.shot_by = 'boss'
 		to_add.speed = speed
 		to_add.type = type
 		to_add.direction = dir
@@ -39,6 +41,7 @@ func _add_wall(num_projectiles, dir, off):
 	off_d = dir.rotated(-PI/2)
 	for i in range(1, num_projectiles+1) :
 		to_add = projectile.instance()
+		to_add.shot_by = 'boss'
 		to_add.speed = speed
 		to_add.type = type
 		to_add.direction = dir

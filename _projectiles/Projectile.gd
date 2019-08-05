@@ -9,6 +9,7 @@ var type := 0
 var direction := Vector2.LEFT
 var speed := 70.0
 export var lifetime := 3.0
+var shot_by := 'player'
 
 var time = PI
 
@@ -37,10 +38,19 @@ func _move(delta : float):
 func _on_hit(body):
 	if body.has_method("hit") :
 		body.hit(self, damage, type, knockback)
-	
 	fizzle()
 
 func fizzle():
 	if $FizzleTimer.is_stopped() :
 		set_deferred("monitoring", false)
 		$FizzleTimer.start()
+
+
+func _on_Projectile_area_entered(area):
+	var other_proj = area as Projectile
+	if other_proj:
+		print('thisproj: ' + shot_by)
+		print('otherproj: ' + other_proj.shot_by)
+		if shot_by == 'player' && other_proj.shot_by == 'boss':
+			print('call fizzle')
+			other_proj.fizzle()

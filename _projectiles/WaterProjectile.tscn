@@ -7,8 +7,8 @@
 resource_local_to_scene = true
 radius = 8.0
 
-[node name="WaterProjectile" instance=ExtResource( 1 )]
-collision_mask = 5
+[node name="WaterProjectile" index="0" instance=ExtResource( 1 )]
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="0"]
