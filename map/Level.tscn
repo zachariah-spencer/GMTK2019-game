@@ -21,6 +21,7 @@
 [node name="Level" type="Node2D"]
 
 [node name="Decor" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Engine" type="Sprite" parent="Decor"]
 modulate = Color( 0.564706, 0.454902, 0.454902, 1 )
@@ -47,6 +48,7 @@ position = Vector2( 832, -432 )
 position = Vector2( 704, -432 )
 
 [node name="Obstructions" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="FireObstruction" parent="Obstructions" instance=ExtResource( 5 )]
 position = Vector2( 70.081, 226.366 )
@@ -86,6 +88,7 @@ position = Vector2( -256, 240 )
 position = Vector2( 1248, 256 )
 
 [node name="Chargers" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="ChargeSpawner" parent="Chargers" instance=ExtResource( 13 )]
 position = Vector2( -128, 307.2 )

@@ -10,6 +10,8 @@ var health := 3.0
 var total_health := 3.0
 var size := 40
 var transforming = false
+var active := false
+
 
 
 onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
@@ -38,7 +40,6 @@ func _ready():
 	Global.boss = self
 	_set_states()
 	player = get_tree().get_nodes_in_group("player")[0]
-	_update_health_bar(100.0, 5.0)
 
 func hit(by : Node2D, damage : float, type : int, knockback : Vector2):
 	if not type in immunities :
@@ -90,24 +91,26 @@ func activate_phase(type : int):
 			connect("special", attack, "attack")
 
 func _fire():
-	emit_signal("fire_projectile", size)
-	pass
+	if active:
+		emit_signal("fire_projectile", size)
+
 
 func _move():
-	emit_signal("move")
-	var player_dir = player.global_position - $Body.global_position
-	if phase <= 0 :
-		_hop()
-	elif phase <= 2 :
-		if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
-			_teleport()
-		else :
+	if active:
+		emit_signal("move")
+		var player_dir = player.global_position - $Body.global_position
+		if phase <= 0 :
 			_hop()
-	else :
-		if player_dir.length() > Global.CELL_SIZE * 20  or line_of_sight.is_colliding() :
-			_teleport()
+		elif phase <= 2 :
+			if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
+				_teleport()
+			else :
+				_hop()
 		else :
-			_air_impulse()
+			if player_dir.length() > Global.CELL_SIZE * 20  or line_of_sight.is_colliding() :
+				_teleport()
+			else :
+				_air_impulse()
 
 func _special():
 	emit_signal("special_attack")
@@ -262,3 +265,15 @@ func end_transform() :
 			curr_track = $Phase4
 			$Phase0.volume_db = -15
 			track_vol = 0
+
+
+func _on_VisibilityNotifier2D_screen_entered():
+	if !active && $ActivateTimer.is_stopped():
+		$ActivateTimer.start()
+		hp_anims.interpolate_property(health_bar,'modulate',Color(1,1,1,0),Color(1,1,1,1),1,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
+		hp_anims.start()
+		_update_health_bar(100.0, 5.0)
+
+
+func _on_ActivateTimer_timeout():
+	active = true

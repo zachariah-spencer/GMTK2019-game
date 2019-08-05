@@ -8,8 +8,8 @@ const earth = 4
 const air = 5
 
 const damage_color = {
-	void_type : Color.black,
-	"void" : Color.black,
+	void_type : Color.darkslategray,
+	"void" : Color.darkslategray,
 	"fire" : Color.red,
 	fire : Color.red,
 	"lightning" : Color.yellow,
