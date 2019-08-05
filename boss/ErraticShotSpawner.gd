@@ -21,6 +21,7 @@ func _fire() :
 
 func _add_projectile(direction, proj := projectile, off := offset, t := type):
 	var to_add = proj.instance()
+	to_add.shot_by = 'boss'
 	to_add.speed = speed
 	to_add.type = t
 	to_add.direction = direction.rotated(rand_range(-PI/4,PI/4))

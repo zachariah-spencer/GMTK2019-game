@@ -44,6 +44,7 @@ func _add_projectile(projectile, projectile_type):
 			var rot := -PI/22
 			for i in range(0,numprojectiles):
 				var to_add = projectile.instance()
+				to_add.shot_by = 'player'
 				to_add.speed = projectile_speed * 1.8
 				to_add.type = charge_type
 				to_add.direction = Vector2.RIGHT.rotated(rotation)
@@ -53,6 +54,7 @@ func _add_projectile(projectile, projectile_type):
 				$Node.add_child(to_add)
 		2:
 			var to_add = projectile.instance()
+			to_add.shot_by = 'player'
 			to_add.speed = projectile_speed * 2.5
 			to_add.type = charge_type
 			to_add.direction = Vector2.RIGHT.rotated(rotation)
@@ -60,6 +62,7 @@ func _add_projectile(projectile, projectile_type):
 			$Node.add_child(to_add)
 		3:
 			var to_add = projectile.instance()
+			to_add.shot_by = 'player'
 			to_add.speed = projectile_speed * .5
 			to_add.type = charge_type
 			to_add.direction = Vector2.RIGHT.rotated(rotation)
@@ -67,6 +70,7 @@ func _add_projectile(projectile, projectile_type):
 			$Node.add_child(to_add)
 		4:
 			var to_add = projectile.instance()
+			to_add.shot_by = 'player'
 			to_add.speed = projectile_speed * .5
 			to_add.type = charge_type
 			to_add.direction = Vector2.RIGHT.rotated(rotation)
@@ -77,6 +81,7 @@ func _add_projectile(projectile, projectile_type):
 			var spacing = 18
 			var to_add = projectile.instance()
 			to_add.speed = projectile_speed
+			to_add.shot_by = 'player'
 			to_add.type = charge_type
 			to_add.direction = Vector2.RIGHT.rotated(rotation)
 			var dir = to_add.direction
@@ -87,6 +92,7 @@ func _add_projectile(projectile, projectile_type):
 			var off_d = dir.rotated(PI/2)
 			for i in range(1, num_projectiles+1) :
 				to_add = projectile.instance()
+				to_add.shot_by = 'player'
 				to_add.speed = projectile_speed
 				to_add.type = charge_type
 				to_add.direction = global_position + 10 * to_add.direction
@@ -96,6 +102,7 @@ func _add_projectile(projectile, projectile_type):
 			off_d = dir.rotated(-PI/2)
 			for i in range(1, num_projectiles+1) :
 				to_add = projectile.instance()
+				to_add.shot_by = 'player'
 				to_add.speed = projectile_speed
 				to_add.type = charge_type
 				to_add.direction = global_position + 10 * to_add.direction
@@ -104,6 +111,7 @@ func _add_projectile(projectile, projectile_type):
 			
 		_:
 			var to_add = projectile.instance()
+			to_add.shot_by = 'player'
 			to_add.speed = projectile_speed
 			to_add.type = charge_type
 			to_add.direction = Vector2.RIGHT.rotated(rotation)

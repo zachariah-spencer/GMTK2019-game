@@ -7,7 +7,7 @@ resource_local_to_scene = true
 radius = 8.0
 
 [node name="AirProjectile" instance=ExtResource( 1 )]
-collision_mask = 5
+collision_mask = 7
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
