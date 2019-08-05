@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://_projectiles/Projectile.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
+radius = 3.0
+
+[node name="BossLightningSpecialProjectile" instance=ExtResource( 1 )]
+collision_mask = 18
+lifetime = 10.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+

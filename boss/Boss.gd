@@ -94,7 +94,8 @@ func activate_phase(type : int):
 	#I guess this doesn't work, needs to randomly select a move
 	for attack in special_attacks :
 		if attack.is_in_group(str(type)) :
-			connect("special_attack", attack, "attack")
+			connect("special_attack", attack, "activate")
+			emit_signal("special_attack")
 	
 	special_timer.start()
 
@@ -127,7 +128,12 @@ func _move():
 func _special():
 	if active && !performing_special:
 		performing_special = true
-		emit_signal("special_attack")
+		var selected_attack = int(rand_range(0, special_attacks.size() - 1))
+		
+		while !special_attacks[selected_attack].activated:
+			selected_attack = int(rand_range(0, special_attacks.size() - 1))
+		
+		special_attacks[selected_attack].attack()
 
 func on_special_attack_finished():
 	print('called special attack finished')

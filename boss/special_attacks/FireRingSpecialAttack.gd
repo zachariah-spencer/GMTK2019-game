@@ -7,7 +7,7 @@ var attack_active := false
 
 func _transition():
 	fire_particles.emitting = true
-	boss_body.get_node('Particles2D').modulate = Color.red
+	boss_body.get_node('Particles2D').modulate = Damage.damage_color[type]
 
 func _attack():
 	_erratic_move()
@@ -34,7 +34,7 @@ func _attack_over():
 	attack_active = false
 	damage_area.monitoring = false
 	fire_particles.emitting = false
-	boss_body.get_node('Particles2D').modulate = Color.red
+	boss_body.get_node('Particles2D').modulate = Color.white
 
 
 func _on_JumpTimer_timeout():
@@ -45,4 +45,4 @@ func _on_DamageArea_body_entered(body):
 	var player = body as Player
 	
 	if player:
-		player.hit(self, 1, type)
+		player.hit(self, 1, type, Vector2.ZERO)

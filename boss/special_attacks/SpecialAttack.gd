@@ -8,8 +8,12 @@ onready var boss_body := $'../..'
 onready var boss := $'../../..'
 onready var player = Global.player
 onready var transition_duration := $TransitionDuration
+var activated := false
 
 signal special_attack_finished
+
+func activate():
+	activated = true
 
 func _ready():
 	connect('special_attack_finished', boss, 'on_special_attack_finished')
