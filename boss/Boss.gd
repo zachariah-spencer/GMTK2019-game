@@ -19,6 +19,7 @@ onready var rand = RandomNumberGenerator.new()
 onready var line_of_sight = $Body/PlayerLineOfSight
 onready var health_bar = $CanvasLayer/HealthBar
 onready var body := $Body
+onready var hp_anims := $HPAnims
 
 
 var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)
@@ -37,7 +38,7 @@ func _ready():
 	Global.boss = self
 	_set_states()
 	player = get_tree().get_nodes_in_group("player")[0]
-	health_bar.value = 100
+	_update_health_bar(100.0, 5.0)
 
 func hit(by : Node2D, damage : float, type : int, knockback : Vector2):
 	if not type in immunities :
@@ -45,10 +46,16 @@ func hit(by : Node2D, damage : float, type : int, knockback : Vector2):
 		health -= damage
 		if health <= 0 :
 			activate_phase(type)
-		health_bar.value = 100 * health/ (phase + 3)
+		else:
+			_update_health_bar(100 * health / (phase + 3))
 	else :
 		$Body/ImmuneHit.play()
 		pass #something that shows it's immune
+
+func _update_health_bar(new_hp := 100.0, _time := 1.0):
+	var old_hp = health_bar.value
+	hp_anims.interpolate_property(health_bar,'value',old_hp, new_hp, _time, Tween.TRANS_CUBIC,Tween.EASE_OUT)
+	hp_anims.start()
 
 func die() :
 	$Body/Death.play()
@@ -68,7 +75,7 @@ func activate_phase(type : int):
 	$ProjectileTimer.stop()
 	immunities.append(type)
 	health = phase + 3
-	health_bar.value = 100
+	_update_health_bar(100.0, 5.0)
 
 	#could do this by using class_name later
 	for attack in projectile_attacks :
