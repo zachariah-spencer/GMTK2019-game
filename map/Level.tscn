@@ -128,4 +128,5 @@ texture = ExtResource( 16 )
 
 [node name="HealthSpawner" parent="." instance=ExtResource( 17 )]
 position = Vector2( -160, -908.8 )
+
 [connection signal="activate" from="Obstructions/LightningObstruction" to="Booster" method="activate"]

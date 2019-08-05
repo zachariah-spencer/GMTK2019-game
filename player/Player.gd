@@ -21,10 +21,11 @@ onready var sprite := $AnimatedSprite
 onready var gun := $Gun
 onready var stunned_timer := $StunnedTimer
 onready var hp_bar := $HealthBar
+onready var hp_anims := $HPAnims
 
 func _ready():
 	Engine.time_scale = 1
-	hp_bar.value = hp
+	_update_health_bar()
 	$Camera2D.limit_left = Global.LIMIT_LEFT
 	$Camera2D.limit_bottom = Global.LIMIT_BOT
 	$Camera2D.limit_top = Global.LIMIT_TOP
@@ -36,6 +37,11 @@ func _ready():
 	_add_state('fall')
 	_add_state('disabled')
 	_set_state(states.idle)
+
+func _update_health_bar(_time := 1.0):
+	var old_hp = hp_bar.value
+	hp_anims.interpolate_property(hp_bar,'value',old_hp,hp,_time,Tween.TRANS_CUBIC,Tween.EASE_OUT)
+	hp_anims.start()
 
 func _physics_process(delta: float):
 	if state != null:
@@ -62,7 +68,7 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	if stunned_timer.is_stopped() :
 		stunned_timer.start()
 		hp -= damage
-		hp_bar.value = hp
+		_update_health_bar(.65)
 		if hp <= 0 :
 			_die()
 
