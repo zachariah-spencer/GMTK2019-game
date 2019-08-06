@@ -4,7 +4,7 @@ const CELL_SIZE = 64
 
 var final_phase = 5
 
-var phase := 2
+var phase := 0
 var immunities := []
 var health := 3.0
 var total_health := 3.0
@@ -255,7 +255,7 @@ func _teleport():
 		if sign(offset) >= 0 :
 			offset += 10
 		offset *= -1
-		$TeleportCheck.global_position= test_point
+		$TeleportCheck.global_position = test_point
 		$TeleportCheck.position.x += offset
 		if test_point.x + offset > Global.LIMIT_RIGHT:
 			test_point = Vector2.LEFT * dist + player.global_position
