@@ -53,15 +53,9 @@ func hit(by : Node2D, damage : float, type : int, knockback : Vector2):
 		if health <= 0 :
 			activate_phase(type)
 		else:
-			_update_health_bar(100 * health / (phase + 3))
+			$CanvasLayer/HealthBar.health = float(health / (phase +3))
 	else :
 		$Body/ImmuneHit.play()
-		pass #something that shows it's immune
-
-func _update_health_bar(new_hp := 100.0, _time := 1.0):
-	var old_hp = health_bar.value
-	hp_anims.interpolate_property(health_bar,'value',old_hp, new_hp, _time, Tween.TRANS_CUBIC,Tween.EASE_OUT)
-	hp_anims.start()
 
 func die() :
 	$Body/Death.play()
@@ -81,7 +75,7 @@ func activate_phase(type : int):
 	$ProjectileTimer.stop()
 	immunities.append(type)
 	health = phase + 3
-	_update_health_bar(100.0, 5.0)
+	$CanvasLayer/HealthBar.health = 1.0
 
 	#could do this by using class_name later
 	for attack in projectile_attacks :
@@ -96,7 +90,7 @@ func activate_phase(type : int):
 		if attack.is_in_group(str(type)) :
 			connect("special_attack", attack, "activate")
 			emit_signal("special_attack")
-	
+
 	special_timer.start()
 
 func _fire():
@@ -129,10 +123,10 @@ func _special():
 	if active && !performing_special:
 		performing_special = true
 		var selected_attack = int(rand_range(0, special_attacks.size() - .01))
-		
+
 		while !special_attacks[selected_attack].activated:
 			selected_attack = int(rand_range(0, special_attacks.size() - .01))
-		
+
 		special_attacks[selected_attack].attack()
 
 func on_special_attack_finished():
@@ -295,7 +289,7 @@ func _on_VisibilityNotifier2D_screen_entered():
 		$ActivateTimer.start()
 		hp_anims.interpolate_property(health_bar,'modulate',Color(1,1,1,0),Color(1,1,1,1),1,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
 		hp_anims.start()
-		_update_health_bar(100.0, 5.0)
+		$CanvasLayer/HealthBar.health = 1.0
 
 
 func _on_ActivateTimer_timeout():
