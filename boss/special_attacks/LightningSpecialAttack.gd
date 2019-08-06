@@ -1,12 +1,12 @@
 extends SpecialAttack
 
 onready var projectile := preload('res://_projectiles/BossLightningSpecialProjectile.tscn')
-onready var projectile_speed := 250
+onready var projectile_speed := 550.0
 var shot_pos: Vector2
 var shot_pos_spacing := 100
-var number_projectiles := 5
+var number_projectiles := 7
 var projectiles_to_fire := 0
-var projectile_space := .1
+var projectile_space := .05
 
 #put behavior here to telecast the bosses actions before he attacks full force
 func _transition():
@@ -16,9 +16,11 @@ func _transition():
 #set attack behavior in this method
 func _attack():
 	projectiles_to_fire = number_projectiles
-	shot_pos.x = boss_body.global_position - 500
-	shot_pos.y = -1200
-	
+	shot_pos.x = boss_body.global_position.x - 300
+	shot_pos.y = player.global_position.y - 350
+	_shoot()
+
+func _shoot():
 	if projectiles_to_fire > 0 :
 		_add_projectile(shot_pos)
 		projectiles_to_fire -= 1
@@ -37,4 +39,4 @@ func _add_projectile(_position, proj := projectile):
 
 #end attack specific behavior in this method
 func _attack_over():
-	pass
+	boss_body.get_node('Particles2D').modulate = Color.white

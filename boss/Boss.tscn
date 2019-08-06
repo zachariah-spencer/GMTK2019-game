@@ -15,8 +15,8 @@
 [ext_resource path="res://_projectiles/BossEarthProjectile.tscn" type="PackedScene" id=13]
 [ext_resource path="res://boss/CentralSpawner.tscn" type="PackedScene" id=14]
 [ext_resource path="res://_projectiles/BossFireProjectile.tscn" type="PackedScene" id=15]
-[ext_resource path="res://boss/special_attacks/FireRingSpecialAttack.tscn" type="PackedScene" id=16]
-[ext_resource path="res://boss/special_attacks/LightningSpecialAttack.tscn" type="PackedScene" id=17]
+[ext_resource path="res://boss/special_attacks/LightningSpecialAttack.tscn" type="PackedScene" id=16]
+[ext_resource path="res://boss/special_attacks/FireRingSpecialAttack.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/audio/boss_immune.wav" type="AudioStream" id=18]
 [ext_resource path="res://assets/audio/boss_hit.wav" type="AudioStream" id=19]
 [ext_resource path="res://assets/audio/boss_teleport.wav" type="AudioStream" id=20]
@@ -128,9 +128,9 @@ speed = 3.0
 
 [node name="SpecialAttacks" type="Node2D" parent="Body"]
 
-[node name="FireRingSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 16 )]
+[node name="LightningSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 16 )]
 
-[node name="LightningSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 17 )]
+[node name="FireRingSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 17 )]
 
 [node name="Movement" type="Node2D" parent="Body"]
 

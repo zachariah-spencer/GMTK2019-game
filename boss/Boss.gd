@@ -130,7 +130,9 @@ func _special():
 		performing_special = true
 		var selected_attack = int(rand_range(0, special_attacks.size() - 1))
 		
+		print(special_attacks[selected_attack].activated)
 		while !special_attacks[selected_attack].activated:
+			print(special_attacks[selected_attack].activated)
 			selected_attack = int(rand_range(0, special_attacks.size() - 1))
 		
 		special_attacks[selected_attack].attack()
