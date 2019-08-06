@@ -11,6 +11,8 @@ var speed := 70.0
 export var lifetime := 3.0
 var shot_by := 'player'
 
+var draw_orb := true
+
 var time = PI
 
 onready var fizzle_timer = $FizzleTimer
@@ -29,7 +31,8 @@ func _physics_process(delta):
 	update()
 
 func _draw():
-	draw_circle(Vector2.ZERO, $CollisionShape2D.shape.radius, color)
+	if draw_orb :
+		draw_circle(Vector2.ZERO, $CollisionShape2D.shape.radius, color)
 
 
 func _move(delta : float):
