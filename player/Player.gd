@@ -5,6 +5,7 @@ const CELL := 64
 
 export var hp := 5
 export var move_speed: float = CELL * 4.5
+export var accel_speed: float = CELL * 2
 export var jump_height: float = CELL * 17
 
 var aim_position := Vector2.ZERO
@@ -85,8 +86,26 @@ func _handle_movement():
 		velocity.x = lerp(velocity.x, -move_speed, .7)
 		facing_direction = -1
 	else:
-		velocity.x = 0
+		velocity.x *= .90
 
+
+#func _handle_movement():
+#	var target_v = Vector2.ZERO
+#	if Input.is_action_pressed('move_right'):
+#		target_v.x += accel_speed
+#		facing_direction = 1
+#	elif Input.is_action_pressed('move_left'):
+#		target_v.x -= accel_speed
+#		facing_direction = -1
+#	else:
+#		target_v.x = 0
+#
+#	var h_weight = 0.7 if is_on_floor() else 0.2
+#	clamp(target_v.x,-move_speed,move_speed)
+#	clamp(target_v.y,-move_speed,move_speed)
+#	velocity = lerp(velocity,target_v,h_weight)
+	
+	
 
 func _handle_jumping():
 	if Input.is_action_pressed('jump') && is_on_floor():
@@ -114,9 +133,7 @@ func _input(event: InputEvent):
 
 	if event.is_action_pressed('shoot'):
 		if gun.charge_type == Damage.air:
-			velocity.y = -1750
-#			velocity = Vector2.LEFT.rotated(gun.rotation) * 20 * CELL
-			#do air knockback here
+			velocity = -Vector2.RIGHT.rotated(gun.rotation) * 1200
 		gun.shoot()
 
 
@@ -163,7 +180,7 @@ func _get_transition(delta : float):
 					return states.jump
 				elif velocity.y >= 0.1:
 					return states.fall
-			elif velocity.x != 0:
+			elif velocity.x >= 0.1:
 				return states.run
 		states.run:
 			if !is_on_floor():
