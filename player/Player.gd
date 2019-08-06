@@ -67,14 +67,14 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	modulate.a = .5
 	set_collision_layer_bit(4, false)
 	Engine.time_scale = .4
-	
+
 	$PlayerHit.play()
 	if stunned_timer.is_stopped() :
 		stunned_timer.start()
-		
+
 		if state == states.climb:
 			_set_state(states.fall)
-		
+
 		hp -= damage
 		_update_health_bar(.65)
 		if hp <= 0 :
@@ -87,7 +87,7 @@ func _die():
 
 func _handle_movement(delta):
 	var h_weight: float = delta * 15
-	
+
 	if Input.is_action_pressed('move_right'):
 		velocity.x = lerp(velocity.x, move_speed, h_weight)
 		facing_direction = 1
@@ -147,16 +147,17 @@ func _state_logic(delta : float):
 		_apply_velocity()
 
 func _handle_climbing(delta):
-	velocity = Vector2.ZERO
-	if Input.is_action_pressed('jump'):
+	velocity.x = 0
+	if Input.is_action_just_pressed('jump'):
 		velocity = detach_velocity
 		_set_state(states.jump)
-	
+
 	if Input.is_action_pressed('move_up'):
-		velocity.y = -move_speed
-	
-	if Input.is_action_pressed('move_down'):
-		velocity.y = move_speed
+		velocity.y = lerp(velocity.y, -move_speed, delta *2)
+	elif Input.is_action_pressed('move_down'):
+		velocity.y = lerp(velocity.y, move_speed, delta* 2)
+	else :
+		velocity.y = lerp(velocity.y, 0, delta * 10)
 
 func _handle_player_direction():
 	if facing_direction == -1:
