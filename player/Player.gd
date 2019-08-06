@@ -7,6 +7,7 @@ export var hp := 5
 export var move_speed: float = CELL * 4.5
 export var accel_speed: float = CELL * 2
 export var jump_height: float = CELL * 17
+var detach_velocity := Vector2(-5 * CELL,-5 * CELL)
 
 var aim_position := Vector2.ZERO
 var targeted_position := Vector2.ZERO
@@ -36,6 +37,7 @@ func _ready():
 	_add_state('run')
 	_add_state('jump')
 	_add_state('fall')
+	_add_state('climb')
 	_add_state('disabled')
 	_set_state(states.idle)
 
@@ -65,9 +67,14 @@ func hit(by : Node2D, damage : int, type : int, knockback : Vector2):
 	modulate.a = .5
 	set_collision_layer_bit(4, false)
 	Engine.time_scale = .4
+	
 	$PlayerHit.play()
 	if stunned_timer.is_stopped() :
 		stunned_timer.start()
+		
+		if state == states.climb:
+			_set_state(states.fall)
+		
 		hp -= damage
 		_update_health_bar(.65)
 		if hp <= 0 :
@@ -129,13 +136,27 @@ func _state_logic(delta : float):
 	$StateLabel.text = states.keys()[state]
 	if state != states.disabled:
 		_handle_time(delta)
-		_handle_gravity()
-		_handle_movement(delta)
-		_handle_jumping()
 		_handle_aiming()
 		_handle_player_direction()
+		if state == states.climb:
+			_handle_climbing(delta)
+		else:
+			_handle_gravity()
+			_handle_movement(delta)
+			_handle_jumping()
 		_apply_velocity()
 
+func _handle_climbing(delta):
+	velocity = Vector2.ZERO
+	if Input.is_action_pressed('jump'):
+		velocity = detach_velocity
+		_set_state(states.jump)
+	
+	if Input.is_action_pressed('move_up'):
+		velocity.y = -move_speed
+	
+	if Input.is_action_pressed('move_down'):
+		velocity.y = move_speed
 
 func _handle_player_direction():
 	if facing_direction == -1:
