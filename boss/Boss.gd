@@ -4,7 +4,7 @@ const CELL_SIZE = 64
 
 var final_phase = 5
 
-var phase := 0
+var phase := 2
 var immunities := []
 var health := 3.0
 var total_health := 3.0
@@ -242,8 +242,30 @@ func _teleport():
 	else :
 		test_point = Vector2.RIGHT * dist + player.global_position
 
-	if test_point.x > Global.LIMIT_RIGHT or test_point.x < Global.LIMIT_LEFT :
-		test_point.x *= -1
+	if test_point.x > Global.LIMIT_RIGHT:
+		test_point = Vector2.LEFT * dist + player.global_position
+	elif  test_point.x < Global.LIMIT_LEFT :
+		test_point = Vector2.RIGHT * dist + player.global_position
+
+	$TeleportCheck.global_position = test_point
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	var offset = 10
+	while not $TeleportCheck.get_overlapping_bodies().empty() :
+		if sign(offset) >= 0 :
+			offset += 10
+		offset *= -1
+		$TeleportCheck.global_position= test_point
+		$TeleportCheck.position.x += offset
+		if test_point.x + offset > Global.LIMIT_RIGHT:
+			test_point = Vector2.LEFT * dist + player.global_position
+		elif  test_point.x + offset < Global.LIMIT_LEFT :
+			test_point = Vector2.RIGHT * dist + player.global_position
+		yield(get_tree(), "idle_frame" )
+		yield(get_tree(), "idle_frame" )
+
+
+	test_point.x += offset
 
 	$Body/Teleport.play()
 	velocity = Vector2.ZERO
