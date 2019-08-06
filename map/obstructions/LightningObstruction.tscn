@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
-[node name="LightningObstruction" index="0" instance=ExtResource( 1 )]
+[node name="LightningObstruction" instance=ExtResource( 1 )]
 modulate = Color( 0.431373, 0.435294, 0, 1 )
 script = ExtResource( 2 )
 activation_type = 2

@@ -78,34 +78,18 @@ func _die():
 	Global.game_end(false)
 
 
-func _handle_movement():
+func _handle_movement(delta):
+	var h_weight: float = delta * 15
+	
 	if Input.is_action_pressed('move_right'):
-		velocity.x = lerp(velocity.x, move_speed, .7)
+		velocity.x = lerp(velocity.x, move_speed, h_weight)
 		facing_direction = 1
 	elif Input.is_action_pressed('move_left'):
-		velocity.x = lerp(velocity.x, -move_speed, .7)
+		velocity.x = lerp(velocity.x, -move_speed, h_weight)
 		facing_direction = -1
 	else:
-		velocity.x *= .90
+		velocity.x = lerp(velocity.x, 0, h_weight / 2)
 
-
-#func _handle_movement():
-#	var target_v = Vector2.ZERO
-#	if Input.is_action_pressed('move_right'):
-#		target_v.x += accel_speed
-#		facing_direction = 1
-#	elif Input.is_action_pressed('move_left'):
-#		target_v.x -= accel_speed
-#		facing_direction = -1
-#	else:
-#		target_v.x = 0
-#
-#	var h_weight = 0.7 if is_on_floor() else 0.2
-#	clamp(target_v.x,-move_speed,move_speed)
-#	clamp(target_v.y,-move_speed,move_speed)
-#	velocity = lerp(velocity,target_v,h_weight)
-	
-	
 
 func _handle_jumping():
 	if Input.is_action_pressed('jump') && is_on_floor():
@@ -146,7 +130,7 @@ func _state_logic(delta : float):
 	if state != states.disabled:
 		_handle_time(delta)
 		_handle_gravity()
-		_handle_movement()
+		_handle_movement(delta)
 		_handle_jumping()
 		_handle_aiming()
 		_handle_player_direction()
@@ -180,7 +164,7 @@ func _get_transition(delta : float):
 					return states.jump
 				elif velocity.y >= 0.1:
 					return states.fall
-			elif velocity.x >= 0.1:
+			elif abs(velocity.x) >= 25.0:
 				return states.run
 		states.run:
 			if !is_on_floor():
@@ -188,7 +172,7 @@ func _get_transition(delta : float):
 					return states.jump
 				elif velocity.y >= 0.1:
 					return states.fall
-			elif abs(velocity.x) < 0.1:
+			elif abs(velocity.x) < 25.0:
 				return states.idle
 		states.jump:
 			if is_on_floor():
