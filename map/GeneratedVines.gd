@@ -20,14 +20,13 @@ func _ready():
 	if upcast.is_colliding() :
 		up = upcast.get_collision_point().distance_to(upcast.global_position)
 
-
 	if downcast.is_colliding() :
 		down = downcast.get_collision_point().distance_to(downcast.global_position)
 
 	var real_size = up + down
 
-	$ClimbShape.shape.extents.y = real_size/2
-	$ClimbShape.position.y = (down - up) * .5
+	$ClimbShape.shape.extents.y = real_size * .5
+	$ClimbShape.position.y = (down - up) *.5
 
-	$Sprite.scale.y = real_size/64
-	$Sprite.position.y = down-up - 4
+	$Sprite.scale.y = real_size * 1/64
+	$Sprite.position.y = (down-up) * .5

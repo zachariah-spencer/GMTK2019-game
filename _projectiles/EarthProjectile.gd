@@ -12,7 +12,7 @@ func _on_hit(body):
 		var normal = $WallCheck.get_collision_normal()
 		var point = $WallCheck.get_collision_point()
 		var wall = $WallCheck.get_collider()
-		if normal.y == 0 :
+		if body == wall and normal.y == 0 :
 			var to_add = generated_vines.instance()
 			to_add.normal = -normal
 			to_add.global_position = point
