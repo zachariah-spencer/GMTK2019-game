@@ -210,7 +210,7 @@ func _get_transition(delta : float):
 					return states.jump
 				elif velocity.y >= 0.1:
 					return states.fall
-			elif abs(velocity.x) >= 25.0:
+			elif abs(velocity.x) >= 200.0:
 				return states.run
 		states.run:
 			if !is_on_floor():
@@ -218,7 +218,7 @@ func _get_transition(delta : float):
 					return states.jump
 				elif velocity.y >= 0.1:
 					return states.fall
-			elif abs(velocity.x) < 25.0:
+			elif abs(velocity.x) < 200.0:
 				return states.idle
 		states.jump:
 			if is_on_floor():

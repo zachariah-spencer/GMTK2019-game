@@ -86,6 +86,7 @@ position = Vector2( -256, 240 )
 position = Vector2( 1248, 256 )
 
 [node name="Chargers" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="ChargeSpawner" parent="Chargers" instance=ExtResource( 13 )]
 position = Vector2( -78, 307.431 )
@@ -115,8 +116,10 @@ type = 3
 position = Vector2( 784.332, -192 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+editor/display_folded = true
 
 [node name="BG" type="ParallaxLayer" parent="ParallaxBackground"]
+editor/display_folded = true
 motion_scale = Vector2( 0.1, 0.1 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/BG"]
@@ -124,6 +127,7 @@ position = Vector2( 314.67, 22.08 )
 texture = ExtResource( 15 )
 
 [node name="Pipes" type="ParallaxLayer" parent="ParallaxBackground"]
+editor/display_folded = true
 position = Vector2( 330.86, 19.61 )
 motion_scale = Vector2( 0.3, 0.3 )
 
