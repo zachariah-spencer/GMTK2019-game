@@ -5,7 +5,7 @@ func _process(delta):
 	if not $WitherTimer.is_stopped() :
 		$Sprite.modulate.a = $WitherTimer.time_left/$WitherTimer.wait_time
 	for body  in get_overlapping_bodies() :
-		if body is Player :
+		if body is Player && body.can_climb:
 			body._set_state(body.states.climb)
 
 func _on_Vines_body_entered(body):

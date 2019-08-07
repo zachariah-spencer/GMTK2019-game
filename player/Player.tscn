@@ -133,7 +133,7 @@ script = ExtResource( 1 )
 scale = Vector2( 0.125, 0.125 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 7
+frame = 22
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -182,16 +182,26 @@ __meta__ = {
 [node name="HPAnims" type="Tween" parent="."]
 playback_process_mode = 0
 
-[node name="Wallcasts" type="Node2D" parent="."]
+[node name="Casts" type="Node2D" parent="."]
 
-[node name="RightCast" type="RayCast2D" parent="Wallcasts"]
+[node name="RightCast" type="RayCast2D" parent="Casts"]
 position = Vector2( 8, 0 )
 enabled = true
 cast_to = Vector2( 10, 0 )
 
-[node name="LeftCast" type="RayCast2D" parent="Wallcasts"]
+[node name="LeftCast" type="RayCast2D" parent="Casts"]
 position = Vector2( -8, 0 )
 enabled = true
 cast_to = Vector2( -10, 0 )
 
+[node name="Downcast" type="RayCast2D" parent="Casts"]
+position = Vector2( 0, 10 )
+cast_to = Vector2( 0, 10 )
+
+[node name="ClimbCooldownTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]
+[connection signal="timeout" from="ClimbCooldownTimer" to="." method="_on_ClimbCooldownTimer_timeout"]

@@ -9,6 +9,7 @@ export var accel_speed: float = CELL * 2
 export var jump_height: float = CELL * 17
 var detach_x := 10 * CELL
 
+var can_climb := true
 var aim_position := Vector2.ZERO
 var targeted_position := Vector2.ZERO
 var velocity := Vector2.ZERO
@@ -24,8 +25,9 @@ onready var gun := $Gun
 onready var stunned_timer := $StunnedTimer
 onready var hp_bar := $HealthBar
 onready var hp_anims := $HPAnims
-onready var left_cast := $Wallcasts/LeftCast
-onready var right_cast := $Wallcasts/RightCast
+onready var left_cast := $Casts/LeftCast
+onready var right_cast := $Casts/RightCast
+onready var climb_cd_timer := $ClimbCooldownTimer
 
 
 func _ready():
@@ -165,7 +167,6 @@ func _get_nearby_wall():
 
 func _handle_climbing(delta):
 	velocity.x = 0
-	print(_get_nearby_wall())
 	if Input.is_action_just_pressed('jump'):
 		match _get_nearby_wall():
 			-1:
@@ -230,6 +231,11 @@ func _get_transition(delta : float):
 				return states.idle
 			elif velocity.y < 0:
 				return states.jump
+		states.climb:
+			if is_on_floor():
+				can_climb = false
+				climb_cd_timer.start()
+				return states.idle
 	return null
 
 
@@ -263,3 +269,7 @@ func _on_StunnedTimer_timeout():
 	modulate.a = 1
 	set_collision_layer_bit(4, true)
 	Engine.time_scale = 1
+
+
+func _on_ClimbCooldownTimer_timeout():
+	can_climb = true
