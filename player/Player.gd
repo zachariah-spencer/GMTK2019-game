@@ -164,7 +164,10 @@ func _get_nearby_wall():
 		return 0
 
 func _handle_climbing(delta):
-	velocity.x = 0
+	if not $Casts/Downcast.is_colliding():
+		velocity.x = 0
+	else :
+		_handle_movement(delta)
 	if Input.is_action_just_pressed('jump'):
 		match _get_nearby_wall():
 			-1:
