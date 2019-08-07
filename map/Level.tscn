@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/bg/decor/engine.png" type="Texture" id=1]
 [ext_resource path="res://assets/bg/decor/machine.png" type="Texture" id=2]
@@ -18,9 +18,10 @@
 [ext_resource path="res://assets/bg/parallax/pipes.png" type="Texture" id=16]
 [ext_resource path="res://map/Platform.tscn" type="PackedScene" id=17]
 [ext_resource path="res://map/obstructions/FireObstruction.tscn" type="PackedScene" id=18]
+[ext_resource path="res://map/GeneratedVines.tscn" type="PackedScene" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 300 )
+extents = Vector2( 5, 300 )
 
 [node name="Level" type="Node2D"]
 
@@ -134,9 +135,17 @@ texture = ExtResource( 16 )
 position = Vector2( -160, -908.8 )
 
 [node name="Vines" parent="." instance=ExtResource( 11 )]
-position = Vector2( -299.67, -390.815 )
+position = Vector2( -289.158, -389.939 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vines"]
-visible = false
 shape = SubResource( 1 )
+
+[node name="GeneratedVines" parent="." instance=ExtResource( 19 )]
+position = Vector2( -275.967, 229.009 )
+size = 300.0
+
+[node name="GeneratedVines2" parent="." instance=ExtResource( 19 )]
+position = Vector2( -14.3198, 124.35 )
+normal = Vector2( 1, 0 )
+size = 100.0
 [connection signal="activate" from="Obstructions/LightningObstruction" to="Booster" method="activate"]

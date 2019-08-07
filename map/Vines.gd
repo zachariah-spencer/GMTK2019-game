@@ -1,4 +1,5 @@
 extends Area2D
+class_name Vines
 
 func _process(delta):
 	if not $WitherTimer.is_stopped() :
