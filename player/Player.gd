@@ -7,7 +7,7 @@ export var hp := 5
 export var move_speed: float = CELL * 4.5
 export var accel_speed: float = CELL * 2
 export var jump_height: float = CELL * 17
-var detach_velocity := Vector2(10 * CELL, -10 * CELL)
+var detach_x := 10 * CELL
 
 var aim_position := Vector2.ZERO
 var targeted_position := Vector2.ZERO
@@ -24,6 +24,9 @@ onready var gun := $Gun
 onready var stunned_timer := $StunnedTimer
 onready var hp_bar := $HealthBar
 onready var hp_anims := $HPAnims
+onready var left_cast := $Wallcasts/LeftCast
+onready var right_cast := $Wallcasts/RightCast
+
 
 func _ready():
 	Engine.time_scale = 1
@@ -146,20 +149,39 @@ func _state_logic(delta : float):
 			_handle_jumping()
 		_apply_velocity()
 
+func _get_nearby_wall():
+	#returns -1 for wall on left
+	# +1 for wall on right
+	# +2 for wall on both sides
+	# or 0 for no walls near player
+	if right_cast.is_colliding() && !left_cast.is_colliding():
+		return 1
+	elif left_cast.is_colliding() && !right_cast.is_colliding():
+		return -1
+	elif right_cast.is_colliding() && left_cast.is_colliding():
+		return 2
+	else:
+		return 0
+
 func _handle_climbing(delta):
 	velocity.x = 0
+	print(_get_nearby_wall())
 	if Input.is_action_just_pressed('jump'):
-		velocity = detach_velocity
-		if Input.is_action_pressed("move_left") :
-			velocity.x *= -1
+		match _get_nearby_wall():
+			-1:
+				velocity = Vector2(detach_x, -10 * CELL)
+			1:
+				velocity = Vector2(-detach_x, -10 * CELL)
+			0:
+				_set_state(states.fall)
 		_set_state(states.jump)
 
 	if Input.is_action_pressed('move_up'):
-		velocity.y = lerp(velocity.y, -move_speed, delta *2)
+		velocity.y = lerp(velocity.y, -move_speed, delta * 20)
 	elif Input.is_action_pressed('move_down'):
-		velocity.y = lerp(velocity.y, move_speed, delta* 2)
+		velocity.y = lerp(velocity.y, move_speed, delta * 20)
 	else :
-		velocity.y = lerp(velocity.y, 0, delta * 10)
+		velocity.y = lerp(velocity.y, 0, delta * 20)
 
 func _handle_player_direction():
 	if facing_direction == -1:
@@ -218,6 +240,8 @@ func _enter_state(new_state, old_state):
 		states.run:
 			sprite.play('run')
 		states.jump:
+			sprite.play('jump')
+		states.climb:
 			sprite.play('jump')
 
 

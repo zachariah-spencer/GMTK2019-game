@@ -22,12 +22,12 @@
 [ext_resource path="res://assets/audio/boss_teleport.wav" type="AudioStream" id=20]
 [ext_resource path="res://assets/audio/boss_transition.wav" type="AudioStream" id=21]
 [ext_resource path="res://assets/audio/boss_die.wav" type="AudioStream" id=22]
-[ext_resource path="res://assets/audio/music/ambience.ogg" type="AudioStream" id=23]
-[ext_resource path="res://assets/audio/music/music_phase1.ogg" type="AudioStream" id=24]
-[ext_resource path="res://assets/audio/music/music_phase2.ogg" type="AudioStream" id=25]
-[ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=26]
-[ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=27]
-[ext_resource path="res://boss/HealthBar.gd" type="Script" id=28]
+[ext_resource path="res://boss/HealthBar.gd" type="Script" id=23]
+[ext_resource path="res://assets/audio/music/ambience.ogg" type="AudioStream" id=24]
+[ext_resource path="res://assets/audio/music/music_phase1.ogg" type="AudioStream" id=25]
+[ext_resource path="res://assets/audio/music/music_phase2.ogg" type="AudioStream" id=26]
+[ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=27]
+[ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=28]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.476821, 1 )
@@ -181,7 +181,7 @@ margin_bottom = 44.0
 custom_styles/fg = SubResource( 6 )
 custom_styles/bg = SubResource( 7 )
 percent_visible = false
-script = ExtResource( 28 )
+script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -197,27 +197,27 @@ shape = SubResource( 2 )
 [node name="TransformTimer" type="Timer" parent="."]
 
 [node name="Phase0" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 23 )
-volume_db = -80.0
-autoplay = true
-
-[node name="Phase1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 24 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Phase2" type="AudioStreamPlayer" parent="."]
+[node name="Phase1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 25 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Phase3" type="AudioStreamPlayer" parent="."]
+[node name="Phase2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 26 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Phase4" type="AudioStreamPlayer" parent="."]
+[node name="Phase3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 27 )
+volume_db = -80.0
+autoplay = true
+
+[node name="Phase4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 28 )
 volume_db = -80.0
 autoplay = true
 
@@ -235,6 +235,7 @@ one_shot = true
 process_mode = 0
 wait_time = 0.2
 autostart = true
+
 [connection signal="hit" from="Body" to="." method="hit"]
 [connection signal="hit" from="Body/Hurtbox" to="." method="hit"]
 [connection signal="finished" from="Body/Transition" to="." method="end_transform"]
