@@ -33,9 +33,9 @@ func _ready():
 
 	var cast_offset = Vector2(-7, 0)
 	if inupcast.is_colliding() :
-		down = inupcast.get_collision_point().distance_to(upcast.global_position + cast_offset.rotated(rotation))
+		up = inupcast.get_collision_point().distance_to(upcast.global_position - cast_offset.rotated(rotation))
 	if indowncast.is_colliding() :
-		up = indowncast.get_collision_point().distance_to(downcast.global_position + cast_offset.rotated(rotation))
+		down = indowncast.get_collision_point().distance_to(downcast.global_position - cast_offset.rotated(rotation))
 
 	if upcast.is_colliding() :
 		up = upcast.get_collision_point().distance_to(upcast.global_position)
