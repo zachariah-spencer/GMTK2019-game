@@ -12,7 +12,7 @@ var size := 40
 var transforming = false
 var active := false
 var performing_special = false
-
+var move_handling_enabled := true
 
 
 onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
@@ -120,7 +120,15 @@ func _move():
 				_air_impulse()
 
 func _special():
-	if active && !performing_special:
+	var usable_special := false
+	
+	
+	#only needs to be here until we get all the elemental special attacks done
+	for special in special_attacks:
+		if special.activated:
+			usable_special = true
+	
+	if active && !performing_special && usable_special:
 		performing_special = true
 		var selected_attack = int(rand_range(0, special_attacks.size() - .01))
 
@@ -203,11 +211,13 @@ func _apply_movement():
 
 
 func _handle_movement(delta : float ):
-	if phase <= 2 :
+	if phase <= 2 && move_handling_enabled:
 		if $Body.is_on_floor() :
 			velocity.x = lerp(velocity.x, 0, .1)
 		else :
 			velocity += Vector2.DOWN * gravity
+	elif !move_handling_enabled:
+		velocity.x = lerp(velocity.x, 0, .2)
 
 ############################################################
 ####Move Actions ####

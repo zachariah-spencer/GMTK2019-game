@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://boss/special_attacks/SpecialAttack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://boss/special_attacks/EarthSpecialAttack.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 5 )
+
+[node name="EarthSpecialAttack" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+type = 4
+
+[node name="Duration" parent="." index="0"]
+wait_time = 10.0
+
+[node name="MoveTimer" type="Timer" parent="." index="2"]
+process_mode = 0
+wait_time = 0.6
+one_shot = true
+
+[node name="UpCast" type="RayCast2D" parent="." index="3"]
+enabled = true
+cast_to = Vector2( 0, -50 )
+
+[node name="DownCast" type="RayCast2D" parent="." index="4"]
+enabled = true
+
+[node name="FloorArea" type="Area2D" parent="." index="5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorArea" index="0"]
+position = Vector2( 0, 40 )
+shape = SubResource( 1 )
+
+[connection signal="timeout" from="MoveTimer" to="." method="_zig_zag_move"]
+[connection signal="body_entered" from="FloorArea" to="." method="_on_Area2D_body_entered"]

@@ -82,10 +82,9 @@ position = Vector2( -256, 240 )
 position = Vector2( 1248, 256 )
 
 [node name="Chargers" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="ChargeSpawner" parent="Chargers" instance=ExtResource( 12 )]
-position = Vector2( -78, 307.431 )
+position = Vector2( 1202, 257.431 )
 type = 4
 
 [node name="ChargeSpawner6" parent="Chargers" instance=ExtResource( 12 )]
