@@ -7,7 +7,7 @@ export var hp := 5
 export var move_speed: float = CELL * 4.5
 export var accel_speed: float = CELL * 2
 export var jump_height: float = CELL * 17
-var detach_velocity := Vector2(-5 * CELL,-5 * CELL)
+var detach_velocity := Vector2(10 * CELL, -10 * CELL)
 
 var aim_position := Vector2.ZERO
 var targeted_position := Vector2.ZERO
@@ -150,6 +150,8 @@ func _handle_climbing(delta):
 	velocity.x = 0
 	if Input.is_action_just_pressed('jump'):
 		velocity = detach_velocity
+		if Input.is_action_pressed("move_left") :
+			velocity.x *= -1
 		_set_state(states.jump)
 
 	if Input.is_action_pressed('move_up'):

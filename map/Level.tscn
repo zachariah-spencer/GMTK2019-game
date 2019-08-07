@@ -1,28 +1,30 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/bg/decor/engine.png" type="Texture" id=1]
 [ext_resource path="res://assets/bg/decor/machine.png" type="Texture" id=2]
 [ext_resource path="res://assets/bg/decor/generator.png" type="Texture" id=3]
-[ext_resource path="res://map/Platform.tscn" type="PackedScene" id=4]
-[ext_resource path="res://map/obstructions/FireObstruction.tscn" type="PackedScene" id=5]
-[ext_resource path="res://map/obstructions/LightningObstruction.tscn" type="PackedScene" id=6]
-[ext_resource path="res://map/obstructions/WaterObstruction.tscn" type="PackedScene" id=7]
-[ext_resource path="res://map/obstructions/EarthObstruction.tscn" type="PackedScene" id=8]
+[ext_resource path="res://map/obstructions/WaterObstruction.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://map/obstructions/EarthObstruction.tscn" type="PackedScene" id=6]
+[ext_resource path="res://map/ChargeSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://boss/Boss.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/AutoTiles.tres" type="TileSet" id=9]
 [ext_resource path="res://map/TileMap.gd" type="Script" id=10]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=11]
-[ext_resource path="res://boss/Boss.tscn" type="PackedScene" id=12]
-[ext_resource path="res://map/ChargeSpawner.tscn" type="PackedScene" id=13]
-[ext_resource path="res://map/obstructions/Booster.tscn" type="PackedScene" id=14]
+[ext_resource path="res://map/Vines.tscn" type="PackedScene" id=11]
+[ext_resource path="res://map/HealthSpawner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://map/obstructions/Booster.tscn" type="PackedScene" id=13]
+[ext_resource path="res://map/obstructions/LightningObstruction.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/bg/bg.png" type="Texture" id=15]
 [ext_resource path="res://assets/bg/parallax/pipes.png" type="Texture" id=16]
-[ext_resource path="res://map/HealthSpawner.tscn" type="PackedScene" id=17]
-[ext_resource path="res://map/Vines.tscn" type="PackedScene" id=18]
+[ext_resource path="res://map/Platform.tscn" type="PackedScene" id=17]
+[ext_resource path="res://map/obstructions/FireObstruction.tscn" type="PackedScene" id=18]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 300 )
 
 [node name="Level" type="Node2D"]
 
 [node name="Decor" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Engine" type="Sprite" parent="Decor"]
 modulate = Color( 0.564706, 0.454902, 0.454902, 1 )
@@ -42,32 +44,32 @@ position = Vector2( 330.43, -676.26 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 
-[node name="Platform" parent="." instance=ExtResource( 4 )]
+[node name="Platform" parent="." instance=ExtResource( 17 )]
 position = Vector2( 832, -432 )
 
-[node name="Platform2" parent="." instance=ExtResource( 4 )]
+[node name="Platform2" parent="." instance=ExtResource( 17 )]
 position = Vector2( 704, -432 )
 
 [node name="Obstructions" type="Node2D" parent="."]
 
-[node name="FireObstruction" parent="Obstructions" instance=ExtResource( 5 )]
+[node name="FireObstruction" parent="Obstructions" instance=ExtResource( 18 )]
 position = Vector2( 70.081, 226.366 )
 
-[node name="FireObstruction2" parent="Obstructions" instance=ExtResource( 5 )]
+[node name="FireObstruction2" parent="Obstructions" instance=ExtResource( 18 )]
 position = Vector2( 195.046, 228.571 )
 
-[node name="LightningObstruction" parent="Obstructions" instance=ExtResource( 6 )]
+[node name="LightningObstruction" parent="Obstructions" instance=ExtResource( 14 )]
 position = Vector2( 784.332, 0 )
 
-[node name="WaterObstruction" parent="Obstructions" instance=ExtResource( 7 )]
+[node name="WaterObstruction" parent="Obstructions" instance=ExtResource( 4 )]
 position = Vector2( 512, 240 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="WaterObstruction2" parent="Obstructions" instance=ExtResource( 7 )]
+[node name="WaterObstruction2" parent="Obstructions" instance=ExtResource( 4 )]
 position = Vector2( 1056, 240 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="EarthObstruction" parent="Obstructions" instance=ExtResource( 8 )]
+[node name="EarthObstruction" parent="Obstructions" instance=ExtResource( 6 )]
 position = Vector2( 1408, -672 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -81,36 +83,35 @@ script = ExtResource( 10 )
 
 [node name="Player" parent="." groups=[
 "player",
-] instance=ExtResource( 11 )]
+] instance=ExtResource( 5 )]
 position = Vector2( -256, 240 )
 
-[node name="Boss" parent="." instance=ExtResource( 12 )]
+[node name="Boss" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1248, 256 )
 
 [node name="Chargers" type="Node2D" parent="."]
-editor/display_folded = true
 
-[node name="ChargeSpawner" parent="Chargers" instance=ExtResource( 13 )]
+[node name="ChargeSpawner" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( -128, 307.2 )
 type = 1
 
-[node name="ChargeSpawner2" parent="Chargers" instance=ExtResource( 13 )]
+[node name="ChargeSpawner2" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( 784.332, 275.2 )
 type = 5
 
-[node name="ChargeSpawner3" parent="Chargers" instance=ExtResource( 13 )]
+[node name="ChargeSpawner3" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( 1696, -300 )
 type = 2
 
-[node name="ChargeSpawner4" parent="Chargers" instance=ExtResource( 13 )]
+[node name="ChargeSpawner4" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( 1056, -555 )
 type = 4
 
-[node name="ChargeSpawner5" parent="Chargers" instance=ExtResource( 13 )]
+[node name="ChargeSpawner5" parent="Chargers" instance=ExtResource( 7 )]
 position = Vector2( 1664, -876 )
 type = 3
 
-[node name="Booster" parent="." instance=ExtResource( 14 )]
+[node name="Booster" parent="." instance=ExtResource( 13 )]
 position = Vector2( 784.332, -192 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -129,10 +130,13 @@ motion_scale = Vector2( 0.3, 0.3 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Pipes"]
 texture = ExtResource( 16 )
 
-[node name="HealthSpawner" parent="." instance=ExtResource( 17 )]
+[node name="HealthSpawner" parent="." instance=ExtResource( 12 )]
 position = Vector2( -160, -908.8 )
 
-[node name="Vines" parent="." instance=ExtResource( 18 )]
-position = Vector2( 0, 150 )
+[node name="Vines" parent="." instance=ExtResource( 11 )]
+position = Vector2( -299.67, -390.815 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vines"]
+visible = false
+shape = SubResource( 1 )
 [connection signal="activate" from="Obstructions/LightningObstruction" to="Booster" method="activate"]
