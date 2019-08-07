@@ -155,11 +155,11 @@ func _handle_climbing(delta):
 		_set_state(states.jump)
 
 	if Input.is_action_pressed('move_up'):
-		velocity.y = lerp(velocity.y, -move_speed, delta *2)
+		velocity.y = lerp(velocity.y, -move_speed, delta * 20)
 	elif Input.is_action_pressed('move_down'):
-		velocity.y = lerp(velocity.y, move_speed, delta* 2)
+		velocity.y = lerp(velocity.y, move_speed, delta * 20)
 	else :
-		velocity.y = lerp(velocity.y, 0, delta * 10)
+		velocity.y = lerp(velocity.y, 0, delta * 20)
 
 func _handle_player_direction():
 	if facing_direction == -1:
