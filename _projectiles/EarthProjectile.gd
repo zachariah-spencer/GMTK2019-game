@@ -2,6 +2,8 @@ extends Projectile
 
 var generated_vines = preload("res://map/GeneratedVines.tscn")
 
+var vine_size = Global.CELL_SIZE * 4
+
 func _physics_process(delta):
 	$WallCheck.cast_to = direction * 500
 
@@ -16,8 +18,9 @@ func _on_hit(body):
 			var to_add = generated_vines.instance()
 			to_add.normal = -normal
 			to_add.global_position = point
+			to_add.size = vine_size
 			wall.get_parent().add_child(to_add)
 		elif wall is GeneratedVines :
-			wall.update_size(100)
+			wall.update_size(vine_size)
 
 	fizzle()

@@ -4,7 +4,7 @@ tool
 class_name GeneratedVines
 
 export var normal := Vector2.LEFT
-export var size := 100.0
+var size = Global.CELL_SIZE * 5
 
 onready var upcast := $UpCast
 onready var downcast := $DownCast
