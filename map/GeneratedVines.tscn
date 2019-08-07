@@ -15,7 +15,6 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-visible = false
 scale = Vector2( 0.2, 1 )
 
 [node name="UpCast" type="RayCast2D" parent="." index="3"]

@@ -28,7 +28,6 @@ func _ready():
 
 	$ClimbShape.shape.extents.y = real_size/2
 	$ClimbShape.position.y = (down - up) * .5
-	print($ClimbShape.position)
 
 	$Sprite.scale.y = real_size/64
 	$Sprite.position.y = down-up - 4
