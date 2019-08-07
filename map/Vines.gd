@@ -6,13 +6,8 @@ func _process(delta):
 		$Sprite.modulate.a = $WitherTimer.time_left/$WitherTimer.wait_time
 	for body  in get_overlapping_bodies() :
 		if body is Player:
-			match body._get_nearby_wall():
-				-1:
-					if Input.is_action_pressed('move_left'):
-						body._set_state(body.states.climb)
-				1:
-					if Input.is_action_pressed('move_right'):
-						body._set_state(body.states.climb)
+			if not body.is_on_floor():
+				body._set_state(body.states.climb)
 
 func _on_Vines_body_entered(body):
 	var p = body as Player

@@ -17,5 +17,7 @@ func _on_hit(body):
 			to_add.normal = -normal
 			to_add.global_position = point
 			wall.get_parent().add_child(to_add)
+		elif wall is GeneratedVines :
+			wall.update_size(100)
 
 	fizzle()

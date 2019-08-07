@@ -1,4 +1,7 @@
 extends Vines
+tool
+
+class_name GeneratedVines
 
 export var normal := Vector2.LEFT
 export var size := 100.0
@@ -10,6 +13,10 @@ onready var indowncast := $InDownCast
 
 func _ready():
 	rotation = normal.angle()
+	update_size()
+
+func update_size(s = 0):
+	size += s
 	upcast.cast_to.y = -size * .5
 	downcast.cast_to.y = size * .5
 
