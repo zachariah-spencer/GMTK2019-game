@@ -17,10 +17,10 @@ func _attack():
 func _erratic_move():
 	var player_dir = player.global_position - boss_body.global_position
 	
-	if player_dir.y > 0 or boss.line_of_sight.is_colliding() :
-		boss.velocity.y = -boss.high_jump_v
-	else :
-		boss.velocity.y = -boss.low_jump_v
+#	if player_dir.y > 0 or boss.line_of_sight.is_colliding() :
+#		boss.velocity.y = -boss.high_jump_v
+#	else :
+	boss.velocity.y = -boss.low_jump_v
 	
 	boss.velocity.x = sign(player_dir.x) * 500
 

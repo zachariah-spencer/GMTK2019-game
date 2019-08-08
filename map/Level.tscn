@@ -6,7 +6,7 @@
 [ext_resource path="res://map/Platform.tscn" type="PackedScene" id=4]
 [ext_resource path="res://map/obstructions/FireObstruction.tscn" type="PackedScene" id=5]
 [ext_resource path="res://map/obstructions/LightningObstruction.tscn" type="PackedScene" id=6]
-[ext_resource path="res://map/obstructions/WaterObstruction.tscn" type="PackedScene" id=7]
+[ext_resource path="res://map/obstructions/WaterObstructions.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/AutoTiles.tres" type="TileSet" id=8]
 [ext_resource path="res://map/TileMap.gd" type="Script" id=9]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=10]
@@ -56,13 +56,7 @@ position = Vector2( 195.046, 228.571 )
 [node name="LightningObstruction" parent="Obstructions" instance=ExtResource( 6 )]
 position = Vector2( 784.332, 0 )
 
-[node name="WaterObstruction" parent="Obstructions" instance=ExtResource( 7 )]
-position = Vector2( 512, 240 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="WaterObstruction2" parent="Obstructions" instance=ExtResource( 7 )]
-position = Vector2( 1056, 240 )
-scale = Vector2( 0.5, 0.5 )
+[node name="WaterObstructions" parent="Obstructions" instance=ExtResource( 7 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color( 0.305882, 0.14902, 0.14902, 1 )

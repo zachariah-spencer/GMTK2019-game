@@ -75,3 +75,4 @@ one_shot = true
 [node name="DestroySound" type="AudioStreamPlayer2D" parent="." index="3"]
 stream = SubResource( 8 )
 
+[connection signal="hit" from="Body" to="." method="hit"]
