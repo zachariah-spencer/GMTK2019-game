@@ -8,11 +8,6 @@ var number_projectiles := 7
 var projectiles_to_fire := 0
 var projectile_space := .05
 
-#put behavior here to telecast the bosses actions before he attacks full force
-func _transition():
-	boss_body.get_node('Particles2D').modulate = Damage.damage_color[type]
-
-
 #set attack behavior in this method
 func _attack():
 	projectiles_to_fire = number_projectiles
@@ -35,8 +30,3 @@ func _add_projectile(_position, proj := projectile):
 	to_add.position = _position
 	$Node.add_child(to_add)
 	shot_pos.x += shot_pos_spacing
-
-
-#end attack specific behavior in this method
-func _attack_over():
-	boss_body.get_node('Particles2D').modulate = Color.white

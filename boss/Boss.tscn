@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://boss/Hurtbox.gd" type="Script" id=2]
@@ -18,17 +18,19 @@
 [ext_resource path="res://boss/special_attacks/LightningSpecialAttack.tscn" type="PackedScene" id=16]
 [ext_resource path="res://boss/special_attacks/FireRingSpecialAttack.tscn" type="PackedScene" id=17]
 [ext_resource path="res://boss/special_attacks/EarthSpecialAttack.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/audio/boss_immune.wav" type="AudioStream" id=19]
-[ext_resource path="res://assets/audio/boss_hit.wav" type="AudioStream" id=20]
-[ext_resource path="res://assets/audio/boss_teleport.wav" type="AudioStream" id=21]
-[ext_resource path="res://assets/audio/boss_transition.wav" type="AudioStream" id=22]
-[ext_resource path="res://assets/audio/boss_die.wav" type="AudioStream" id=23]
-[ext_resource path="res://boss/HealthBar.gd" type="Script" id=24]
-[ext_resource path="res://assets/audio/music/ambience.ogg" type="AudioStream" id=25]
-[ext_resource path="res://assets/audio/music/music_phase1.ogg" type="AudioStream" id=26]
-[ext_resource path="res://assets/audio/music/music_phase2.ogg" type="AudioStream" id=27]
-[ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=28]
-[ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=29]
+[ext_resource path="res://boss/special_attacks/AirSpecialAttack.tscn" type="PackedScene" id=19]
+[ext_resource path="res://boss/special_attacks/WaterSpecialAttack.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/audio/boss_immune.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/audio/boss_hit.wav" type="AudioStream" id=22]
+[ext_resource path="res://assets/audio/boss_teleport.wav" type="AudioStream" id=23]
+[ext_resource path="res://assets/audio/boss_transition.wav" type="AudioStream" id=24]
+[ext_resource path="res://assets/audio/boss_die.wav" type="AudioStream" id=25]
+[ext_resource path="res://boss/HealthBar.gd" type="Script" id=26]
+[ext_resource path="res://assets/audio/music/ambience.ogg" type="AudioStream" id=27]
+[ext_resource path="res://assets/audio/music/music_phase1.ogg" type="AudioStream" id=28]
+[ext_resource path="res://assets/audio/music/music_phase2.ogg" type="AudioStream" id=29]
+[ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=30]
+[ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=31]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.476821, 1 )
@@ -41,10 +43,10 @@ radius = 40.0
 radius = 40.0
 
 [sub_resource type="AudioStreamRandomPitch" id=4]
-audio_stream = ExtResource( 19 )
+audio_stream = ExtResource( 21 )
 
 [sub_resource type="AudioStreamRandomPitch" id=5]
-audio_stream = ExtResource( 20 )
+audio_stream = ExtResource( 22 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 1, 0, 0, 0.686275 )
@@ -135,6 +137,10 @@ speed = 3.0
 
 [node name="EarthSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 18 )]
 
+[node name="AirSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 19 )]
+
+[node name="WaterSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 20 )]
+
 [node name="Movement" type="Node2D" parent="Body"]
 
 [node name="PlayerLineOfSight" type="RayCast2D" parent="Body"]
@@ -148,13 +154,13 @@ stream = SubResource( 5 )
 attenuation = 0.0883883
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="Body"]
-stream = ExtResource( 21 )
+stream = ExtResource( 23 )
 
 [node name="Transition" type="AudioStreamPlayer2D" parent="Body"]
-stream = ExtResource( 22 )
+stream = ExtResource( 24 )
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Body"]
-stream = ExtResource( 23 )
+stream = ExtResource( 25 )
 volume_db = 10.0
 
 [node name="MoveTimer" type="Timer" parent="."]
@@ -168,7 +174,7 @@ one_shot = true
 
 [node name="SpecialTimer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 20.0
+wait_time = 3.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -184,7 +190,7 @@ margin_bottom = 44.0
 custom_styles/fg = SubResource( 6 )
 custom_styles/bg = SubResource( 7 )
 percent_visible = false
-script = ExtResource( 24 )
+script = ExtResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -200,27 +206,27 @@ shape = SubResource( 2 )
 [node name="TransformTimer" type="Timer" parent="."]
 
 [node name="Phase0" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 25 )
-volume_db = -80.0
-autoplay = true
-
-[node name="Phase1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 26 )
-volume_db = -80.0
-autoplay = true
-
-[node name="Phase2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 27 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Phase3" type="AudioStreamPlayer" parent="."]
+[node name="Phase1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 28 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Phase4" type="AudioStreamPlayer" parent="."]
+[node name="Phase2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 29 )
+volume_db = -80.0
+autoplay = true
+
+[node name="Phase3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 30 )
+volume_db = -80.0
+autoplay = true
+
+[node name="Phase4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 31 )
 volume_db = -80.0
 autoplay = true
 

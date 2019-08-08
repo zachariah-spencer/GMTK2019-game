@@ -9,6 +9,7 @@ extents = Vector2( 5, 10 )
 
 [node name="GeneratedVines" index="0" instance=ExtResource( 1 )]
 position = Vector2( 53.8458, 24.6502 )
+rotation = 3.14159
 script = ExtResource( 2 )
 
 [node name="ClimbShape" type="CollisionShape2D" parent="." index="0"]
@@ -36,3 +37,4 @@ collide_with_areas = true
 position = Vector2( 2, 0 )
 enabled = true
 collide_with_areas = true
+

@@ -2,7 +2,7 @@ extends Projectile
 
 var generated_vines = preload("res://map/GeneratedVines.tscn")
 
-var vine_size = Global.CELL_SIZE * 4
+var vine_size = Global.CELL_SIZE * 2
 
 func _physics_process(delta):
 	$WallCheck.cast_to = direction * 500

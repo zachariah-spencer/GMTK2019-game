@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://boss/special_attacks/SpecialAttack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://boss/special_attacks/AirSpecialAttack.gd" type="Script" id=2]
+[ext_resource path="res://_projectiles/BossSpecialAirProjectile.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Gradient" id=1]
+resource_local_to_scene = true
+offsets = PoolRealArray( 0, 0.851852, 1 )
+colors = PoolColorArray( 0.999817, 1, 0.976563, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="AirSpecialAttack" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+type = 5
+projectile = ExtResource( 3 )
+
+[node name="Duration" parent="." index="0"]
+wait_time = 2.0
+
+[node name="TransitionDuration" parent="." index="1"]
+wait_time = 2.0
+
+[node name="FireDelay" type="Timer" parent="." index="2"]
+process_mode = 0
+wait_time = 0.25
+
+[node name="Node" type="Node" parent="." index="3"]
+
+[node name="TelecastVFX" parent="." index="4"]
+color_ramp = SubResource( 1 )
+
+[connection signal="timeout" from="FireDelay" to="." method="_on_FireDelay_timeout"]

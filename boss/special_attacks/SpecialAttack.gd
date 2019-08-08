@@ -8,6 +8,7 @@ onready var boss_body := $'../..'
 onready var boss := $'../../..'
 onready var player = Global.player
 onready var transition_duration := $TransitionDuration
+onready var particles := $TelecastVFX
 var activated := false
 
 signal special_attack_finished
@@ -28,16 +29,19 @@ func attack():
 
 #put behavior here to telecast the bosses actions before he attacks full force
 func _transition():
-	pass
+	particles.emitting = true
+	boss.visuals.emitting = false
 
 
 #set attack behavior in this method
 func _attack():
 	pass
 
+
 #end attack specific behavior in this method
 func _attack_over():
-	pass
+	particles.emitting = false
+	boss.visuals.emitting = true
 
 func _on_Duration_timeout():
 	emit_signal('special_attack_finished')

@@ -27,6 +27,7 @@ onready var move_timer := $MoveTimer
 onready var projectile_timer := $ProjectileTimer
 onready var special_timer := $SpecialTimer
 onready var shot_delay_timer := $ShotDelayTimer
+onready var visuals := $Body/Particles2D
 
 
 var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)

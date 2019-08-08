@@ -6,8 +6,8 @@ onready var damage_area := $DamageArea
 var attack_active := false
 
 func _transition():
+	._transition()
 	fire_particles.emitting = true
-	boss_body.get_node('Particles2D').modulate = Damage.damage_color[type]
 
 func _attack():
 	_erratic_move()
@@ -31,10 +31,10 @@ func _physics_process(delta):
 		jump_timer.start()
 
 func _attack_over():
+	._attack_over()
 	attack_active = false
 	damage_area.monitoring = false
 	fire_particles.emitting = false
-	boss_body.get_node('Particles2D').modulate = Color.white
 
 
 func _on_JumpTimer_timeout():

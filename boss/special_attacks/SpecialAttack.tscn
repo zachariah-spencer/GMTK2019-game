@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://boss/special_attacks/SpecialAttack.gd" type="Script" id=1]
+[ext_resource path="res://assets/sphere_soft.png" type="Texture" id=2]
+
+[sub_resource type="Gradient" id=1]
+resource_local_to_scene = true
+offsets = PoolRealArray( 0, 0.851852, 1 )
+colors = PoolColorArray( 0.999817, 1, 0.976563, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="SpecialAttack" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,5 +19,16 @@ one_shot = true
 [node name="TransitionDuration" type="Timer" parent="."]
 process_mode = 0
 one_shot = true
+
+[node name="TelecastVFX" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1000
+texture = ExtResource( 2 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+radial_accel = 180.0
+damping = 100.0
+scale_amount = 0.01
+color_ramp = SubResource( 1 )
 
 [connection signal="timeout" from="Duration" to="." method="_on_Duration_timeout"]

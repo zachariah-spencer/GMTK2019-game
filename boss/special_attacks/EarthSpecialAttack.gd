@@ -5,10 +5,6 @@ onready var upcast := $UpCast
 onready var downcast := $DownCast
 var attack_active := false
 
-#put behavior here to telecast the bosses actions before he attacks full force
-func _transition():
-	boss_body.get_node('Particles2D').modulate = Damage.damage_color[type]
-
 
 #set attack behavior in this method
 func _attack():
@@ -19,9 +15,9 @@ func _attack():
 
 #end attack specific behavior in this method
 func _attack_over():
+	._attack_over()
 	boss.move_handling_enabled = true
 	attack_active = false
-	boss_body.get_node('Particles2D').modulate = Color.white
 	move_timer.stop()
 
 
