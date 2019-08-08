@@ -1,19 +1,39 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://_projectiles/Projectile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://_projectiles/BossLightningProjectile.gd" type="Script" id=2]
+[ext_resource path="res://assets/vfx/lightningparticletext2.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=3]
 resource_local_to_scene = true
 radius = 3.0
 
-[node name="BossLightningProjectile" instance=ExtResource( 1 )]
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.354497, 1 )
+colors = PoolColorArray( 0.484375, 0.25, 1, 1, 0.625, 0.674805, 1, 1, 1, 1, 1, 0 )
+
+[node name="BossLightningProjectile" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="3"]
 enabled = true
 cast_to = Vector2( 0, 100 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="4"]
+scale = Vector2( 0.5, 0.5 )
+amount = 10
+lifetime = 0.2
+speed_scale = 4.0
+texture = ExtResource( 3 )
+emission_shape = 2
+emission_rect_extents = Vector2( 6, 6 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 20.0
+angular_velocity_random = 1.0
+scale_amount = 0.01
+color_ramp = SubResource( 2 )
 
