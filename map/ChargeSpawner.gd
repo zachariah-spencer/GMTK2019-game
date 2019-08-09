@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var charge := preload('res://map/charges/Charge.tscn')
+export(PackedScene) onready var charge
 export(int, "void", "fire", "lightning", "water", "earth", "air") var type := 0
 onready var spawn_pos := $SpawnPos
 onready var spawned_charges := $SpawnedCharges
