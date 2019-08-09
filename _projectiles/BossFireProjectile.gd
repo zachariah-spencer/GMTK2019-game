@@ -7,3 +7,7 @@ func _move(delta):
 	velocity = (central_orbit - position).rotated(PI/1.95) * speed
 	move_local_x(velocity.x * delta)
 	move_local_y(velocity.y * delta)
+
+func fizzle() :
+	.fizzle()
+	$CPUParticles2D.emitting = false
