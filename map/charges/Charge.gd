@@ -9,11 +9,11 @@ var spawn_anim := 0.0
 var pulsing_time := 0.0
 
 signal picked_up
+signal fizzle
 
 func _ready():
 	color = Damage.damage_color[type]
 	spawn_timer.start()
-	connect('picked_up', get_parent().get_parent(), 'on_charge_picked_up')
 
 func _on_Charge_body_entered(body):
 	var player = body as Player
@@ -44,6 +44,7 @@ func _draw():
 
 func fizzle():
 	if $FizzleTimer.is_stopped() :
+		emit_signal("fizzle")
 		set_deferred("monitoring", false)
 		$FizzleTimer.start()
 

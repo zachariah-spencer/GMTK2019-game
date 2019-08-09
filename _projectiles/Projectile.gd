@@ -17,6 +17,8 @@ var time = PI
 
 onready var fizzle_timer = $FizzleTimer
 
+signal fizzle
+
 func _ready():
 	color = Damage.damage_color[type]
 	$LifeTimer.start(lifetime)
@@ -45,6 +47,7 @@ func _on_hit(body):
 
 func fizzle():
 	if $FizzleTimer.is_stopped() :
+		emit_signal("fizzle")
 		set_deferred("monitoring", false)
 		$FizzleTimer.start()
 
