@@ -54,6 +54,8 @@ func fizzle():
 
 func _on_Projectile_area_entered(area):
 	var other_proj = area as Projectile
+	if area.has_method("hit") :
+		area.hit(self, damage, type, knockback)
 	if other_proj:
 		if shot_by == 'player' && other_proj.shot_by == 'boss':
 			other_proj.fizzle()

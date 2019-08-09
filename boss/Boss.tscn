@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://boss/Hurtbox.gd" type="Script" id=2]
@@ -37,9 +37,6 @@ offsets = PoolRealArray( 0, 0.476821, 1 )
 colors = PoolColorArray( 1, 0.937255, 0, 1, 1, 0, 0, 1, 0, 0.156863, 1, 1 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 40.0
-
-[sub_resource type="CircleShape2D" id=3]
 radius = 40.0
 
 [sub_resource type="AudioStreamRandomPitch" id=4]
@@ -90,15 +87,6 @@ color_ramp = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 visible = false
 shape = SubResource( 2 )
-
-[node name="Hurtbox" type="Area2D" parent="Body"]
-visible = false
-collision_layer = 5
-script = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Hurtbox"]
-visible = false
-shape = SubResource( 3 )
 
 [node name="ProjectileSpawners" type="Node2D" parent="Body"]
 
@@ -244,9 +232,7 @@ one_shot = true
 process_mode = 0
 wait_time = 0.2
 autostart = true
-
 [connection signal="hit" from="Body" to="." method="hit"]
-[connection signal="hit" from="Body/Hurtbox" to="." method="hit"]
 [connection signal="finished" from="Body/Transition" to="." method="end_transform"]
 [connection signal="timeout" from="MoveTimer" to="." method="_move"]
 [connection signal="timeout" from="ProjectileTimer" to="." method="_fire"]
