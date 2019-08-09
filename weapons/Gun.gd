@@ -39,7 +39,7 @@ func shoot():
 
 func _add_projectile(projectile, projectile_type):
 	match projectile_type:
-		1:
+		Damage.fire:
 			var numprojectiles := 3
 			var rot := -PI/22
 			for i in range(0,numprojectiles):
@@ -52,7 +52,7 @@ func _add_projectile(projectile, projectile_type):
 				rot += PI/24
 				to_add.position = global_position + 10 * to_add.direction
 				$Node.add_child(to_add)
-		2:
+		Damage.lightning:
 			var to_add = projectile.instance()
 			to_add.shot_by = 'player'
 			to_add.speed = projectile_speed * 2.5
@@ -60,7 +60,7 @@ func _add_projectile(projectile, projectile_type):
 			to_add.direction = Vector2.RIGHT.rotated(rotation)
 			to_add.position = global_position + 10 * to_add.direction
 			$Node.add_child(to_add)
-		3:
+		Damage.water:
 			var to_add = projectile.instance()
 			to_add.shot_by = 'player'
 			to_add.speed = projectile_speed * .5
@@ -68,7 +68,7 @@ func _add_projectile(projectile, projectile_type):
 			to_add.direction = Vector2.RIGHT.rotated(rotation)
 			to_add.position = global_position + 10 * to_add.direction
 			$Node.add_child(to_add)
-		4:
+		Damage.earth:
 			var to_add = projectile.instance()
 			to_add.shot_by = 'player'
 			to_add.speed = projectile_speed * .5
@@ -76,7 +76,7 @@ func _add_projectile(projectile, projectile_type):
 			to_add.direction = Vector2.RIGHT.rotated(rotation)
 			to_add.position = global_position + 10 * to_add.direction
 			$Node.add_child(to_add)
-		5:
+		Damage.air:
 			var num_projectiles := 3
 			var spacing = 10
 			var to_add = projectile.instance()
@@ -88,7 +88,7 @@ func _add_projectile(projectile, projectile_type):
 			var base_off = global_position + 10 * to_add.direction
 			to_add.position = base_off
 			$Node.add_child(to_add)
-			
+
 			var off_d = dir.rotated(PI/2)
 			for i in range(1, num_projectiles) :
 				to_add = projectile.instance()
@@ -98,7 +98,7 @@ func _add_projectile(projectile, projectile_type):
 				to_add.direction = Vector2.RIGHT.rotated(rotation)
 				to_add.position = base_off + ( i * spacing * off_d )
 				$Node.add_child(to_add)
-			
+
 			off_d = dir.rotated(-PI/2)
 			for i in range(1, num_projectiles) :
 				to_add = projectile.instance()
@@ -108,7 +108,7 @@ func _add_projectile(projectile, projectile_type):
 				to_add.direction = Vector2.RIGHT.rotated(rotation)
 				to_add.position = base_off + ( i * spacing * off_d )
 				$Node.add_child(to_add)
-			
+
 		_:
 			var to_add = projectile.instance()
 			to_add.shot_by = 'player'

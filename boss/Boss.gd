@@ -81,17 +81,7 @@ func activate_phase(type : int):
 	#could do this by using class_name later
 	for attack in projectile_attacks :
 		if attack.is_in_group(str(type)) :
-			connect("fire_projectile", attack, "activate")
-			emit_signal('fire_projectile')
-	for move in movement_abilities :
-		if move.is_in_group(str(type)) :
-			connect("move", move, "move")
-	#I guess this doesn't work, needs to randomly select a move
-	for attack in special_attacks :
-		if attack.is_in_group(str(type)) :
-			connect("special_attack", attack, "activate")
-			emit_signal("special_attack")
-
+			attack.activate()
 	special_timer.start()
 
 func _fire():
@@ -122,13 +112,13 @@ func _move():
 
 func _special():
 	var usable_special := false
-	
-	
+
+
 	#only needs to be here until we get all the elemental special attacks done
 	for special in special_attacks:
 		if special.activated:
 			usable_special = true
-	
+
 	if active && !performing_special && usable_special:
 		performing_special = true
 		var selected_attack = int(rand_range(0, special_attacks.size() - .01))
