@@ -27,6 +27,8 @@ onready var hp_anims := $HPAnims
 onready var left_cast := $Casts/LeftCast
 onready var right_cast := $Casts/RightCast
 
+onready var cayote_timer = $CayoteTimer
+
 
 func _ready():
 	Engine.time_scale = 1
@@ -102,7 +104,7 @@ func _handle_movement(delta):
 
 
 func _handle_jumping():
-	if Input.is_action_pressed('jump') && is_on_floor():
+	if Input.is_action_pressed('jump') && (is_on_floor() or not cayote_timer.is_stopped()) :
 		velocity.y = -jump_height
 
 	if is_on_ceiling():
@@ -211,6 +213,7 @@ func _get_transition(delta : float):
 				if velocity.y < 0:
 					return states.jump
 				elif velocity.y >= 0.1:
+					cayote_timer.start()
 					return states.fall
 			elif abs(velocity.x) >= 200.0:
 				return states.run
@@ -219,6 +222,7 @@ func _get_transition(delta : float):
 				if velocity.y < 0:
 					return states.jump
 				elif velocity.y >= 0.1:
+					cayote_timer.start()
 					return states.fall
 			elif abs(velocity.x) < 200.0:
 				return states.idle
