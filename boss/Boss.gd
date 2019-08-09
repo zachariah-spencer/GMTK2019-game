@@ -34,10 +34,6 @@ var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)
 var low_jump_v = sqrt(gravity * 60 * CELL_SIZE * 3)
 
 
-signal fire_projectile
-signal move
-signal special_attack
-
 const gravity = 20
 var player : Node2D
 
@@ -78,9 +74,12 @@ func activate_phase(type : int):
 	health = phase + 3
 	$CanvasLayer/HealthBar.health = 1.0
 
-	#could do this by using class_name later
+	for special in special_attacks :
+		if special.type == type :
+			special.activate()
+
 	for attack in projectile_attacks :
-		if attack.is_in_group(str(type)) :
+		if attack.type == type :
 			attack.activate()
 	special_timer.start()
 
@@ -95,7 +94,6 @@ func _fire():
 func _move():
 	if active && !performing_special:
 		projectile_timer.start()
-		emit_signal("move")
 		var player_dir = player.global_position - $Body.global_position
 		if phase <= 0 :
 			_hop()
@@ -111,22 +109,16 @@ func _move():
 				_air_impulse()
 
 func _special():
-	var usable_special := false
+	var usable_special := []
 
-
-	#only needs to be here until we get all the elemental special attacks done
 	for special in special_attacks:
 		if special.activated:
-			usable_special = true
+			usable_special.append(special)
 
-	if active && !performing_special && usable_special:
+	if active && !performing_special && usable_special.size() > 0:
 		performing_special = true
-		var selected_attack = int(rand_range(0, special_attacks.size() - .01))
-
-		while !special_attacks[selected_attack].activated:
-			selected_attack = int(rand_range(0, special_attacks.size() - .01))
-
-		special_attacks[selected_attack].attack()
+		usable_special.shuffle()
+		usable_special.front().attack()
 
 func on_special_attack_finished():
 	performing_special = false
