@@ -95,17 +95,16 @@ func _fire():
 func _move():
 	if active && !performing_special:
 		projectile_timer.start()
-		emit_signal("move")
 		var player_dir = player.global_position - $Body.global_position
 		if phase <= 0 :
 			_hop()
 		elif phase <= 2 :
-			if player_dir.length() > Global.CELL_SIZE * 10  or line_of_sight.is_colliding() :
+			if player_dir.length() > Global.CELL_SIZE * 10  and line_of_sight.is_colliding() :
 				_teleport()
 			else :
 				_hop()
 		else :
-			if player_dir.length() > Global.CELL_SIZE * 20  or line_of_sight.is_colliding() :
+			if player_dir.length() > Global.CELL_SIZE * 20  and line_of_sight.is_colliding() :
 				_teleport()
 			else :
 				_air_impulse()
