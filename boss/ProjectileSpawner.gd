@@ -7,7 +7,11 @@ export(Damage.damage_types) var type := 0
 export var speed := 130.0
 var offset := 15
 var player : Node2D
-var activated := false
+export var activated := false
+export var number_projectiles := 1
+var projectiles_to_fire := 0
+export var projectile_space := .1
+export var cooldown := .1
 
 func _ready():
 	add_to_group(str(type))
@@ -16,7 +20,6 @@ func _ready():
 
 func _add_projectile(direction, proj := projectile, off := offset, t := type):
 	var to_add = proj.instance()
-	to_add.shot_by = 'boss'
 	to_add.speed = speed
 	to_add.type = t
 	to_add.direction = direction
@@ -31,6 +34,14 @@ func clear_projectiles():
 	pass
 
 func fire(offset):
+	self.offset = offset
+	if $CooldownTimer.is_stopped():
+		projectiles_to_fire = number_projectiles
+		$CooldownTimer.start(cooldown)
+		_fire()
+
+
+func _fire():
 	pass
 
 func activate():
