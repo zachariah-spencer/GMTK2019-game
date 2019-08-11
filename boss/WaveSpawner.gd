@@ -6,6 +6,7 @@ func fire(offset):
 	$DelayTimer.start(.5)
 
 func _fire():
+	$DelayTimer.stop()
 	var direction = player.global_position - global_position
 	_add_wall(2, direction.normalized(), offset)
 
