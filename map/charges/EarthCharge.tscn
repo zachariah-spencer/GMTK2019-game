@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://map/charges/Charge.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sphere_soft.png" type="Texture" id=2]
@@ -7,11 +7,8 @@
 resource_local_to_scene = true
 radius = 8.0
 
-[sub_resource type="Curve" id=2]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.3658 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Gradient" id=3]
-colors = PoolColorArray( 1, 0.654902, 0, 0.462745, 1, 0.0705882, 0, 0 )
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 0.127595, 0.78125, 0.0342153, 1, 1, 1, 1, 1 )
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends CPUParticles2D
@@ -21,7 +18,7 @@ func fizzle():
 
 "
 
-[node name="FireCharge" instance=ExtResource( 1 )]
+[node name="FireCharge" index="0" instance=ExtResource( 1 )]
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
@@ -32,12 +29,12 @@ wait_time = 0.1
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="3"]
 amount = 200
 preprocess = 0.4
+draw_order = 1
 texture = ExtResource( 2 )
 emission_shape = 1
 emission_sphere_radius = 4.0
-gravity = Vector2( 0, -75 )
+gravity = Vector2( 0, 0 )
 scale_amount = 0.02
-scale_amount_curve = SubResource( 2 )
-color_ramp = SubResource( 3 )
+color_ramp = SubResource( 5 )
 script = SubResource( 4 )
 [connection signal="fizzle" from="." to="CPUParticles2D" method="fizzle"]
