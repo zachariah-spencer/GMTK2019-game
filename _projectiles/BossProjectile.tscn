@@ -6,8 +6,8 @@
 resource_local_to_scene = true
 radius = 8.0
 
-[node name="BossProjectile" instance=ExtResource( 1 )]
+[node name="BossProjectile" index="0" instance=ExtResource( 1 )]
+player_shot = false
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
-
