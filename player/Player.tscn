@@ -85,20 +85,20 @@ animations = [ {
 "name": "idle",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 74 ) ],
+"frames": [ ExtResource( 61 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 65 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ) ],
 "loop": true,
-"name": "fall",
-"speed": 5.0
+"name": "run",
+"speed": 60.0
 }, {
 "frames": [ ExtResource( 73 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 61 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 65 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ) ],
+"frames": [ ExtResource( 74 ) ],
 "loop": true,
-"name": "run",
-"speed": 60.0
+"name": "fall",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -163,6 +163,11 @@ position = Vector2( 12, 8 )
 process_mode = 0
 one_shot = true
 
+[node name="CayoteTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 77 )
 
@@ -200,4 +205,5 @@ cast_to = Vector2( -10, 0 )
 position = Vector2( 0, 10 )
 enabled = true
 cast_to = Vector2( 0, 10 )
+
 [connection signal="timeout" from="StunnedTimer" to="." method="_on_StunnedTimer_timeout"]

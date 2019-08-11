@@ -9,7 +9,7 @@ var type := 0
 var direction := Vector2.LEFT
 var speed := 70.0
 export var lifetime := 3.0
-var shot_by := 'player'
+export var player_shot := true
 
 var draw_orb := true
 
@@ -54,6 +54,8 @@ func fizzle():
 
 func _on_Projectile_area_entered(area):
 	var other_proj = area as Projectile
+	if area.has_method("hit") :
+		area.hit(self, damage, type, knockback)
 	if other_proj:
-		if shot_by == 'player' && other_proj.shot_by == 'boss':
+		if player_shot && not other_proj.player_shot:
 			other_proj.fizzle()

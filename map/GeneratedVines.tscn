@@ -7,7 +7,7 @@
 resource_local_to_scene = true
 extents = Vector2( 5, 10 )
 
-[node name="GeneratedVines" index="0" instance=ExtResource( 1 )]
+[node name="GeneratedVines" instance=ExtResource( 1 )]
 position = Vector2( 53.8458, 24.6502 )
 rotation = 3.14159
 script = ExtResource( 2 )
@@ -37,4 +37,3 @@ collide_with_areas = true
 position = Vector2( 2, 0 )
 enabled = true
 collide_with_areas = true
-

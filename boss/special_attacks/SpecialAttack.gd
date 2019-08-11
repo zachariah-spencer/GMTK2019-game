@@ -1,7 +1,7 @@
 extends Node2D
 class_name SpecialAttack
 
-export(int, "void", "fire", "lightning", "water", "earth", "air") var type := 0
+export(Damage.damage_types) var type := 0
 
 onready var duration := $Duration
 onready var boss_body := $'../..'

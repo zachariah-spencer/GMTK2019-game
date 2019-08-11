@@ -1,19 +1,7 @@
 extends ProjectileSpawner
 
-var number_projectiles := 8
-var projectiles_to_fire := 0
-var projectile_space := 0.02
 var _direction := Vector2.RIGHT
 var _rot := 0.0
-
-func fire(offset):
-	self.offset = offset
-	if !$FireTimer.is_stopped():
-		return
-	else:
-		projectiles_to_fire = number_projectiles
-		$FireTimer.start()
-		_fire()
 
 func _fire() :
 	if projectiles_to_fire > 0 :
@@ -24,7 +12,6 @@ func _fire() :
 func _add_projectile(direction, proj := projectile, off := offset, t := type):
 	_rot += PI/4
 	var to_add = proj.instance()
-	to_add.shot_by = 'boss'
 	to_add.speed = speed
 	to_add.type = t
 	to_add.direction = _direction.rotated(_rot)

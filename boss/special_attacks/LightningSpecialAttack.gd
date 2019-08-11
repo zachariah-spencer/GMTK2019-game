@@ -23,7 +23,6 @@ func _shoot():
 
 func _add_projectile(_position, proj := projectile):
 	var to_add = proj.instance()
-	to_add.shot_by = 'boss'
 	to_add.speed = projectile_speed
 	to_add.type = type
 	to_add.direction = Vector2.DOWN

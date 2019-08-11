@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Obstruction
 
-export(int, "void", "fire", "lightning", "water", "earth", "air") var activation_type := 0
+export(Damage.damage_types) var activation_type := 0
 
 signal activate
 
