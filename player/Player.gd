@@ -170,6 +170,8 @@ func _handle_climbing(delta):
 		velocity.x = 0
 	else :
 		_handle_movement(delta)
+
+
 	if Input.is_action_just_pressed('jump'):
 		match _get_nearby_wall():
 			-1:
@@ -177,7 +179,8 @@ func _handle_climbing(delta):
 			1:
 				velocity = Vector2(-detach_x, -10 * CELL)
 			0:
-				_set_state(states.fall)
+				_handle_movement(delta)
+				velocity = Vector2(detach_x * facing_direction, -10 * CELL)
 		_set_state(states.jump)
 
 	if Input.is_action_pressed('move_up'):
