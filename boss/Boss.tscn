@@ -246,6 +246,10 @@ process_mode = 0
 wait_time = 0.2
 autostart = true
 
+[node name="SightTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 100.0
+one_shot = true
 [connection signal="hit" from="Body" to="." method="hit"]
 [connection signal="finished" from="Body/Transition" to="." method="end_transform"]
 [connection signal="timeout" from="MoveTimer" to="." method="_move"]

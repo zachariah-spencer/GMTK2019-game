@@ -99,12 +99,12 @@ func _move():
 		if phase <= 0 :
 			_hop()
 		elif phase <= 2 :
-			if player_dir.length() > Global.CELL_SIZE * 10  and line_of_sight.is_colliding() :
+			if player_dir.length() > Global.CELL_SIZE * 10  or( not $SightTimer.is_stopped() and $SightTimer.time_left <= 95)  :
 				_teleport()
 			else :
 				_hop()
 		else :
-			if player_dir.length() > Global.CELL_SIZE * 20  and line_of_sight.is_colliding() :
+			if player_dir.length() > Global.CELL_SIZE * 20  or ( not $SightTimer.is_stopped() and $SightTimer.time_left <= 92) :
 				_teleport()
 			else :
 				_air_impulse()
@@ -180,6 +180,12 @@ func _get_transition(delta : float):
 func _physics_process(delta):
 	if curr_track.volume_db < track_vol :
 		curr_track.volume_db = lerp(curr_track.volume_db, track_vol, delta)
+
+	if $SightTimer.is_stopped() and line_of_sight.is_colliding() :
+		$SightTimer.start()
+	elif not line_of_sight.is_colliding() :
+		$SightTimer.stop()
+
 	if state != null:
 		_state_logic(delta)
 		var transition = _get_transition(delta)
