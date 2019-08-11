@@ -33,30 +33,30 @@ func charge(new_charge):
 func shoot():
 	if charge_type != 0:
 		_handle_shot_type(charge_type)
-		_add_projectile(charge_types[charge_type], charge_type)
 		$Shoot.play()
 		charge_type = 0
 		_update_accent()
 
 func _handle_shot_type(type):
 	var projectile = charge_types[charge_type]
+	print(type)
 	match type:
 		Damage.fire:
-			_add_spread(projectile, 1.8, 3)
+			_add_spread(projectile, 2.5, 3)
 		Damage.lightning:
-			_add_projectile(projectile, 2.5)
+			_add_projectile(projectile, 5.0)
 		Damage.earth:
-			_add_projectile(projectile, 0.5)
+			_add_projectile(projectile, 1.0)
 		Damage.water:
-			_add_projectile(projectile, 0.5)
+			_add_projectile(projectile, 1.0)
 		Damage.air:
-			_add_wall(projectile, 3, 10, 0.05)
+			_add_wall(projectile, 3, 10, 0.08)
 
 func _add_spread(projectile, speed_mod, num_projectiles):
 	var rot := -PI/22
 	for i in range(0,num_projectiles):
 		var to_add = projectile.instance()
-		to_add.speed = base_projectile_speed * 1.8
+		to_add.speed = base_projectile_speed * speed_mod
 		to_add.type = charge_type
 		to_add.direction = Vector2.RIGHT.rotated(rotation)
 		to_add.direction = to_add.direction.rotated(rot)
@@ -100,65 +100,3 @@ func _add_wall(projectile, num_projectiles, spacing, speed_mod):
 		to_add.direction = Vector2.RIGHT.rotated(rotation)
 		to_add.position = base_off + ( i * spacing * off_d )
 		$Node.add_child(to_add)
-
-#	match projectile_type:
-#		Damage.fire:
-#			pass
-#		Damage.lightning:
-#			var to_add = projectile.instance()
-#			to_add.speed = projectile_speed * 2.5
-#			to_add.type = charge_type
-#			to_add.direction = Vector2.RIGHT.rotated(rotation)
-#			to_add.position = global_position + 10 * to_add.direction
-#			$Node.add_child(to_add)
-#		Damage.water:
-#			var to_add = projectile.instance()
-#			to_add.speed = projectile_speed * .5
-#			to_add.type = charge_type
-#			to_add.direction = Vector2.RIGHT.rotated(rotation)
-#			to_add.position = global_position + 10 * to_add.direction
-#			$Node.add_child(to_add)
-#		Damage.earth:
-#			var to_add = projectile.instance()
-#			to_add.speed = projectile_speed * .5
-#			to_add.type = charge_type
-#			to_add.direction = Vector2.RIGHT.rotated(rotation)
-#			to_add.position = global_position + 10 * to_add.direction
-#			$Node.add_child(to_add)
-#		Damage.air:
-#			var num_projectiles := 3
-#			var spacing = 10
-#			var to_add = projectile.instance()
-#			to_add.speed = projectile_speed * .05
-#			to_add.type = charge_type
-#			to_add.direction = Vector2.RIGHT.rotated(rotation)
-#			var dir = to_add.direction
-#			var base_off = global_position + 10 * to_add.direction
-#			to_add.position = base_off
-#			$Node.add_child(to_add)
-#
-#			var off_d = dir.rotated(PI/2)
-#			for i in range(1, num_projectiles) :
-#				to_add = projectile.instance()
-#				to_add.speed = projectile_speed * .05
-#				to_add.type = charge_type
-#				to_add.direction = Vector2.RIGHT.rotated(rotation)
-#				to_add.position = base_off + ( i * spacing * off_d )
-#				$Node.add_child(to_add)
-#
-#			off_d = dir.rotated(-PI/2)
-#			for i in range(1, num_projectiles) :
-#				to_add = projectile.instance()
-#				to_add.speed = projectile_speed * .05
-#				to_add.type = charge_type
-#				to_add.direction = Vector2.RIGHT.rotated(rotation)
-#				to_add.position = base_off + ( i * spacing * off_d )
-#				$Node.add_child(to_add)
-#
-#		_:
-#			var to_add = projectile.instance()
-#			to_add.speed = projectile_speed
-#			to_add.type = charge_type
-#			to_add.direction = Vector2.RIGHT.rotated(rotation)
-#			to_add.position = global_position + 10 * to_add.direction
-#			$Node.add_child(to_add)
