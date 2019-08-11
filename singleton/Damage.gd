@@ -21,3 +21,5 @@ const damage_color = {
 	air : Color.whitesmoke,
 	"air" : Color.whitesmoke
 }
+
+enum damage_types { void_type, fire, lightning, water, earth, air}

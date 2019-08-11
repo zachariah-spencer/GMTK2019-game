@@ -3,7 +3,7 @@ extends Node2D
 class_name ProjectileSpawner
 
 export(PackedScene) var projectile
-export(int, "void", "fire", "lightning", "water", "earth", "air") var type := 0
+export(Damage.damage_types) var type := 0
 export var speed := 130.0
 var offset := 15
 var player : Node2D
