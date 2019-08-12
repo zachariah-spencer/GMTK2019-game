@@ -4,19 +4,19 @@
 [ext_resource path="res://boss/special_attacks/FireRingSpecialAttack.gd" type="Script" id=2]
 [ext_resource path="res://assets/sphere_soft.png" type="Texture" id=3]
 
-[sub_resource type="Curve" id=1]
+[sub_resource type="Curve" id=6]
 min_value = -50.0
 max_value = 10.0
 _data = [ Vector2( 0.0147189, 9.636 ), 0.0, -182.612, 0, 0, Vector2( 1, -50 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=7]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.509904, 0.5099 ), -0.26926, -0.26926, 0, 0, Vector2( 1, 0.0171 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=8]
 offsets = PoolRealArray( 0, 0.256983, 0.603352, 1 )
 colors = PoolColorArray( 1, 0, 0, 0.168627, 1, 0.494118, 0, 0.701961, 1, 0.960784, 0, 0.94902, 1, 0, 0, 0 )
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=9]
 radius = 65.0
 
 [sub_resource type="Gradient" id=5]
@@ -32,6 +32,7 @@ type = 1
 wait_time = 8.0
 
 [node name="FireParticles" type="CPUParticles2D" parent="." index="1"]
+emitting = false
 amount = 400
 lifetime = 0.5
 speed_scale = 0.8
@@ -45,11 +46,11 @@ initial_velocity = 150.0
 angular_velocity_random = 1.0
 tangential_accel = 30.0
 tangential_accel_random = 0.5
-tangential_accel_curve = SubResource( 1 )
+tangential_accel_curve = SubResource( 6 )
 damping = 100.0
 scale_amount = 0.07
-scale_amount_curve = SubResource( 2 )
-color_ramp = SubResource( 3 )
+scale_amount_curve = SubResource( 7 )
+color_ramp = SubResource( 8 )
 
 [node name="TransitionDuration" parent="." index="2"]
 wait_time = 2.0
@@ -64,7 +65,7 @@ visible = false
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
-shape = SubResource( 4 )
+shape = SubResource( 9 )
 
 [node name="TelecastVFX" parent="." index="5"]
 color_ramp = SubResource( 5 )
