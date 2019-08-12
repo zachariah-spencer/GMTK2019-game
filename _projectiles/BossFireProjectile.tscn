@@ -9,7 +9,7 @@ resource_local_to_scene = true
 radius = 14.0
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0.00323407, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.28 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0.00323407, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.8168 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 0.654902, 0, 0.380392, 1, 0.0705882, 0, 0 )
