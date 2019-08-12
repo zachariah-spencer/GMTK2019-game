@@ -138,8 +138,13 @@ cooldown = 8.0
 [node name="LightningSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 15 )]
 
 [node name="FireRingSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 16 )]
+transition_time = 3.0
+attack_duration = 5.0
+jump_timing = 1.5
 
 [node name="EarthSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 17 )]
+activated = true
+attack_duration = 10.0
 
 [node name="AirSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 18 )]
 
@@ -178,8 +183,9 @@ one_shot = true
 
 [node name="SpecialTimer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 3.0
+wait_time = 20.0
 one_shot = true
+autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
