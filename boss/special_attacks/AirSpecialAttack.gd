@@ -6,16 +6,16 @@ var projectile_space := .05
 
 export(PackedScene) var projectile
 export var speed := 130.0
+export var wave_timing := 1.0
 var offset := 5
 
-onready var barrage_delay := $BarrageDelay
 
 
 #set attack behavior in this method
 func _attack():
 	projectiles_to_fire = number_projectiles
 	self.offset = offset
-	$FireDelay.start()
+	$FireDelay.start(wave_timing)
 	_fire(offset)
 
 

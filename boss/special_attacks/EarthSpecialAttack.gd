@@ -4,7 +4,7 @@ onready var move_timer := $MoveTimer
 onready var upcast := $UpCast
 onready var downcast := $DownCast
 var attack_active := false
-
+export var move_timing := .6
 
 #set attack behavior in this method
 func _attack():
@@ -26,8 +26,8 @@ func _zig_zag_move():
 		boss.velocity.y = -5 * 64
 	else:
 		boss.velocity.y = 20 * 64
-	
-	move_timer.start()
+
+	move_timer.start(.6)
 
 func _on_Area2D_body_entered(body):
 	if downcast.is_colliding() && attack_active:
