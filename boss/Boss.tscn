@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://boss/Boss.gd" type="Script" id=1]
 [ext_resource path="res://boss/Hurtbox.gd" type="Script" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://assets/audio/music/music_phase2.ogg" type="AudioStream" id=28]
 [ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=29]
 [ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=30]
+[ext_resource path="res://boss/SimpleShotSpawner.gd" type="Script" id=31]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.476821, 1 )
@@ -95,8 +96,10 @@ speed = 120.0
 activated = true
 
 [node name="WaterSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
+script = ExtResource( 31 )
 projectile = ExtResource( 6 )
 type = 3
+speed = 100.0
 
 [node name="AirSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
 script = ExtResource( 7 )

@@ -74,8 +74,7 @@ func activate_phase(type : int):
 
 	for special in special_attacks :
 		if special.type == type :
-			pass
-#			special.activate() the specials are not ready yet
+			special.activate()
 
 	for attack in projectile_attacks :
 		if attack.type == type :

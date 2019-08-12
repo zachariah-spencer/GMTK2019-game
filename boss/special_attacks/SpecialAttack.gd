@@ -9,7 +9,7 @@ onready var boss := $'../../..'
 onready var player = Global.player
 onready var transition_duration := $TransitionDuration
 onready var particles := $TelecastVFX
-var activated := false
+export var activated := false
 
 signal special_attack_finished
 
