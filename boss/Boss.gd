@@ -17,8 +17,6 @@ var move_handling_enabled := true
 
 onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
 onready var special_attacks = $Body/SpecialAttacks.get_children()
-onready var movement_abilities = $Body/Movement.get_children()
-onready var rand = RandomNumberGenerator.new()
 onready var line_of_sight = $Body/PlayerLineOfSight
 onready var health_bar = $CanvasLayer/HealthBar
 onready var body := $Body
@@ -66,7 +64,7 @@ func activate_phase(type : int):
 	if phase == final_phase :
 		die()
 	transforming = true
-	$Body/Particles2D.initial_velocity = 10
+	visuals.initial_velocity = 10
 	$Body/Transition.play()
 	$MoveTimer.stop()
 	$ProjectileTimer.stop()
@@ -168,7 +166,7 @@ func _set_state(new_state):
 func _state_logic(delta : float):
 	if !transforming :
 		_handle_movement(delta)
-		line_of_sight.cast_to = player.global_position  - $Body.global_position
+		line_of_sight.cast_to = player.global_position  - body.global_position
 		_apply_movement()
 
 func _get_transition(delta : float):
@@ -193,16 +191,16 @@ func _physics_process(delta):
 			_set_state(transition)
 
 func _apply_movement():
-	$Body.move_and_slide(velocity, Vector2.UP)
+	body.move_and_slide(velocity, Vector2.UP)
 	if phase >= 3 :
-		var slide_count = $Body.get_slide_count()
+		var slide_count = body.get_slide_count()
 		if slide_count > 0 :
-			velocity = velocity.bounce($Body.get_slide_collision(slide_count -1).normal) * .5
+			velocity = velocity.bounce(body.get_slide_collision(slide_count -1).normal) * .5
 
 
 func _handle_movement(delta : float ):
 	if phase <= 2 && move_handling_enabled:
-		if $Body.is_on_floor() :
+		if body.is_on_floor() :
 			velocity.x = lerp(velocity.x, 0, .1)
 		else :
 			velocity += Vector2.DOWN * gravity
@@ -284,7 +282,7 @@ func end_transform() :
 	$MoveTimer.start()
 	$ProjectileTimer.start()
 	transforming = false
-	$Body/Particles2D.initial_velocity = 40
+	visuals.initial_velocity = 40
 	if curr_track.volume_db < track_vol :
 		curr_track.volume_db = track_vol
 	match phase :

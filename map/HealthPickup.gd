@@ -18,7 +18,7 @@ func _physics_process(delta):
 
 func _on_PickupArea_body_entered(body):
 	var player = body as Player
-	
+
 	if player:
 		emit_signal('picked_up')
 		picked_up = true

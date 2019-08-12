@@ -4,8 +4,6 @@ var player
 var boss
 const CELL_SIZE = 64
 
-var tilemap
-
 const LIMIT_LEFT = -320
 const LIMIT_RIGHT = 3200
 const LIMIT_TOP = -1120
