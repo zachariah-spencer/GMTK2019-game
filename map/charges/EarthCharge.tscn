@@ -7,10 +7,11 @@
 resource_local_to_scene = true
 radius = 8.0
 
-[sub_resource type="Gradient" id=5]
-colors = PoolColorArray( 0.127595, 0.78125, 0.0342153, 1, 1, 1, 1, 1 )
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.129412, 0.780392, 0.0352941, 0.494118 )
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 script/source = "extends CPUParticles2D
 
 func fizzle():
@@ -18,7 +19,7 @@ func fizzle():
 
 "
 
-[node name="FireCharge" instance=ExtResource( 1 )]
+[node name="FireCharge" index="0" instance=ExtResource( 1 )]
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )
@@ -35,6 +36,6 @@ emission_shape = 1
 emission_sphere_radius = 4.0
 gravity = Vector2( 0, 0 )
 scale_amount = 0.02
-color_ramp = SubResource( 5 )
-script = SubResource( 4 )
+color_ramp = SubResource( 2 )
+script = SubResource( 3 )
 [connection signal="fizzle" from="." to="CPUParticles2D" method="fizzle"]
