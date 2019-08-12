@@ -3,7 +3,6 @@ extends Obstruction
 var activated := false
 
 func activate():
-	print('here')
 	activated = true
 	$Body.collision_layer = 1
 

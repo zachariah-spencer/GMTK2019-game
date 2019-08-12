@@ -39,7 +39,6 @@ func shoot():
 
 func _handle_shot_type(type):
 	var projectile = charge_types[charge_type]
-	print(type)
 	match type:
 		Damage.fire:
 			_add_spread(projectile, 2.5, 3)
