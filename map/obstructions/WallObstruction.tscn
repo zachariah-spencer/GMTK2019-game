@@ -41,6 +41,7 @@ extents = Vector2( 20, 32 )
 script = ExtResource( 1 )
 
 [node name="Wall2" type="StaticBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 32, 0 )
 
 [node name="Sprite" type="Sprite" parent="Wall2"]
@@ -52,6 +53,7 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Wall1" type="StaticBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( -32, 0 )
 
 [node name="Sprite" type="Sprite" parent="Wall1"]
@@ -78,6 +80,7 @@ offset = Vector2( 32, 0 )
 anims/Open = SubResource( 2 )
 
 [node name="CrushCheck" type="Area2D" parent="."]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrushCheck"]
 shape = SubResource( 3 )
