@@ -19,7 +19,7 @@ func fizzle():
 
 "
 
-[node name="FireCharge" index="0" instance=ExtResource( 1 )]
+[node name="FireCharge" instance=ExtResource( 1 )]
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )

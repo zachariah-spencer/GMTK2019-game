@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://map/obstructions/WallObstruction.gd" type="Script" id=1]
+[ext_resource path="res://assets/64x64square.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Wall2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 32, 0 ), Vector2( 96, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Wall1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -32, 0 ), Vector2( -96, 0 ) ]
+}
+
+[node name="WallObstruction" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2( 32, 0 )
+
+[node name="Sprite" type="Sprite" parent="Wall2"]
+modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall2"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Wall1" type="StaticBody2D" parent="."]
+position = Vector2( -32, 0 )
+
+[node name="Sprite" type="Sprite" parent="Wall1"]
+modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Block" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.341176 )
+position = Vector2( -64, 0 )
+texture = ExtResource( 2 )
+offset = Vector2( -32, 0 )
+
+[node name="Block2" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.341176 )
+position = Vector2( 64, 0 )
+texture = ExtResource( 2 )
+offset = Vector2( 32, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Open = SubResource( 2 )
