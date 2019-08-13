@@ -5,32 +5,32 @@
 [ext_resource path="res://assets/sphere_soft.png" type="Texture" id=3]
 [ext_resource path="res://boss/ProjectileSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://_projectiles/BossBasicProjectile.tscn" type="PackedScene" id=5]
-[ext_resource path="res://_projectiles/BossWaterProjectile.tscn" type="PackedScene" id=6]
-[ext_resource path="res://boss/WaveSpawner.gd" type="Script" id=7]
-[ext_resource path="res://_projectiles/BossAirProjectile.tscn" type="PackedScene" id=8]
-[ext_resource path="res://boss/ErraticShotSpawner.gd" type="Script" id=9]
-[ext_resource path="res://_projectiles/BossLightningProjectile.tscn" type="PackedScene" id=10]
-[ext_resource path="res://boss/EightWaySpawner.gd" type="Script" id=11]
-[ext_resource path="res://_projectiles/BossEarthProjectile.tscn" type="PackedScene" id=12]
-[ext_resource path="res://boss/CentralSpawner.gd" type="Script" id=13]
-[ext_resource path="res://_projectiles/BossFireProjectile.tscn" type="PackedScene" id=14]
-[ext_resource path="res://boss/special_attacks/LightningSpecialAttack.tscn" type="PackedScene" id=15]
-[ext_resource path="res://boss/special_attacks/FireRingSpecialAttack.tscn" type="PackedScene" id=16]
-[ext_resource path="res://boss/special_attacks/EarthSpecialAttack.tscn" type="PackedScene" id=17]
-[ext_resource path="res://boss/special_attacks/AirSpecialAttack.tscn" type="PackedScene" id=18]
-[ext_resource path="res://boss/special_attacks/WaterSpecialAttack.tscn" type="PackedScene" id=19]
-[ext_resource path="res://assets/audio/boss_immune.wav" type="AudioStream" id=20]
-[ext_resource path="res://assets/audio/boss_hit.wav" type="AudioStream" id=21]
-[ext_resource path="res://assets/audio/boss_teleport.wav" type="AudioStream" id=22]
-[ext_resource path="res://assets/audio/boss_transition.wav" type="AudioStream" id=23]
-[ext_resource path="res://assets/audio/boss_die.wav" type="AudioStream" id=24]
-[ext_resource path="res://boss/HealthBar.gd" type="Script" id=25]
-[ext_resource path="res://assets/audio/music/ambience.ogg" type="AudioStream" id=26]
-[ext_resource path="res://assets/audio/music/music_phase1.ogg" type="AudioStream" id=27]
-[ext_resource path="res://assets/audio/music/music_phase2.ogg" type="AudioStream" id=28]
-[ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=29]
-[ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=30]
-[ext_resource path="res://boss/SimpleShotSpawner.gd" type="Script" id=31]
+[ext_resource path="res://boss/SimpleShotSpawner.gd" type="Script" id=6]
+[ext_resource path="res://_projectiles/BossWaterProjectile.tscn" type="PackedScene" id=7]
+[ext_resource path="res://boss/WaveSpawner.gd" type="Script" id=8]
+[ext_resource path="res://_projectiles/BossAirProjectile.tscn" type="PackedScene" id=9]
+[ext_resource path="res://boss/ErraticShotSpawner.gd" type="Script" id=10]
+[ext_resource path="res://_projectiles/BossLightningProjectile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://boss/EightWaySpawner.gd" type="Script" id=12]
+[ext_resource path="res://_projectiles/BossEarthProjectile.tscn" type="PackedScene" id=13]
+[ext_resource path="res://boss/CentralSpawner.gd" type="Script" id=14]
+[ext_resource path="res://_projectiles/BossFireProjectile.tscn" type="PackedScene" id=15]
+[ext_resource path="res://boss/special_attacks/LightningSpecialAttack.tscn" type="PackedScene" id=16]
+[ext_resource path="res://boss/special_attacks/FireRingSpecialAttack.tscn" type="PackedScene" id=17]
+[ext_resource path="res://boss/special_attacks/EarthSpecialAttack.tscn" type="PackedScene" id=18]
+[ext_resource path="res://boss/special_attacks/AirSpecialAttack.tscn" type="PackedScene" id=19]
+[ext_resource path="res://boss/special_attacks/WaterSpecialAttack.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/audio/boss_immune.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/audio/boss_hit.wav" type="AudioStream" id=22]
+[ext_resource path="res://assets/audio/boss_teleport.wav" type="AudioStream" id=23]
+[ext_resource path="res://assets/audio/boss_transition.wav" type="AudioStream" id=24]
+[ext_resource path="res://assets/audio/boss_die.wav" type="AudioStream" id=25]
+[ext_resource path="res://boss/HealthBar.gd" type="Script" id=26]
+[ext_resource path="res://assets/audio/music/ambience.ogg" type="AudioStream" id=27]
+[ext_resource path="res://assets/audio/music/music_phase1.ogg" type="AudioStream" id=28]
+[ext_resource path="res://assets/audio/music/music_phase2.ogg" type="AudioStream" id=29]
+[ext_resource path="res://assets/audio/music/music_phase3.ogg" type="AudioStream" id=30]
+[ext_resource path="res://assets/audio/music/music_phase4.ogg" type="AudioStream" id=31]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.476821, 1 )
@@ -40,10 +40,10 @@ colors = PoolColorArray( 1, 0.937255, 0, 1, 1, 0, 0, 1, 0, 0.156863, 1, 1 )
 radius = 40.0
 
 [sub_resource type="AudioStreamRandomPitch" id=3]
-audio_stream = ExtResource( 20 )
+audio_stream = ExtResource( 21 )
 
 [sub_resource type="AudioStreamRandomPitch" id=4]
-audio_stream = ExtResource( 21 )
+audio_stream = ExtResource( 22 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 1, 0, 0, 0.686275 )
@@ -96,21 +96,21 @@ speed = 120.0
 activated = true
 
 [node name="WaterSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
-script = ExtResource( 31 )
-projectile = ExtResource( 6 )
+script = ExtResource( 6 )
+projectile = ExtResource( 7 )
 type = 3
 speed = 100.0
 
 [node name="AirSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
-script = ExtResource( 7 )
-projectile = ExtResource( 8 )
+script = ExtResource( 8 )
+projectile = ExtResource( 9 )
 type = 5
 speed = 50.0
 number_projectiles = 5
 
 [node name="LightningSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
-script = ExtResource( 9 )
-projectile = ExtResource( 10 )
+script = ExtResource( 10 )
+projectile = ExtResource( 11 )
 type = 2
 speed = 300.0
 number_projectiles = 5
@@ -118,8 +118,8 @@ projectile_space = 0.001
 cooldown = 4.0
 
 [node name="EarthSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
-script = ExtResource( 11 )
-projectile = ExtResource( 12 )
+script = ExtResource( 12 )
+projectile = ExtResource( 13 )
 type = 4
 speed = 100.0
 number_projectiles = 8
@@ -127,28 +127,27 @@ projectile_space = 0.02
 cooldown = 8.0
 
 [node name="FireSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
-script = ExtResource( 13 )
-projectile = ExtResource( 14 )
+script = ExtResource( 14 )
+projectile = ExtResource( 15 )
 type = 1
 speed = 3.0
 cooldown = 8.0
 
 [node name="SpecialAttacks" type="Node2D" parent="Body"]
 
-[node name="LightningSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 15 )]
+[node name="LightningSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 16 )]
 
-[node name="FireRingSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 16 )]
+[node name="FireRingSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 17 )]
 transition_time = 3.0
 attack_duration = 5.0
 jump_timing = 1.5
 
-[node name="EarthSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 17 )]
-activated = true
+[node name="EarthSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 18 )]
 attack_duration = 10.0
 
-[node name="AirSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 18 )]
+[node name="AirSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 19 )]
 
-[node name="WaterSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 19 )]
+[node name="WaterSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 20 )]
 
 [node name="Movement" type="Node2D" parent="Body"]
 
@@ -163,13 +162,13 @@ stream = SubResource( 4 )
 attenuation = 0.0883883
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="Body"]
-stream = ExtResource( 22 )
-
-[node name="Transition" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource( 23 )
 
-[node name="Death" type="AudioStreamPlayer2D" parent="Body"]
+[node name="Transition" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource( 24 )
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource( 25 )
 volume_db = 10.0
 
 [node name="MoveTimer" type="Timer" parent="."]
@@ -200,7 +199,7 @@ margin_bottom = 44.0
 custom_styles/fg = SubResource( 5 )
 custom_styles/bg = SubResource( 6 )
 percent_visible = false
-script = ExtResource( 25 )
+script = ExtResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -216,27 +215,27 @@ shape = SubResource( 2 )
 [node name="TransformTimer" type="Timer" parent="."]
 
 [node name="Phase0" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 26 )
-volume_db = -80.0
-autoplay = true
-
-[node name="Phase1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 27 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Phase2" type="AudioStreamPlayer" parent="."]
+[node name="Phase1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 28 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Phase3" type="AudioStreamPlayer" parent="."]
+[node name="Phase2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 29 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Phase4" type="AudioStreamPlayer" parent="."]
+[node name="Phase3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 30 )
+volume_db = -80.0
+autoplay = true
+
+[node name="Phase4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 31 )
 volume_db = -80.0
 autoplay = true
 
