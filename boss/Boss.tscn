@@ -89,6 +89,7 @@ visible = false
 shape = SubResource( 2 )
 
 [node name="ProjectileSpawners" type="Node2D" parent="Body"]
+editor/display_folded = true
 
 [node name="ProjectileSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
 projectile = ExtResource( 5 )
@@ -143,7 +144,7 @@ attack_duration = 5.0
 jump_timing = 1.5
 
 [node name="EarthSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 18 )]
-attack_duration = 10.0
+attack_duration = 6.0
 
 [node name="AirSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 19 )]
 
@@ -156,20 +157,25 @@ enabled = true
 
 [node name="ImmuneHit" type="AudioStreamPlayer2D" parent="Body"]
 stream = SubResource( 3 )
+bus = "Sfx"
 
 [node name="VulnerableHit" type="AudioStreamPlayer2D" parent="Body"]
 stream = SubResource( 4 )
 attenuation = 0.0883883
+bus = "Sfx"
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource( 23 )
+bus = "Sfx"
 
 [node name="Transition" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource( 24 )
+bus = "Sfx"
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource( 25 )
 volume_db = 10.0
+bus = "Sfx"
 
 [node name="MoveTimer" type="Timer" parent="."]
 process_mode = 0
@@ -187,6 +193,7 @@ one_shot = true
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
@@ -218,26 +225,31 @@ shape = SubResource( 2 )
 stream = ExtResource( 27 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
 
 [node name="Phase1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 28 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
 
 [node name="Phase2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 29 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
 
 [node name="Phase3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 30 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
 
 [node name="Phase4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 31 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
 
 [node name="HPAnims" type="Tween" parent="."]
 playback_process_mode = 0
