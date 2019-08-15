@@ -1,7 +1,11 @@
 extends Node2D
 
 var open = false
+export var default_open := false
 
+func _ready():
+	if default_open and not open :
+		activate()
 
 func activate():
 	if not open :

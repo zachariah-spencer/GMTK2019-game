@@ -33,9 +33,9 @@ onready var cayote_timer = $CayoteTimer
 func _ready():
 	Engine.time_scale = 1
 	_update_health_bar()
-	$Camera2D.limit_left = Global.LIMIT_LEFT
+	$Camera2D.limit_left = Global.START_LIMIT_LEFT
 	$Camera2D.limit_bottom = Global.LIMIT_BOT
-	$Camera2D.limit_top = Global.LIMIT_TOP
+	$Camera2D.limit_top = Global.START_LIMIT_TOP
 	$Camera2D.limit_right = Global.LIMIT_RIGHT
 	Global.player = self
 	_add_state('idle')
