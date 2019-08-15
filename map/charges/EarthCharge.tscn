@@ -38,4 +38,5 @@ gravity = Vector2( 0, 0 )
 scale_amount = 0.02
 color_ramp = SubResource( 2 )
 script = SubResource( 3 )
+
 [connection signal="fizzle" from="." to="CPUParticles2D" method="fizzle"]

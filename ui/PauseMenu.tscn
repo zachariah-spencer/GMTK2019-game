@@ -1,38 +1,46 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/PauseMenu.gd" type="Script" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=1]
-
-[sub_resource type="StyleBoxEmpty" id=2]
-
-[sub_resource type="StyleBoxEmpty" id=3]
-
 [sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="DynamicFontData" id=5]
-font_path = "res://assets/cleanwork.ttf"
+[sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="DynamicFont" id=6]
-size = 20
-font_data = SubResource( 5 )
+[sub_resource type="StyleBoxEmpty" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://assets/cleanwork.ttf"
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="DynamicFont" id=9]
+size = 20
+font_data = SubResource( 8 )
 
 [sub_resource type="StyleBoxEmpty" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=11]
 
-[sub_resource type="DynamicFontData" id=12]
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="DynamicFontData" id=15]
 font_path = "res://assets/cleanwork.ttf"
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=16]
 size = 20
-font_data = SubResource( 12 )
+font_data = SubResource( 15 )
+
+[sub_resource type="DynamicFontData" id=2]
+resource_local_to_scene = true
+font_path = "res://assets/cleanwork.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = SubResource( 2 )
 
 [node name="PauseMenu" type="Control"]
 pause_mode = 2
@@ -65,11 +73,11 @@ margin_bottom = 48.0
 [node name="MainMenu" type="Button" parent="VBoxContainer"]
 margin_right = 256.0
 margin_bottom = 24.0
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 6 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 1, 1, 1, 0.380392 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0.482353, 0.482353, 0.482353, 1 )
@@ -79,27 +87,65 @@ text = "Main Menu"
 margin_top = 28.0
 margin_right = 256.0
 margin_bottom = 60.0
-custom_styles/hover = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
-custom_styles/hover_pressed = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/hover_pressed = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+custom_fonts/font = SubResource( 16 )
 custom_colors/font_color = Color( 1, 1, 1, 0.415686 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 0.435294 )
 text = "Fullscreen"
 align = 2
 
-[node name="QuitGame" type="Button" parent="VBoxContainer"]
+[node name="MusicLabel" type="Label" parent="VBoxContainer"]
 margin_top = 64.0
 margin_right = 256.0
 margin_bottom = 88.0
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0.443137 )
+text = "Music"
+align = 1
+valign = 1
+
+[node name="Music" type="HSlider" parent="VBoxContainer"]
+margin_top = 92.0
+margin_right = 256.0
+margin_bottom = 108.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+ticks_on_borders = false
+
+[node name="SFXLabel" type="Label" parent="VBoxContainer"]
+margin_top = 112.0
+margin_right = 256.0
+margin_bottom = 136.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0.443137 )
+text = "SFX"
+align = 1
+valign = 1
+
+[node name="SFX" type="HSlider" parent="VBoxContainer"]
+margin_top = 140.0
+margin_right = 256.0
+margin_bottom = 156.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+ticks_on_borders = false
+
+[node name="QuitGame" type="Button" parent="VBoxContainer"]
+margin_top = 160.0
+margin_right = 256.0
+margin_bottom = 184.0
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 1, 1, 1, 0.380392 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0.482353, 0.482353, 0.482353, 1 )
@@ -107,4 +153,6 @@ text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Music" to="." method="_on_Music_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFX" to="." method="_on_SFX_value_changed"]
 [connection signal="pressed" from="VBoxContainer/QuitGame" to="." method="_on_QuitGame_pressed"]

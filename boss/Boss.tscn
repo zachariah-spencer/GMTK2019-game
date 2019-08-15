@@ -156,20 +156,25 @@ enabled = true
 
 [node name="ImmuneHit" type="AudioStreamPlayer2D" parent="Body"]
 stream = SubResource( 3 )
+bus = "SFX"
 
 [node name="VulnerableHit" type="AudioStreamPlayer2D" parent="Body"]
 stream = SubResource( 4 )
 attenuation = 0.0883883
+bus = "SFX"
 
 [node name="Teleport" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource( 23 )
+bus = "SFX"
 
 [node name="Transition" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource( 24 )
+bus = "SFX"
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Body"]
 stream = ExtResource( 25 )
 volume_db = 10.0
+bus = "SFX"
 
 [node name="MoveTimer" type="Timer" parent="."]
 process_mode = 0
@@ -218,26 +223,31 @@ shape = SubResource( 2 )
 stream = ExtResource( 27 )
 volume_db = -80.0
 autoplay = true
+bus = "SFX"
 
 [node name="Phase1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 28 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
 
 [node name="Phase2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 29 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
 
 [node name="Phase3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 30 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
 
 [node name="Phase4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 31 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
 
 [node name="HPAnims" type="Tween" parent="."]
 playback_process_mode = 0
@@ -258,6 +268,7 @@ autostart = true
 process_mode = 0
 wait_time = 100.0
 one_shot = true
+
 [connection signal="hit" from="Body" to="." method="hit"]
 [connection signal="finished" from="Body/Transition" to="." method="end_transform"]
 [connection signal="timeout" from="MoveTimer" to="." method="_move"]

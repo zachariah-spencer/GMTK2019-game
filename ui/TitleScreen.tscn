@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://ui/TitleScreen.gd" type="Script" id=1]
 
@@ -20,12 +20,12 @@ tracks/0/keys = {
 "values": [ Color( 0.85098, 0, 0, 1 ), Color( 0.890196, 0.898039, 0, 1 ), Color( 0.0509804, 0.666667, 0, 1 ), Color( 0, 0.823529, 0.709804, 1 ), Color( 0, 0.0196078, 0.517647, 1 ), Color( 0.764706, 0, 0.788235, 1 ), Color( 0.788235, 0, 0, 1 ) ]
 }
 
-[sub_resource type="DynamicFontData" id=2]
+[sub_resource type="DynamicFontData" id=17]
 font_path = "res://assets/cleanwork.ttf"
 
-[sub_resource type="DynamicFont" id=3]
-size = 100
-font_data = SubResource( 2 )
+[sub_resource type="DynamicFont" id=18]
+size = 120
+font_data = SubResource( 17 )
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
@@ -59,6 +59,14 @@ font_path = "res://assets/cleanwork.ttf"
 size = 50
 font_data = SubResource( 15 )
 
+[sub_resource type="DynamicFontData" id=2]
+resource_local_to_scene = true
+font_path = "res://assets/cleanwork.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = SubResource( 2 )
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -74,14 +82,12 @@ anims/colorwheel = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -262.0
-margin_top = -56.0
-margin_right = 262.0
-margin_bottom = 56.0
-custom_fonts/font = SubResource( 3 )
+margin_left = -313.0
+margin_top = 150.0
+margin_right = 313.0
+margin_bottom = 134.0
+custom_fonts/font = SubResource( 18 )
 text = "Evolution"
 align = 1
 valign = 1
@@ -92,7 +98,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -184.0
-margin_top = -179.0
+margin_top = -361.0
 margin_right = 184.0
 
 [node name="Start" type="Button" parent="VBoxContainer"]
@@ -123,10 +129,48 @@ custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 0.435294 )
 text = "Fullscreen"
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="MusicLabel" type="Label" parent="VBoxContainer"]
 margin_top = 122.0
 margin_right = 368.0
-margin_bottom = 179.0
+margin_bottom = 146.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0.443137 )
+text = "Music"
+align = 1
+valign = 1
+
+[node name="Music" type="HSlider" parent="VBoxContainer"]
+margin_top = 150.0
+margin_right = 368.0
+margin_bottom = 166.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+ticks_on_borders = false
+
+[node name="SFXLabel" type="Label" parent="VBoxContainer"]
+margin_top = 170.0
+margin_right = 368.0
+margin_bottom = 194.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0.443137 )
+text = "SFX"
+align = 1
+valign = 1
+
+[node name="SFX" type="HSlider" parent="VBoxContainer"]
+margin_top = 198.0
+margin_right = 368.0
+margin_bottom = 214.0
+max_value = 1.0
+step = 0.1
+value = 1.0
+ticks_on_borders = false
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 218.0
+margin_right = 368.0
+margin_bottom = 275.0
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -139,4 +183,6 @@ text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Music" to="." method="_on_Music_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SFX" to="." method="_on_SFX_value_changed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

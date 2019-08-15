@@ -4,13 +4,18 @@ onready var background := $Background
 onready var main_menu := $VBoxContainer/MainMenu
 onready var fullscreen := $VBoxContainer/Fullscreen
 onready var quit_game := $VBoxContainer/QuitGame
+onready var music_slide := $VBoxContainer/Music
+onready var sfx_slide := $VBoxContainer/SFX
 
 onready var title_screen := load('res://ui/TitleScreen.tscn')
 onready var transition_screen := load('res://ui/TransitionScreen.tscn')
 
+
 var can_pause := true
 
 func _ready():
+	music_slide.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index('Music')))
+	sfx_slide.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index('SFX')))
 	fullscreen.pressed = OS.window_fullscreen
 
 func _toggle_pause():
@@ -41,3 +46,13 @@ func _on_Fullscreen_pressed():
 func _on_QuitGame_pressed():
 	if get_tree().paused:
 		get_tree().quit()
+
+
+func _on_Music_value_changed(value):
+	var conv_val = linear2db(value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index('Music'), conv_val)
+
+
+func _on_SFX_value_changed(value):
+	var conv_val = linear2db(value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index('SFX'), conv_val)

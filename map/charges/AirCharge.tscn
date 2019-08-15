@@ -31,3 +31,4 @@ gravity = Vector2( 0, 0 )
 radial_accel = 1.0
 scale_amount = 0.03
 color_ramp = SubResource( 2 )
+

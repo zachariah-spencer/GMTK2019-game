@@ -26,5 +26,6 @@ one_shot = true
 
 [node name="Pickup" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource( 1 )
+bus = "SFX"
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]
