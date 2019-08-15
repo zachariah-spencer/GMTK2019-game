@@ -20,12 +20,12 @@ tracks/0/keys = {
 "values": [ Color( 0.85098, 0, 0, 1 ), Color( 0.890196, 0.898039, 0, 1 ), Color( 0.0509804, 0.666667, 0, 1 ), Color( 0, 0.823529, 0.709804, 1 ), Color( 0, 0.0196078, 0.517647, 1 ), Color( 0.764706, 0, 0.788235, 1 ), Color( 0.788235, 0, 0, 1 ) ]
 }
 
-[sub_resource type="DynamicFontData" id=17]
+[sub_resource type="DynamicFontData" id=2]
 font_path = "res://assets/cleanwork.ttf"
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=3]
 size = 120
-font_data = SubResource( 17 )
+font_data = SubResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
@@ -59,13 +59,13 @@ font_path = "res://assets/cleanwork.ttf"
 size = 50
 font_data = SubResource( 15 )
 
-[sub_resource type="DynamicFontData" id=2]
+[sub_resource type="DynamicFontData" id=17]
 resource_local_to_scene = true
 font_path = "res://assets/cleanwork.ttf"
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=18]
 size = 20
-font_data = SubResource( 2 )
+font_data = SubResource( 17 )
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
@@ -87,7 +87,7 @@ margin_left = -313.0
 margin_top = 150.0
 margin_right = 313.0
 margin_bottom = 134.0
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 3 )
 text = "Evolution"
 align = 1
 valign = 1
@@ -133,7 +133,7 @@ text = "Fullscreen"
 margin_top = 122.0
 margin_right = 368.0
 margin_bottom = 146.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 18 )
 custom_colors/font_color = Color( 1, 1, 1, 0.443137 )
 text = "Music"
 align = 1
@@ -152,7 +152,7 @@ ticks_on_borders = false
 margin_top = 170.0
 margin_right = 368.0
 margin_bottom = 194.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 18 )
 custom_colors/font_color = Color( 1, 1, 1, 0.443137 )
 text = "SFX"
 align = 1

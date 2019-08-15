@@ -11,7 +11,7 @@ const LIMIT_BOT = 352
 
 var won := true
 
-var GAMEOVER = preload('res://map/GameOver.tscn')
+var GAMEOVER = preload('res://ui/GameOver.tscn')
 
 func game_end(win : bool):
 	won = win
