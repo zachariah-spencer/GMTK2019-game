@@ -1,12 +1,10 @@
 extends Area2D
 
-
+var frequency := 5.0
 
 func stop():
 	$Particles2D.emitting = false
 	monitoring = false
-
-
 
 func start():
 	$Particles2D.emitting = true
@@ -24,5 +22,5 @@ func _physics_process(delta):
 
 
 func activate():
-	$FrequencyTimer.start()
+	$FrequencyTimer.start(frequency)
 	start()

@@ -23,6 +23,22 @@ func _on_Charge_body_entered(body):
 		fizzle()
 		emit_signal('picked_up')
 
+func _on_Charge_area_entered(area):
+	var proj = area as Projectile
+
+	if proj :
+		match type :
+			Damage.void_type :
+				pass
+			Damage.fire :
+				pass
+			Damage.lightning :
+				pass
+			Damage.earth :
+				pass
+			Damage.air :
+				pass
+
 
 func _physics_process(delta):
 	if !fizzle_timer.is_stopped() :
@@ -32,14 +48,14 @@ func _physics_process(delta):
 		$CollisionShape2D.shape.radius = sin(1.5 * pulsing_time) + 8
 		pulsing_time += .02
 
-	update()
+#	update()
 
-func _draw():
-	if !spawn_timer.is_stopped():
-		spawn_anim += .5
-		draw_circle(Vector2.ZERO, spawn_anim, color)
-	else:
-		draw_circle(Vector2.ZERO, $CollisionShape2D.shape.radius, color)
+#func _draw():
+#	if !spawn_timer.is_stopped():
+#		spawn_anim += .5
+#		draw_circle(Vector2.ZERO, spawn_anim, color)
+#	else:
+#		draw_circle(Vector2.ZERO, $CollisionShape2D.shape.radius, color)
 
 
 func fizzle():
@@ -51,3 +67,6 @@ func fizzle():
 
 func _on_FizzleTimer_timeout():
 	queue_free()
+
+
+

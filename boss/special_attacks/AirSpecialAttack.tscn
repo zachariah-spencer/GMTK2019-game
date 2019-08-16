@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://boss/special_attacks/SpecialAttack.tscn" type="PackedScene" id=1]
 [ext_resource path="res://boss/special_attacks/AirSpecialAttack.gd" type="Script" id=2]
 [ext_resource path="res://_projectiles/BossSpecialAirProjectile.tscn" type="PackedScene" id=3]
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.0116 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 2.7449, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
 resource_local_to_scene = true
-offsets = PoolRealArray( 0, 0.851852, 1 )
-colors = PoolColorArray( 0.999817, 1, 0.976563, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.75419 )
+colors = PoolColorArray( 1, 1, 0.976471, 0.027451, 1, 1, 1, 0.109804 )
 
 [node name="AirSpecialAttack" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -22,11 +25,15 @@ wait_time = 2.0
 
 [node name="FireDelay" type="Timer" parent="." index="2"]
 process_mode = 0
-wait_time = 0.25
 
 [node name="Node" type="Node" parent="." index="3"]
 
 [node name="TelecastVFX" parent="." index="4"]
-color_ramp = SubResource( 1 )
-
+initial_velocity = 15.0
+initial_velocity_random = 0.5
+orbit_velocity = -1.0
+orbit_velocity_random = 1.0
+scale_amount = 0.05
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
 [connection signal="timeout" from="FireDelay" to="." method="_on_FireDelay_timeout"]

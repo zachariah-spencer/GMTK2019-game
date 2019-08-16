@@ -1,11 +1,11 @@
 extends Node2D
 
 var charge_types := {
-1 : preload('res://_projectiles/FireProjectile.tscn'),
-2 : preload('res://_projectiles/LightningProjectile.tscn'),
-3 : preload('res://_projectiles/WaterProjectile.tscn'),
-4 : preload('res://_projectiles/EarthProjectile.tscn'),
-5 : preload('res://_projectiles/AirProjectile.tscn'),
+Damage.fire : preload('res://_projectiles/FireProjectile.tscn'),
+Damage.lightning : preload('res://_projectiles/LightningProjectile.tscn'),
+Damage.water : preload('res://_projectiles/WaterProjectile.tscn'),
+Damage.earth : preload('res://_projectiles/EarthProjectile.tscn'),
+Damage.air : preload('res://_projectiles/AirProjectile.tscn'),
 }
 
 export var base_projectile_speed := 180.0
@@ -39,7 +39,6 @@ func shoot():
 
 func _handle_shot_type(type):
 	var projectile = charge_types[charge_type]
-	print(type)
 	match type:
 		Damage.fire:
 			_add_spread(projectile, 2.5, 3)

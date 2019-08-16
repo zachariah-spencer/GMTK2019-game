@@ -17,8 +17,6 @@ var move_handling_enabled := true
 
 onready var projectile_attacks = $Body/ProjectileSpawners.get_children()
 onready var special_attacks = $Body/SpecialAttacks.get_children()
-onready var movement_abilities = $Body/Movement.get_children()
-onready var rand = RandomNumberGenerator.new()
 onready var line_of_sight = $Body/PlayerLineOfSight
 onready var health_bar = $CanvasLayer/HealthBar
 onready var body := $Body
@@ -30,8 +28,8 @@ onready var shot_delay_timer := $ShotDelayTimer
 onready var visuals := $Body/Particles2D
 
 
-var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)
-var low_jump_v = sqrt(gravity * 60 * CELL_SIZE * 3)
+var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 12)
+var low_jump_v = sqrt(gravity * 60 * CELL_SIZE * 4)
 
 
 const gravity = 20
@@ -55,6 +53,15 @@ func hit(by : Node2D, damage : float, type : int, knockback : Vector2):
 		$Body/ImmuneHit.play()
 
 func die() :
+	move_timer.stop()
+	projectile_timer.stop()
+	special_timer.stop()
+	modulate = Color.red
+	$Phase1.stop()
+	$Phase2.stop()
+	$Phase3.stop()
+	$Phase4.stop()
+	
 	$Body/Death.play()
 	yield($Body/Death, "finished")
 	Global.game_end(true)
@@ -66,7 +73,7 @@ func activate_phase(type : int):
 	if phase == final_phase :
 		die()
 	transforming = true
-	$Body/Particles2D.initial_velocity = 10
+	visuals.initial_velocity = 10
 	$Body/Transition.play()
 	$MoveTimer.stop()
 	$ProjectileTimer.stop()
@@ -76,8 +83,7 @@ func activate_phase(type : int):
 
 	for special in special_attacks :
 		if special.type == type :
-			pass
-#			special.activate() the specials are not ready yet
+			special.activate()
 
 	for attack in projectile_attacks :
 		if attack.type == type :
@@ -99,12 +105,12 @@ func _move():
 		if phase <= 0 :
 			_hop()
 		elif phase <= 2 :
-			if player_dir.length() > Global.CELL_SIZE * 10  and line_of_sight.is_colliding() :
+			if player_dir.length() > Global.CELL_SIZE * 10  or( not $SightTimer.is_stopped() and $SightTimer.time_left <= 95)  :
 				_teleport()
 			else :
 				_hop()
 		else :
-			if player_dir.length() > Global.CELL_SIZE * 20  and line_of_sight.is_colliding() :
+			if player_dir.length() > Global.CELL_SIZE * 20  or ( not $SightTimer.is_stopped() and $SightTimer.time_left <= 92) :
 				_teleport()
 			else :
 				_air_impulse()
@@ -168,7 +174,7 @@ func _set_state(new_state):
 func _state_logic(delta : float):
 	if !transforming :
 		_handle_movement(delta)
-		line_of_sight.cast_to = player.global_position  - $Body.global_position
+		line_of_sight.cast_to = player.global_position  - body.global_position
 		_apply_movement()
 
 func _get_transition(delta : float):
@@ -180,6 +186,12 @@ func _get_transition(delta : float):
 func _physics_process(delta):
 	if curr_track.volume_db < track_vol :
 		curr_track.volume_db = lerp(curr_track.volume_db, track_vol, delta)
+
+	if $SightTimer.is_stopped() and line_of_sight.is_colliding() :
+		$SightTimer.start()
+	elif not line_of_sight.is_colliding() :
+		$SightTimer.stop()
+
 	if state != null:
 		_state_logic(delta)
 		var transition = _get_transition(delta)
@@ -187,16 +199,16 @@ func _physics_process(delta):
 			_set_state(transition)
 
 func _apply_movement():
-	$Body.move_and_slide(velocity, Vector2.UP)
+	body.move_and_slide(velocity, Vector2.UP)
 	if phase >= 3 :
-		var slide_count = $Body.get_slide_count()
+		var slide_count = body.get_slide_count()
 		if slide_count > 0 :
-			velocity = velocity.bounce($Body.get_slide_collision(slide_count -1).normal) * .5
+			velocity = velocity.bounce(body.get_slide_collision(slide_count -1).normal) * .5
 
 
 func _handle_movement(delta : float ):
 	if phase <= 2 && move_handling_enabled:
-		if $Body.is_on_floor() :
+		if body.is_on_floor() :
 			velocity.x = lerp(velocity.x, 0, .1)
 		else :
 			velocity += Vector2.DOWN * gravity
@@ -267,6 +279,12 @@ func _teleport():
 	$ProjectileTimer.stop()
 	$ProjectileTimer.start()
 
+
+
+############################################
+######UI/Sound
+##########################################
+
 onready var curr_track : AudioStreamPlayer = $Phase0
 var track_vol = -1
 
@@ -278,7 +296,7 @@ func end_transform() :
 	$MoveTimer.start()
 	$ProjectileTimer.start()
 	transforming = false
-	$Body/Particles2D.initial_velocity = 40
+	visuals.initial_velocity = 40
 	if curr_track.volume_db < track_vol :
 		curr_track.volume_db = track_vol
 	match phase :

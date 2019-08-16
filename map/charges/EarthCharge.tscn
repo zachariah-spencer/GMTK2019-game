@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://map/charges/Charge.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sphere_soft.png" type="Texture" id=2]
@@ -7,13 +7,11 @@
 resource_local_to_scene = true
 radius = 8.0
 
-[sub_resource type="Curve" id=2]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.3658 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.129412, 0.780392, 0.0352941, 0.494118 )
 
-[sub_resource type="Gradient" id=3]
-colors = PoolColorArray( 1, 0.654902, 0, 0.462745, 1, 0.0705882, 0, 0 )
-
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 script/source = "extends CPUParticles2D
 
 func fizzle():
@@ -32,12 +30,13 @@ wait_time = 0.1
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="3"]
 amount = 200
 preprocess = 0.4
+draw_order = 1
 texture = ExtResource( 2 )
 emission_shape = 1
 emission_sphere_radius = 4.0
-gravity = Vector2( 0, -75 )
+gravity = Vector2( 0, 0 )
 scale_amount = 0.02
-scale_amount_curve = SubResource( 2 )
-color_ramp = SubResource( 3 )
-script = SubResource( 4 )
+color_ramp = SubResource( 2 )
+script = SubResource( 3 )
+
 [connection signal="fizzle" from="." to="CPUParticles2D" method="fizzle"]

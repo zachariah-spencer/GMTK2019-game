@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://boss/special_attacks/SpecialAttack.tscn" type="PackedScene" id=1]
 [ext_resource path="res://boss/special_attacks/EarthSpecialAttack.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/whoosh.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/thump.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 5 )
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.1524 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=3]
 resource_local_to_scene = true
 offsets = PoolRealArray( 0, 0.243386, 0.666667, 0.772487, 0.873016, 0.978836, 1 )
 colors = PoolColorArray( 0, 0.410156, 0.0352478, 1, 0, 0.671046, 0.0516715, 1, 0, 0.469993, 0.0390147, 1, 0.457031, 0.38562, 0, 1, 0, 0.544192, 0.0436857, 1, 0, 0.535156, 0.0334473, 1, 0.0497437, 0.636719, 0, 0 )
@@ -37,7 +42,21 @@ position = Vector2( 0, 40 )
 shape = SubResource( 1 )
 
 [node name="TelecastVFX" parent="." index="6"]
-color_ramp = SubResource( 2 )
+lifetime = 0.2
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 30.0
+radial_accel = 0.0
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 3 )
 
+[node name="Woosh" type="AudioStreamPlayer2D" parent="." index="7"]
+stream = ExtResource( 3 )
+volume_db = 12.0
+bus = "Sfx"
+
+[node name="Thump" type="AudioStreamPlayer2D" parent="." index="8"]
+stream = ExtResource( 4 )
+bus = "Sfx"
 [connection signal="timeout" from="MoveTimer" to="." method="_zig_zag_move"]
 [connection signal="body_entered" from="FloorArea" to="." method="_on_Area2D_body_entered"]

@@ -9,7 +9,9 @@ onready var boss := $'../../..'
 onready var player = Global.player
 onready var transition_duration := $TransitionDuration
 onready var particles := $TelecastVFX
-var activated := false
+export var activated := false
+export var transition_time := 1.0
+export var attack_duration := 2.0
 
 signal special_attack_finished
 
@@ -21,10 +23,10 @@ func _ready():
 	add_to_group(str(type))
 
 func attack():
-	transition_duration.start()
+	transition_duration.start(transition_time)
 	_transition()
 	yield(transition_duration,'timeout')
-	duration.start()
+	duration.start(attack_duration)
 	_attack()
 
 #put behavior here to telecast the bosses actions before he attacks full force
