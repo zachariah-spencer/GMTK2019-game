@@ -22,7 +22,7 @@ func _ready():
 func _toggle_pause():
 	var p_state := get_tree().paused
 	p_state = not p_state
-	
+
 	get_tree().paused = p_state
 	visible = p_state
 

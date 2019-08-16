@@ -8,7 +8,7 @@ onready var confirm_quit := $ConfirmQuit
 onready var heart_monitor_sfx := $HeartMonitorSFX
 onready var monster_roar_sfx := $MonsterRoarSFX
 func _ready():
-	
+
 	if Global.won :
 		$Panel/Label.text = "Victory"
 		$Panel/Label.modulate = Color.green

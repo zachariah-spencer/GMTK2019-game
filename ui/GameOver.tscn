@@ -146,7 +146,6 @@ dialog_text = "Are you sure you want to quit the game?"
 stream = ExtResource( 2 )
 volume_db = -12.0
 bus = "Music"
-
 [connection signal="pressed" from="HBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="HBoxContainer/Quit" to="." method="quit"]
 [connection signal="pressed" from="HBoxContainer/PlayAgain" to="." method="restart"]
