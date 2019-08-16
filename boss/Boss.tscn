@@ -89,6 +89,7 @@ visible = false
 shape = SubResource( 2 )
 
 [node name="ProjectileSpawners" type="Node2D" parent="Body"]
+editor/display_folded = true
 
 [node name="ProjectileSpawner" parent="Body/ProjectileSpawners" instance=ExtResource( 4 )]
 projectile = ExtResource( 5 )
@@ -134,6 +135,7 @@ speed = 3.0
 cooldown = 8.0
 
 [node name="SpecialAttacks" type="Node2D" parent="Body"]
+editor/display_folded = true
 
 [node name="LightningSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 16 )]
 
@@ -143,7 +145,7 @@ attack_duration = 5.0
 jump_timing = 1.5
 
 [node name="EarthSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 18 )]
-attack_duration = 10.0
+attack_duration = 6.0
 
 [node name="AirSpecialAttack" parent="Body/SpecialAttacks" instance=ExtResource( 19 )]
 
@@ -178,7 +180,7 @@ bus = "SFX"
 
 [node name="MoveTimer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 4.0
+wait_time = 2.0
 autostart = true
 
 [node name="ProjectileTimer" type="Timer" parent="."]
@@ -192,6 +194,7 @@ one_shot = true
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )

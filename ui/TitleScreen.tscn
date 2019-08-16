@@ -239,14 +239,15 @@ custom_colors/font_color_pressed = Color( 0.482353, 0.482353, 0.482353, 1 )
 text = "Quit"
 
 [node name="ConfirmQuit" type="ConfirmationDialog" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -137.0
-margin_top = -35.0
-margin_right = 219.0
-margin_bottom = 66.0
+margin_left = -361.0
+margin_top = -50.5
+margin_right = 361.0
+margin_bottom = 50.5
 theme = SubResource( 26 )
 popup_exclusive = true
 window_title = ""

@@ -28,8 +28,8 @@ onready var shot_delay_timer := $ShotDelayTimer
 onready var visuals := $Body/Particles2D
 
 
-var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 8)
-var low_jump_v = sqrt(gravity * 60 * CELL_SIZE * 3)
+var high_jump_v = sqrt(gravity * 60 * CELL_SIZE * 12)
+var low_jump_v = sqrt(gravity * 60 * CELL_SIZE * 4)
 
 
 const gravity = 20
@@ -278,6 +278,12 @@ func _teleport():
 	$Body.global_position = test_point
 	$ProjectileTimer.stop()
 	$ProjectileTimer.start()
+
+
+
+############################################
+######UI/Sound
+##########################################
 
 onready var curr_track : AudioStreamPlayer = $Phase0
 var track_vol = -1
