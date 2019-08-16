@@ -70,9 +70,23 @@ margin_top = -48.0
 margin_right = 128.0
 margin_bottom = 48.0
 
-[node name="MainMenu" type="Button" parent="VBoxContainer"]
+[node name="Resume" type="Button" parent="VBoxContainer"]
 margin_right = 256.0
 margin_bottom = 24.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 0.380392 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.482353, 0.482353, 0.482353, 1 )
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 256.0
+margin_bottom = 52.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
@@ -84,9 +98,9 @@ custom_colors/font_color_pressed = Color( 0.482353, 0.482353, 0.482353, 1 )
 text = "Main Menu"
 
 [node name="Fullscreen" type="CheckButton" parent="VBoxContainer"]
-margin_top = 28.0
+margin_top = 56.0
 margin_right = 256.0
-margin_bottom = 60.0
+margin_bottom = 88.0
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
 custom_styles/focus = SubResource( 9 )
@@ -100,9 +114,9 @@ text = "Fullscreen"
 align = 2
 
 [node name="MusicLabel" type="Label" parent="VBoxContainer"]
-margin_top = 64.0
+margin_top = 92.0
 margin_right = 256.0
-margin_bottom = 88.0
+margin_bottom = 116.0
 custom_fonts/font = SubResource( 15 )
 custom_colors/font_color = Color( 1, 1, 1, 0.443137 )
 text = "Music"
@@ -110,18 +124,17 @@ align = 1
 valign = 1
 
 [node name="Music" type="HSlider" parent="VBoxContainer"]
-margin_top = 92.0
+margin_top = 120.0
 margin_right = 256.0
-margin_bottom = 108.0
+margin_bottom = 136.0
 max_value = 1.0
 step = 0.1
 value = 1.0
-ticks_on_borders = false
 
 [node name="SFXLabel" type="Label" parent="VBoxContainer"]
-margin_top = 112.0
+margin_top = 140.0
 margin_right = 256.0
-margin_bottom = 136.0
+margin_bottom = 164.0
 custom_fonts/font = SubResource( 15 )
 custom_colors/font_color = Color( 1, 1, 1, 0.443137 )
 text = "SFX"
@@ -129,18 +142,17 @@ align = 1
 valign = 1
 
 [node name="SFX" type="HSlider" parent="VBoxContainer"]
-margin_top = 140.0
+margin_top = 168.0
 margin_right = 256.0
-margin_bottom = 156.0
+margin_bottom = 184.0
 max_value = 1.0
 step = 0.1
 value = 1.0
-ticks_on_borders = false
 
 [node name="QuitGame" type="Button" parent="VBoxContainer"]
-margin_top = 160.0
+margin_top = 188.0
 margin_right = 256.0
-margin_bottom = 184.0
+margin_bottom = 212.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
@@ -151,8 +163,23 @@ custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0.482353, 0.482353, 0.482353, 1 )
 text = "Quit"
 
+[node name="ConfirmQuit" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.0
+margin_top = -35.0
+margin_right = 137.0
+margin_bottom = 35.0
+popup_exclusive = true
+window_title = ""
+dialog_text = "Are you sure you want to quit the game?"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="VBoxContainer/Fullscreen" to="." method="_on_Fullscreen_pressed"]
 [connection signal="value_changed" from="VBoxContainer/Music" to="." method="_on_Music_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SFX" to="." method="_on_SFX_value_changed"]
 [connection signal="pressed" from="VBoxContainer/QuitGame" to="." method="_on_QuitGame_pressed"]
+[connection signal="confirmed" from="ConfirmQuit" to="." method="_on_ConfirmQuit_confirmed"]

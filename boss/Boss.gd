@@ -53,6 +53,15 @@ func hit(by : Node2D, damage : float, type : int, knockback : Vector2):
 		$Body/ImmuneHit.play()
 
 func die() :
+	move_timer.stop()
+	projectile_timer.stop()
+	special_timer.stop()
+	modulate = Color.red
+	$Phase1.stop()
+	$Phase2.stop()
+	$Phase3.stop()
+	$Phase4.stop()
+	
 	$Body/Death.play()
 	yield($Body/Death, "finished")
 	Global.game_end(true)

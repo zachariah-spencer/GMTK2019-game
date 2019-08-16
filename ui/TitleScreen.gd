@@ -6,7 +6,7 @@ onready var transition_screen := load('res://ui/TransitionScreen.tscn')
 onready var fullscreen := $VBoxContainer/Fullscreen
 onready var music_slide := $VBoxContainer/Music
 onready var sfx_slide := $VBoxContainer/SFX
-
+onready var confirm_quit := $ConfirmQuit
 
 func _ready():
 	music_slide.value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index('Music')))
@@ -26,7 +26,7 @@ func _on_Fullscreen_pressed():
 
 
 func _on_Quit_pressed():
-	get_tree().quit()
+	confirm_quit.popup()
 
 
 func _on_Music_value_changed(value):
@@ -40,3 +40,7 @@ func _on_Music_value_changed(value):
 func _on_SFX_value_changed(value):
 	var conv_val = linear2db(value)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index('SFX'), conv_val)
+
+
+func _on_ConfirmQuit_confirmed():
+	get_tree().quit()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ui/GameOver.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/ECG-Mike_Koenig-180928302.wav" type="AudioStream" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -76,13 +77,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -427.0
+margin_left = -455.0
 margin_top = -100.0
-margin_right = 427.0
+margin_right = 455.0
+custom_constants/separation = 50
 
 [node name="MainMenu" type="Button" parent="HBoxContainer"]
-margin_left = -50.0
-margin_right = 218.0
+margin_right = 268.0
 margin_bottom = 100.0
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 5 )
@@ -97,8 +98,8 @@ __meta__ = {
 }
 
 [node name="Quit" type="Button" parent="HBoxContainer"]
-margin_left = 272.0
-margin_right = 532.0
+margin_left = 318.0
+margin_right = 578.0
 margin_bottom = 100.0
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 5 )
@@ -113,8 +114,8 @@ __meta__ = {
 }
 
 [node name="PlayAgain" type="Button" parent="HBoxContainer"]
-margin_left = 586.0
-margin_right = 868.0
+margin_left = 628.0
+margin_right = 910.0
 margin_bottom = 100.0
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 5 )
@@ -128,6 +129,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ConfirmQuit" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.0
+margin_top = -35.0
+margin_right = 137.0
+margin_bottom = 35.0
+popup_exclusive = true
+window_title = ""
+dialog_text = "Are you sure you want to quit the game?"
+
+[node name="HeartMonitorSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -12.0
+bus = "Music"
+
 [connection signal="pressed" from="HBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="HBoxContainer/Quit" to="." method="quit"]
 [connection signal="pressed" from="HBoxContainer/PlayAgain" to="." method="restart"]
+[connection signal="confirmed" from="ConfirmQuit" to="." method="_on_ConfirmQuit_confirmed"]
