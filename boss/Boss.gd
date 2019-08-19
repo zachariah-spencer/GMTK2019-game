@@ -35,6 +35,7 @@ var low_jump_v = sqrt(gravity * 60 * CELL_SIZE * 4)
 const gravity = 20
 var player : Node2D
 
+signal phase_change(phase)
 
 func _ready():
 	Global.boss = self
@@ -61,14 +62,14 @@ func die() :
 	$Phase2.stop()
 	$Phase3.stop()
 	$Phase4.stop()
-	
+
 	$Body/Death.play()
 	yield($Body/Death, "finished")
 	Global.game_end(true)
 
 func activate_phase(type : int):
 	phase += 1
-
+	emit_signal("phase_change", phase)
 
 	if phase == final_phase :
 		die()

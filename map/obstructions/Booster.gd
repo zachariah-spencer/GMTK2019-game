@@ -2,6 +2,8 @@ extends Area2D
 
 var frequency := 5.0
 
+export var phase_activation := 1
+
 func stop():
 	$Particles2D.emitting = false
 	monitoring = false
@@ -21,6 +23,9 @@ func _physics_process(delta):
 				body.get_parent().velocity.y = -500
 
 
-func activate():
-	$FrequencyTimer.start(frequency)
-	start()
+func activate(phase):
+	if phase == phase_activation :
+		$FrequencyTimer.start(frequency)
+		start()
+
+

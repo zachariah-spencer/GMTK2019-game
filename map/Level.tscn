@@ -139,9 +139,6 @@ position = Vector2( 2840, -990 )
 [node name="FireObstruction2" parent="Obstructions" instance=ExtResource( 9 )]
 position = Vector2( 195.046, 228.571 )
 
-[node name="LightningObstruction" parent="Obstructions" instance=ExtResource( 6 )]
-position = Vector2( 784.332, 0 )
-
 [node name="WallObstruction" parent="Obstructions" instance=ExtResource( 4 )]
 position = Vector2( 2068, -318 )
 rotation = 1.5708
@@ -229,7 +226,6 @@ position = Vector2( 324, 22 )
 texture = ExtResource( 15 )
 
 [node name="Pipes" type="ParallaxLayer" parent="ParallaxBackground"]
-editor/display_folded = true
 position = Vector2( 330.86, 19.61 )
 motion_scale = Vector2( 0.3, 0.3 )
 
@@ -255,5 +251,5 @@ margin_bottom = 360.0
 [connection signal="start_game" from="Tutorial/GameStart" to="Tutorial/StartGate" method="activate"]
 [connection signal="activate" from="Tutorial/Lock1/LightningObstruction" to="Tutorial/Lock1/LockGate1" method="activate"]
 [connection signal="activate" from="Tutorial/Lock1/LightningObstruction" to="Tutorial/Lock1/LockGate2" method="activate"]
-[connection signal="activate" from="Obstructions/LightningObstruction" to="Obstructions/Booster" method="activate"]
 [connection signal="activate" from="Obstructions/LightningObstruction2" to="Obstructions/WallObstruction" method="activate"]
+[connection signal="phase_change" from="Boss" to="Obstructions/Booster" method="activate"]
